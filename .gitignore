@@ -8,7 +8,8 @@ node_modules/
 *.log
 .DS_Store
 .cursorrules
-.doc.md
+
+doc.md
 
 # 忽略所有 .git 文件夹
 .git/
