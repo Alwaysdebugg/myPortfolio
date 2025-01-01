@@ -1,0 +1,18 @@
+# 忽略 Next.js 的生成文件夹
+.next/
+
+# 忽略 Node.js 的依赖文件夹
+node_modules/
+
+# 忽略其他临时文件
+*.log
+.DS_Store
+.cursorrules
+.doc.md
+
+# 忽略所有 .git 文件夹
+.git/
+
+myPortfolio/
+
+
