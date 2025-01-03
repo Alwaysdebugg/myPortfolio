@@ -34,3 +34,4 @@ categorization using the Context API for global state management.
 - Engineered an image upload system with Multer for blog post attachments, developed a responsive UI
 using Tailwind CSS with custom typography for enhanced readability and visual appeal. 
 - GitHub link: https://github.com/Alwaysdebugg/myBlog
+
