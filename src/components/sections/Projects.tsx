@@ -6,25 +6,25 @@ import { motion } from 'framer-motion'
 
 const projects = [
   {
-    title: "电商平台",
-    description: "基于Next.js和TailwindCSS开发的现代电商平台，支持商品展示、购物车、支付等功能",
-    image: "/projects/ecommerce.jpg",
-    tags: ["Next.js", "React", "TailwindCSS", "TypeScript"],
+    title: "3D Factory Management Visualization System",
+    description: "Implemented an industrial-grade 3D visualization platform for a food factory's backend management system using React and Babylon.js.",
+    image: "/images/factory.jpg",
+    tags: ["React", "Babylon.js", "Express.js"],
     link: "#"
   },
   {
-    title: "企业管理系统",
-    description: "一个完整的企业资源管理系统，包含人事管理、财务管理、项目管理等模块",
-    image: "/projects/management.jpg",
-    tags: ["React", "Ant Design", "Node.js", "MongoDB"],
+    title: "E-Commerce Mobile Platform",
+    description: "Implemented a mobile e-commerce app with dynamic and responsive user interface components using Vue and Element UI.",
+    image: "/images/ecommerce-mobile.jpg",
+    tags: ["Vue", "Element UI", "Vuex", "Axios", "Pinia"],
     link: "#"
   },
   {
-    title: "社交媒体应用",
-    description: "类似Instagram的社交媒体应用，支持图片上传、滤镜、评论等功能",
-    image: "/projects/social.jpg",
-    tags: ["React Native", "Firebase", "Redux", "Express"],
-    link: "#"
+    title: "Medium Clone (Blog Website)",
+    description: "Developed a full-stack blogging platform inspired by Medium using the MERN stack.",
+    image: "/images/medium-clone.jpg",
+    tags: ["MERN"],
+    link: "https://github.com/Alwaysdebugg/myBlog"
   }
 ]
 
@@ -39,7 +39,7 @@ export default function Projects() {
         className="max-w-6xl mx-auto px-4"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          项目经验
+          Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -76,9 +76,9 @@ export default function Projects() {
                 </div>
                 <a
                   href={project.link}
-                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                  className="inline-block bg-white hover:bg-gray-200 dark:bg-blue-600 dark:hover:bg-blue-700 text-black dark:text-white px-4 py-2 rounded-full transition-colors"
                 >
-                  查看详情
+                  View Details
                 </a>
               </div>
             </motion.div>

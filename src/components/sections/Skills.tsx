@@ -4,22 +4,22 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const skills = {
-  "前端开发": [
+  "Frontend Development": [
     { name: "HTML5/CSS3", level: 95 },
     { name: "JavaScript/TypeScript", level: 90 },
     { name: "React", level: 90 },
-    { name: "Next.js", level: 85 },
+    { name: "Vue", level: 85 },
     { name: "TailwindCSS", level: 90 }
   ],
-  "后端技术": [
-    { name: "Node.js", level: 80 },
-    { name: "Express", level: 75 },
-    { name: "MongoDB", level: 70 },
-    { name: "RESTful API", level: 85 }
+  "Backend Development": [
+    { name: "Node.js", level: 85 },
+    { name: "Express", level: 85 },
+    { name: "MongoDB", level: 80 },
+    { name: "MySQL", level: 85 }
   ],
-  "开发工具": [
+  "Development Tools": [
     { name: "Git", level: 90 },
-    { name: "VS Code", level: 95 },
+    { name: "Vite", level: 80 },
     { name: "Webpack", level: 80 },
     { name: "Docker", level: 70 }
   ]
@@ -36,7 +36,7 @@ export default function Skills() {
         className="max-w-4xl mx-auto px-4"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          技术技能
+          Tech Skills
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {Object.entries(skills).map(([category, items], index) => (

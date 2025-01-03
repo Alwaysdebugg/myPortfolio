@@ -5,25 +5,25 @@ import { motion } from 'framer-motion'
 
 const experiences = [
   {
-    company: "科技有限公司",
-    position: "高级前端开发工程师",
-    period: "2021 - 至今",
+    company: "Cognizant",
+    position: "Frontend Developer",
+    period: "07.2022 - 05.2023",
     description: [
-      "负责公司核心产品的前端架构设计和开发",
-      "优化前端性能，提升页面加载速度和用户体验",
-      "指导初级开发人员，组织技术分享会",
-      "引入新技术栈，提升开发效率"
+      "Implemented backend management system using React and Babylon.js.",
+      "Integrated data from an Express.js backend via RESTful APIs and rendered it onto 3D model.",
+      "Developed responsive and interactive user interfaces with React and Ant Design UI.",
+      "Collaborated with the development team to implement version control best practices using GitHub."
     ]
   },
   {
-    company: "互联网公司",
-    position: "前端开发工程师",
-    period: "2019 - 2021",
+    company: "Cognizant",
+    position: "Frontend Development Trainee",
+    period: "03.2022 - 07.2022",
     description: [
-      "参与电商平台的开发和维护",
-      "实现响应式设计，确保跨平台兼容性",
-      "开发和维护公共组件库",
-      "与后端团队协作，优化API接口"
+      "Implemented dynamic, responsive user interface components for a mobile e-commerce app.",
+      "Integrated centralized state management with Vuex.",
+      "Developed interactive data visualization features using ECharts and Leaflet.",
+      "Collaborated in a Scrum development environment."
     ]
   }
 ]
@@ -38,8 +38,8 @@ export default function Experience() {
         viewport={{ once: true }}
         className="max-w-4xl mx-auto px-4"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          工作经验
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-black dark:text-white font-sans">
+          Work Experience
         </h2>
         <div className="space-y-12">
           {experiences.map((exp, index) => (

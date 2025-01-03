@@ -13,7 +13,7 @@ export default function Home() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         <Navbar />
         <Hero />
-        <div className="space-y-28 w-full">
+        <div className="space-y-10 w-full">
           <About />
           <Experience />
           <Projects />

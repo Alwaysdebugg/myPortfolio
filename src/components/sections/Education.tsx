@@ -5,26 +5,14 @@ import { motion } from 'framer-motion'
 
 const education = [
   {
-    school: "某某大学",
-    degree: "计算机科学与技术学士",
-    period: "2015 - 2019",
-    description: [
-      "主修课程：数据结构、算法、计算机网络、操作系统",
-      "GPA: 3.8/4.0",
-      "获得优秀毕业生称号",
-      "参与多个校园技术创新项目"
-    ]
+    school: "New York Institute of Technology(Vancouver)",
+    degree: "Master of Cybersecurity",
+    period: "2023 - 2024",
   },
   {
-    school: "某某培训机构",
-    degree: "Web全栈开发认证",
-    period: "2019",
-    description: [
-      "完成为期6个月的全栈开发培训",
-      "掌握前端和后端开发技术",
-      "独立完成多个实战项目",
-      "获得最佳学员称号"
-    ]
+    school: "Shanghai Sanda University",
+    degree: "Bachelor of Software Engineering",
+    period: "2018 - 2022",
   }
 ]
 
@@ -38,8 +26,8 @@ export default function Education() {
         viewport={{ once: true }}
         className="max-w-4xl mx-auto px-4"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          教育背景
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-black dark:text-white font-sans">
+          Education  
         </h2>
         <div className="space-y-8">
           {education.map((edu, index) => (
@@ -60,13 +48,6 @@ export default function Education() {
                   {edu.period}
                 </span>
               </div>
-              <ul className="list-disc list-inside space-y-2">
-                {edu.description.map((item, idx) => (
-                  <li key={idx} className="text-gray-700 dark:text-gray-300">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </motion.div>
           ))}
         </div>

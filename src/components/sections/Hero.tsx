@@ -16,30 +16,15 @@ export default function Hero() {
         className="flex flex-col items-center text-center space-y-8 w-full md:w-1/2"
       >
         <div className="space-y-6">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-400/80">
+          <h1 className="text-2xl font-bold tracking-tight text-black dark:text-white">
             <span className="text-4xl text-white">👋</span>
             <span className="ml-2">Hello, I'm</span>
-            <span className="text-white ml-2">Jacky</span>
+            <span className="text-black dark:text-white ml-2 text-4xl italic font-medium tracking-wide">Jacky</span>
           </h1>
-          <p className="text-xl text-gray-400/80 max-w-2xl mx-auto leading-relaxed text-balance">
-            I'm a frontend developer who loves creating beautiful user interfaces and focusing on developing high-performance, accessible web applications.
+          <p className="text-xl text-black dark:text-white max-w-2xl mx-auto leading-relaxed text-start">
+          🌟 Passionate Front-end developer with a love for exploring diverse technologies. 
+          On a journey to becoming a full-stack developer.
           </p>
-        </div>
-        <div className="flex gap-6 justify-center pt-4">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-lg text-lg font-medium transition-colors shadow-lg hover:shadow-xl"
-          >
-            View Projects
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="border-2 border-white/20 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-medium transition-colors"
-          >
-            Contact Me
-          </motion.button>
         </div>
       </motion.div>
       
