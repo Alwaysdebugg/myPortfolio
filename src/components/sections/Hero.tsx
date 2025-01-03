@@ -45,7 +45,7 @@ export default function Hero() {
             </div>
           ) : (
             <Image
-              src="/images/avatar.jpg"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/avatar.jpg`}
               alt="Profile picture"
               fill
               className="object-cover"

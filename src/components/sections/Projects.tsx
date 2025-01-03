@@ -8,21 +8,21 @@ const projects = [
   {
     title: "3D Factory Management Visualization System",
     description: "Implemented an industrial-grade 3D visualization platform for a food factory's backend management system using React and Babylon.js.",
-    image: "/images/factory.jpg",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/factory.jpg`,
     tags: ["React", "Babylon.js", "Express.js"],
     link: "#"
   },
   {
     title: "E-Commerce Mobile Platform",
     description: "Implemented a mobile e-commerce app with dynamic and responsive user interface components using Vue and Element UI.",
-    image: "/images/ecommerce-mobile.jpg",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/ecommerce-mobile.jpg`,
     tags: ["Vue", "Element UI", "Vuex", "Axios", "Pinia"],
     link: "#"
   },
   {
     title: "Medium Clone (Blog Website)",
     description: "Developed a full-stack blogging platform inspired by Medium using the MERN stack.",
-    image: "/images/medium-clone.jpg",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/medium-clone.jpg`,
     tags: ["MERN"],
     link: "https://github.com/Alwaysdebugg/myBlog"
   }
