@@ -40,16 +40,3 @@ This is a personal portfolio website for a frontend developer, designed to showc
 - Static Generator: Next.js
 - Deployment Platform: GitHub Pages
 
-#### Project Structure
-myPortfolio
-├── public/ # Static assets (images, icons)
-├── src/
-│ ├── components/ # Page components
-│ │ ├── sections/ # Section components
-│ │ ├── ui/ # UI components
-│ │ └── layout/ # Layout components
-│ ├── pages/ # Page files
-│ ├── styles/ # Custom styles
-│ └── app.js # Entry file
-├── package.json # Project dependencies
-└── README.md # Project documentation
