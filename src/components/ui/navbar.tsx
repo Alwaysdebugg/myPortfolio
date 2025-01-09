@@ -5,9 +5,9 @@ import { FiSun, FiMoon } from "react-icons/fi"
 import { motion } from "framer-motion"
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Blog", href: "#blog" },
+  { name: "Home", href: "/" },
   { name: "Project", href: "#projects" },
+  { name: "Resume", href: "/resume" },
   { name: "Message", href: "#contact" },
 ]
 
@@ -26,7 +26,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="flex justify-center py-4">
+    <nav className="flex justify-center py-4 md: max-w-4xl mx-auto">
       <div className="max-w-fit px-8 h-14 flex items-center gap-8 bg-black/20 backdrop-blur-sm rounded-full">
         {navItems.map((item) => (
           <motion.a

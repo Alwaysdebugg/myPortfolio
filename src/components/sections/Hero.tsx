@@ -58,9 +58,9 @@ export default function Hero() {
           </div>
           <div className="flex gap-2 text-green-400 font-bold font-mono text-xl items-center">
             #React #Frontend #FullStack
-            <span className="text-green-200 text-xs">
+            {/* <span className="text-green-200 text-xs">
               {'('}on the way...{')'}
-            </span>
+            </span> */}
           </div>
           <p className="text-gray-800 dark:text-gray-100 font-mono text-sm md:text-base max-w-xl leading-relaxed">
             I'm a passionate front-end developer with a love for exploring diverse technologies.

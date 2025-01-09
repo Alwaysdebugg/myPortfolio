@@ -2,6 +2,7 @@
 
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { FaReact, FaVuejs, FaHtml5, FaCss3Alt, FaJs, FaNode } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { BiLogoTypescript } from "react-icons/bi";
@@ -91,6 +92,12 @@ export default function About() {
 
   return (
     <section id="about" className="w-full flex flex-col items-center py-10">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className=""
+      >
       <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
       {items.map((item, i) => (
         <BentoGridItem
@@ -102,6 +109,7 @@ export default function About() {
         />
       ))}
     </BentoGrid>
+    </motion.div>
     </section>
   )
 } 

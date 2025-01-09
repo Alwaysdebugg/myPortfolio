@@ -10,7 +10,7 @@ const education = [
     period: "2023 - 2024",
   },
   {
-    school: "Shanghai Sanda University",
+    school: "Shanghai Sanda College",
     degree: "Bachelor of Software Engineering",
     period: "2018 - 2022",
   }
