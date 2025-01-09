@@ -1,39 +1,107 @@
 "use client"
 
-import React from 'react'
-import { motion } from 'framer-motion'
+import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
+import Image from "next/image";
+import { FaReact, FaVuejs, FaHtml5, FaCss3Alt, FaJs, FaNode } from "react-icons/fa";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { BiLogoTypescript } from "react-icons/bi";
+import { SiMongodb, SiMysql, SiVite} from "react-icons/si";
 
 export default function About() {
-  return (
-    <section id="about" className="w-full flex flex-col items-center py-20">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="w-full max-w-3xl mx-auto px-4"
-      >
-        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center font-sans">
-          About Me
-        </h2>
-        <motion.div 
-          className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200 dark:border-gray-700"
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className="space-y-6 text-lg leading-relaxed text-black dark:text-white">
-            <p className="text-center">
-              I am a passionate frontend developer with 3 years of experience in web development. I focus on creating intuitive, responsive user interfaces and am passionate about using the latest web technologies to provide an outstanding user experience.
-            </p>
-            <p className="text-center">
-              In my career, I have participated in the development of multiple large projects, including e-commerce platforms, enterprise management systems, and social media applications. I am proficient in using modern frontend frameworks such as React, Next.js, and have a deep understanding of performance optimization and accessibility.
-            </p>
-            <p className="text-center">
-              In addition to technical skills, I am also a great team collaborator. I believe that good communication and a positive attitude are key to project success. In my free time, I enjoy researching new technologies, participating in open source projects, and sharing my knowledge and experience through technical blogs.
-            </p>
+  const items = [
+    {
+      title: "👨‍💻 About Me",
+      description: "",
+      header: (
+        <div className="flex items-center justify-center w-full h-full rounded-xl p-8">
+          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            A passionate frontend developer with a love for creating beautiful and functional user interfaces. Currently pursuing Master's degree in Cybersecurity at NYIT.
+          </p>
+        </div>
+      ),
+      className: "md:col-span-2",
+    },
+    {
+      title: "🌏 Current in Burnaby",
+      description: "",
+      header: (
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl">
+          <div className="relative w-full h-full">
+            <Image 
+              src="/images/Burnaby.png" 
+              alt="Burnaby" 
+              fill
+              className="object-cover rounded-xl"
+              priority
+            />
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      ),
+      className: "md:col-span-1",
+    },
+    {
+      title: "🎓 Graduated from NYIT",
+      description: "",
+      header: (
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-8">
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-wrap">
+              Graduated from NYIT with a Master's degree in Cybersecurity.
+            </p>
+        </div>
+      ),
+      className: "md:col-span-1",
+    },
+    {
+      title: "💪 Work Experience",
+      description:
+        "",
+      header: (
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-8">
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-wrap">
+               Focused on frontend development and cybersecurity.
+            </p>
+        </div>
+      ),
+      className: "md:col-span-1",
+    },
+    {
+      title: "💻 Tech Stack",
+      description:
+        "",
+      header: (
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-8">
+          <div className="flex flex-wrap gap-2">
+          <FaJs className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <FaHtml5 className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <FaCss3Alt className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <BiLogoTypescript className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <FaReact className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <FaVuejs className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <SiVite className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <RiTailwindCssFill className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <FaNode className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <SiMongodb className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          <SiMysql className="w-10 h-10 text-gray-700 dark:text-gray-300" />
+          </div>
+        </div>
+      ),
+      className: "md:col-span-1",
+    },
+  ];
+
+  return (
+    <section id="about" className="w-full flex flex-col items-center py-10">
+      <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
+      {items.map((item, i) => (
+        <BentoGridItem
+          key={i}
+          title={item.title}
+          description={item.description}
+          header={item.header}
+          className={item.className}
+        />
+      ))}
+    </BentoGrid>
     </section>
   )
 } 

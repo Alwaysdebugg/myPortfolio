@@ -9,6 +9,7 @@ const projects = [
     title: "3D Factory Management Visualization System",
     description: "Implemented an industrial-grade 3D visualization platform for a food factory's backend management system using React and Babylon.js.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/factory.jpg`,
+    // image: "/images/factory.jpg",
     tags: ["React", "Babylon.js", "Express.js"],
     link: "#"
   },
@@ -16,6 +17,7 @@ const projects = [
     title: "E-Commerce Mobile Platform",
     description: "Implemented a mobile e-commerce app with dynamic and responsive user interface components using Vue and Element UI.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/ecommerce-mobile.jpg`,
+    // image: "/images/ecommerce-mobile.jpg",
     tags: ["Vue", "Element UI", "Vuex", "Axios", "Pinia"],
     link: "#"
   },
@@ -23,6 +25,7 @@ const projects = [
     title: "Medium Clone (Blog Website)",
     description: "Developed a full-stack blogging platform inspired by Medium using the MERN stack.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/medium-clone.jpg`,
+    // image: "/images/medium-clone.jpg",
     tags: ["MERN"],
     link: "https://github.com/Alwaysdebugg/myBlog"
   }
@@ -36,10 +39,10 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="max-w-6xl mx-auto px-4"
+        className="max-w-7xl mx-auto px-4"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Projects
+          Projects I've Worked On...
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -49,7 +52,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              className="border dark:border-white/[0.2] dark:shadow-none rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="relative h-48">
                 <Image

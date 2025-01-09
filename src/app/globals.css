@@ -89,10 +89,10 @@ body {
 }
 
 /* 可选：添加渐变效果使背景更有层次感 */
-.gradient-bg {
+/* .gradient-bg {
   background: linear-gradient(
     to bottom,
     hsl(var(--background)),
     hsl(0 0% 5%)
   );
-}
+} */

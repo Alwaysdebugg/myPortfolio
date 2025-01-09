@@ -9,7 +9,7 @@ import { HiMail } from 'react-icons/hi'
 export default function Hero() {
   const [imageError, setImageError] = useState(false)
   const [displayText, setDisplayText] = useState('')
-  const fullText = "<Developer />"
+  const fullText = "<Frontend Developer />"
   
   useEffect(() => {
     let currentIndex = 0
@@ -50,16 +50,19 @@ export default function Hero() {
         className="flex flex-col items-start space-y-8 w-full md:w-1/2"
       >
         <div className="space-y-4">
-          <h1 className="w-full text-4xl md:text-5xl font-mono text-gray-400">
-            Hi, I'm Jiaqi
+          <h1 className="w-full text-4xl font-bold md:text-5xl font-mono text-gray-800 dark:text-gray-100">
+            Hi, I'm Jiaqi.
           </h1>
-          <div className="h-10 font-mono text-2xl md:text-3xl text-gray-500">
+          <div className="h-10 font-mono text-2xl md:text-3xl text-gray-800 dark:text-gray-100">
             {displayText}
           </div>
-          <div className="flex gap-2 text-green-500 font-mono text-xl">
-            #FullStack #React #Frontend
+          <div className="flex gap-2 text-green-400 font-bold font-mono text-xl items-center">
+            #React #Frontend #FullStack
+            <span className="text-green-200 text-xs">
+              {'('}on the way...{')'}
+            </span>
           </div>
-          <p className="text-gray-400 font-mono text-sm md:text-base max-w-xl leading-relaxed">
+          <p className="text-gray-800 dark:text-gray-100 font-mono text-sm md:text-base max-w-xl leading-relaxed">
             I'm a passionate front-end developer with a love for exploring diverse technologies.
             On a journey to becoming a full-stack developer. My goal is to build applications that merge purpose with aesthetics. 
           </p>
@@ -112,7 +115,7 @@ export default function Hero() {
             </div>
           ) : (
             <Image
-              src="/images/avatar.jpg"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/avatar.jpg`}
               alt="Profile picture"
               fill
               className="object-cover"
