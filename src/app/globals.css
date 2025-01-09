@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -27,8 +27,8 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
@@ -59,10 +59,6 @@ body {
   color: hsl(var(--foreground));
 }
 
-::selection {
-  background-color: rgb(37, 99, 235);
-  color: white;
-}
 
 .text-balance {
   text-wrap: balance;
@@ -90,4 +86,13 @@ body {
 
 .font-roboto {
   font-family: 'Roboto', sans-serif;
+}
+
+/* 可选：添加渐变效果使背景更有层次感 */
+.gradient-bg {
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--background)),
+    hsl(0 0% 5%)
+  );
 }

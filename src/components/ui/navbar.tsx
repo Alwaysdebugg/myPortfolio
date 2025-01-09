@@ -4,7 +4,14 @@ import { useEffect, useState } from "react"
 import { FiSun, FiMoon } from "react-icons/fi"
 import { motion } from "framer-motion"
 
-export function Navbar() {
+const navItems = [
+  { name: "Home", href: "#home" },
+  { name: "Blog", href: "#blog" },
+  { name: "Project", href: "#projects" },
+  { name: "Message", href: "#contact" },
+]
+
+export default function Navbar() {
   const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
@@ -19,16 +26,27 @@ export function Navbar() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-inherit backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 shadow-md">
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-end">
+    <nav className="flex justify-center py-4">
+      <div className="max-w-fit px-8 h-14 flex items-center gap-8 bg-black/20 backdrop-blur-sm rounded-full">
+        {navItems.map((item) => (
+          <motion.a
+            key={item.name}
+            href={item.href}
+            className="font-mono text-lg text-gray-600 hover:text-white dark:text-gray-300 transition-colors "
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {item.name}
+          </motion.a>
+        ))}
         <motion.button
-          whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)" }}
-          whileTap={{ scale: 0.9, backgroundColor: "rgba(255, 255, 255, 0.5)" }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={toggleTheme}
-          className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-gray-800 dark:text-white hover:bg-white/20 transition-all duration-200 ease-in-out"
+          className="p-2 rounded-full hover:bg-white/10 text-lg text-gray-600 dark:text-gray-300 hover:text-white transition-colors"
           aria-label="Toggle theme"
         >
-          {isDark ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
+          {isDark ? <FiSun className="w-4 h-4" /> : <FiMoon className="w-4 h-4" />}
         </motion.button>
       </div>
     </nav>
