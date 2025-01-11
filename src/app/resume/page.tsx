@@ -9,6 +9,7 @@ export default function Resume() {
     const link = document.createElement('a')
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
     link.href = `${basePath}/resume.pdf`
+    console.log(link.href)
     link.download = 'JackyFeng_Resume.pdf'
     document.body.appendChild(link)
     link.click()

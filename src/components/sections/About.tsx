@@ -29,7 +29,7 @@ export default function About() {
         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl">
           <div className="relative w-full h-full">
             <Image 
-              src="/images/Burnaby.png" 
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/Burnaby.png`} 
               alt="Burnaby" 
               fill
               className="object-cover rounded-xl"
