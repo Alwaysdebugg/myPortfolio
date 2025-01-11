@@ -41,6 +41,7 @@ export default function Projects() {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto px-4"
       >
+        <div className="border-t border-gray-300 dark:border-gray-700 mt-10 mb-20 w-[80%] mx-auto"></div>
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           Projects I've Worked On...
         </h2>

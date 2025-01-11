@@ -98,6 +98,7 @@ export default function About() {
         transition={{ duration: 0.5 }}
         className=""
       >
+      <div className="border-t border-gray-300 dark:border-gray-700 mt-10 mb-20 w-[80%] mx-auto"></div>
       <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
       {items.map((item, i) => (
         <BentoGridItem

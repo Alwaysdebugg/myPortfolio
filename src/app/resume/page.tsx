@@ -7,7 +7,8 @@ import Navbar from '@/components/ui/navbar'
 export default function Resume() {
   const handleDownload = () => {
     const link = document.createElement('a')
-    link.href = '/resume.pdf'
+    // link.href = '/resume.pdf'
+    link.href = `${process.env.NEXT_PUBLIC_BASE_PATH}/resume.pdf`
     link.download = 'JackyFeng_Resume.pdf'
     document.body.appendChild(link)
     link.click()

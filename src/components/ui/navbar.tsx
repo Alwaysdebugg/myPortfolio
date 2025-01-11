@@ -5,7 +5,7 @@ import { FiSun, FiMoon } from "react-icons/fi"
 import { motion } from "framer-motion"
 
 const navItems = [
-  { name: "Home", href: "/" },
+  { name: "Home", href: "/myPortfolio" },
   { name: "Project", href: "#projects" },
   { name: "Resume", href: "/resume" },
   { name: "Message", href: "#contact" },
