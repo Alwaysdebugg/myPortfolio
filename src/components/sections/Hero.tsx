@@ -38,7 +38,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="flex flex-col-reverse md:flex-row justify-center items-center w-full max-w-6xl mx-auto gap-8 md:gap-16 min-h-[60vh] px-4">
+    <div className="flex flex-col-reverse md:flex-row justify-center items-center w-full max-w-6xl mx-auto gap-8 md:gap-16 min-h-100vh px-4">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function Hero() {
 
         <div className="flex gap-6">
           <motion.a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/jfeng-307210291"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
@@ -73,7 +73,7 @@ export default function Hero() {
             <FaLinkedin className="w-6 h-6" />
           </motion.a>
           <motion.a
-            href="https://github.com"
+            href="https://github.com/Alwaysdebugg"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
@@ -83,7 +83,7 @@ export default function Hero() {
             <FaGithub className="w-6 h-6" />
           </motion.a>
           <motion.a
-            href="mailto:your.email@example.com"
+            href="mailto:fengjacky84@gmail.com"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="text-gray-500 hover:text-white transition-colors"

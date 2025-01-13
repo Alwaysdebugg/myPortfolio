@@ -11,28 +11,33 @@ import { SiMongodb, SiMysql, SiVite} from "react-icons/si";
 export default function About() {
   const items = [
     {
-      title: "👨‍💻 About Me",
+      title: "",
       description: "",
       header: (
-        <div className="flex items-center justify-center w-full h-full rounded-xl p-8">
-          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-            A passionate frontend developer with a love for creating beautiful and functional user interfaces. Currently pursuing Master's degree in Cybersecurity at NYIT.
-          </p>
+        <div className="flex-row items-center justify-center w-full h-full rounded-xl p-8 transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-700/50 group">
+          <ul className="list-disc list-inside space-y-2 my-4 text-gray-700 dark:text-gray-300 text-base transition-transform duration-300 group-hover:translate-x-2">
+            <li>Also can call me <i className="font-bold">Jacky</i></li>
+            <li>Frontend Developer</li>
+            <li>Software Engineer & Cybersecurity Degree</li>
+            <li>Journey to a <i className="font-bold">full stack developer</i></li>
+            <li>Outdoors Enthusiast🎣</li>
+            <li><i className="font-semibold font-serif">"Practise makes perfect"</i></li>
+          </ul>
         </div>
       ),
-      className: "md:col-span-2",
+      className: "md:col-span-2 hover:shadow-xl transition-shadow duration-300",
     },
     {
-      title: "🌏 Current in Burnaby",
+      title: "🌏Current in Vancouver",
       description: "",
       header: (
         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl">
-          <div className="relative w-full h-full">
+          <div className="relative w-full h-full transition-all duration-300">
             <Image 
               src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/Burnaby.png`} 
               alt="Burnaby" 
               fill
-              className="object-cover rounded-xl"
+              className="object-cover rounded-xl brightness-50 hover:brightness-100 transition-all duration-300"
               priority
             />
           </div>
@@ -41,34 +46,8 @@ export default function About() {
       className: "md:col-span-1",
     },
     {
-      title: "🎓 Graduated from NYIT",
+      title: "💻Tech Stack",
       description: "",
-      header: (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-8">
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-wrap">
-              Graduated from NYIT with a Master's degree in Cybersecurity.
-            </p>
-        </div>
-      ),
-      className: "md:col-span-1",
-    },
-    {
-      title: "💪 Work Experience",
-      description:
-        "",
-      header: (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-8">
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-wrap">
-               Focused on frontend development and cybersecurity.
-            </p>
-        </div>
-      ),
-      className: "md:col-span-1",
-    },
-    {
-      title: "💻 Tech Stack",
-      description:
-        "",
       header: (
         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-8">
           <div className="flex flex-wrap gap-2">
@@ -84,6 +63,35 @@ export default function About() {
           <SiMongodb className="w-10 h-10 text-gray-700 dark:text-gray-300" />
           <SiMysql className="w-10 h-10 text-gray-700 dark:text-gray-300" />
           </div>
+        </div>
+      ),
+      className: "md:col-span-1",
+    },
+    {
+      title: "🧑‍💼Work Experience",
+      description:
+        "",
+      header: (
+        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-2">
+            <p className="text-lg text-gray-700 dark:text-gray-300 text-left">
+               2 yoe in Web Dev
+            </p>
+            <p className="text-lg text-gray-700 dark:text-gray-300 text-left">
+               EX work in Cognizant
+            </p>
+        </div>
+      ),
+      className: "md:col-span-1",
+    },
+    {
+      title: "",
+      description:
+        "",
+      header: (
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-8">
+          <i className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+            " Turning life's fun ideas into reality with technology "
+          </i>
         </div>
       ),
       className: "md:col-span-1",

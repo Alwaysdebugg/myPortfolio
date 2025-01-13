@@ -6,24 +6,24 @@ import { motion } from 'framer-motion'
 
 const projects = [
   {
-    title: "3D Factory Management Visualization System",
+    title: "3D Management Visualization System",
     description: "Implemented an industrial-grade 3D visualization platform for a food factory's backend management system using React and Babylon.js.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/factory.jpg`,
-    tags: ["React", "Babylon.js", "Express.js"],
+    tags: ["React", "Babylon.js", "Express.js", "Redux", "TailwindCSS", "Websocket"],
     link: "#"
   },
   {
     title: "E-Commerce Mobile Platform",
     description: "Implemented a mobile e-commerce app with dynamic and responsive user interface components using Vue and Element UI.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/ecommerce-mobile.jpg`,
-    tags: ["Vue", "Element UI", "Vuex", "Axios", "Pinia"],
+    tags: ["Vue", "Element UI", "Axios", "Pinia", "Vite", "TailwindCSS"],
     link: "#"
   },
   {
     title: "Medium Clone (Blog Website)",
     description: "Developed a full-stack blogging platform inspired by Medium using the MERN stack.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/medium-clone.jpg`,
-    tags: ["MERN"],
+    tags: ["React","Node.js","Express","MongoDB","TailwindCSS","Vite","Redux"],
     link: "https://github.com/Alwaysdebugg/myBlog"
   }
 ]
@@ -38,9 +38,9 @@ export default function Projects() {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto px-4"
       >
-        <div className="border-t border-gray-300 dark:border-gray-700 mt-10 mb-20 w-[80%] mx-auto"></div>
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Projects I've Worked On...
+        <div className="border-t border-gray-300 dark:border-gray-700 mb-20 w-[80%] mx-auto"></div>
+        <h2 className="text-xl md:text-3xl font-bold mb-12 text-center">
+        {'<'}My Projects {'/>'}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -75,12 +75,19 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
+                { project.link && project.link !== "#" && (
                 <a
-                  href={project.link}
-                  className="inline-block bg-white hover:bg-gray-200 dark:bg-blue-600 dark:hover:bg-blue-700 text-black dark:text-white px-4 py-2 rounded-full transition-colors"
+                    href={project.link}
+                    className="inline-block bg-white hover:bg-gray-200 dark:bg-blue-600 dark:hover:bg-blue-700 text-black dark:text-white px-4 py-2 rounded-full transition-colors"
                 >
                   View Details
                 </a>
+                )}
+                {/* { project.link === "#" && (
+                  <button className="inline-block bg-white hover:bg-gray-200 dark:bg-blue-600 dark:hover:bg-blue-700 text-black dark:text-white px-4 py-2 rounded-full transition-colors">
+                    Coming Soon
+                  </button>
+                )} */}
               </div>
             </motion.div>
           ))}
