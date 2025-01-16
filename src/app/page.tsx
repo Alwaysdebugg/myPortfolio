@@ -6,6 +6,7 @@ import Skills from '../components/sections/Skills'
 import Education from '../components/sections/Education'
 import Contact from '../components/sections/Contact'
 import Navbar from '../components/ui/navbar'
+import Footer from '../components/ui/foot'
 
 export default function Home() {
   return (
@@ -16,9 +17,9 @@ export default function Home() {
           <Hero />  
           <About />
           <Projects />
-          <Contact />
         </div>
       </div>
+      <Footer />
     </div>
   )
 } 

@@ -1,30 +1,35 @@
-"use client"
-
 import { Roboto_Mono } from 'next/font/google'
 import "./globals.css"
-import { useEffect } from "react"
+import { Metadata } from 'next'
+import { ThemeProvider } from '@/components/ui/theme-provider'
 
-// 配置 Roboto Mono 字体
 const robotoMono = Roboto_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-roboto-mono',
 })
 
+// metadata 需要在服务器端组件中导出
+export const metadata: Metadata = {
+  title: "Jfeng | Dev World",
+  description: "Frontend developer portfolio showcasing projects and skills",
+  icons: {
+    icon: '/myPortfolio/favicon.ico',
+  },
+}
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // 设置默认暗色主题
-  useEffect(() => {
-    document.documentElement.classList.add('dark')
-  }, [])
-
   return (
     <html lang="zh" className={`dark ${robotoMono.variable}`}>
+      <head>
+        <link rel="icon" href="/myPortfolio/favicon.ico" />
+      </head>
       <body className={robotoMono.className}>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

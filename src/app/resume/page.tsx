@@ -7,7 +7,9 @@ import Navbar from '@/components/ui/navbar'
 export default function Resume() {
   const handleDownload = () => {
     const link = document.createElement('a')
-    link.href = '/resume.pdf'
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    link.href = `${basePath}/resume.pdf`
+    console.log(link.href)
     link.download = 'JackyFeng_Resume.pdf'
     document.body.appendChild(link)
     link.click()
@@ -41,7 +43,7 @@ export default function Resume() {
           
           <div className="aspect-[1/1.414] w-full bg-white rounded-lg shadow-lg overflow-hidden">
             <iframe
-              src="/resume.pdf"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/resume.pdf`}
               className="w-full h-full"
               title="Resume Preview"
             />
