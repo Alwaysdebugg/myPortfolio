@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "Jfeng | Dev World",
   description: "Frontend developer portfolio showcasing projects and skills",
   icons: {
-    icon: '/myPortfolio/favicon.ico',
+    // icon: '/myPortfolio/favicon.ico',
+    icon: '/favicon.ico',
   },
 }
 
