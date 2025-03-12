@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react"
 import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi"
 import { motion, AnimatePresence } from "framer-motion"
-
+import { FaHome, FaProjectDiagram, FaFileAlt, FaEnvelope } from "react-icons/fa"
 const navItems = [
-  { name: "Home", href: "/myPortfolio" },
-  { name: "Project", href: "/myPortfolio#projects" },
-  { name: "Resume", href: "/myPortfolio/resume" },
-  { name: "Message", href: "/myPortfolio#contact" },
+  { name: "Home", icon: <FaHome />, href: "/myPortfolio" },
+  { name: "Project", icon: <FaProjectDiagram />, href: "/myPortfolio#projects" },
+  { name: "Resume", icon: <FaFileAlt />, href: "/myPortfolio/resume" },
+  { name: "Message", icon: <FaEnvelope />, href: "/myPortfolio#contact" },
 ]
 
 export default function Navbar() {
@@ -31,30 +31,50 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="relative flex justify-center py-4 md:max-w-4xl mx-auto">
+    <nav className="sticky top-0 z-50 w-full flex justify-center py-4">
       {/* Desktop Navigation */}
-      <div className="hidden md:flex max-w-fit px-8 h-14 items-center gap-8 bg-black/20 backdrop-blur-sm rounded-full">
-        {navItems.map((item) => (
-          <motion.a
-            key={item.name}
-            href={item.href}
-            className="font-mono text-lg text-gray-600 hover:text-white dark:text-gray-300 transition-colors"
+      {/* <div className="w-full max-w-6xl mx-auto px-4"> */}
+        <div className="flex items-center justify-between w-full max-w-8xl mx-auto px-4">
+          {/* Logo */}
+          <div className="flex items-center justify-center h-full">
+            <span className="text-xl font-bold text-gray-800 dark:text-gray-100 font-serif">
+              {"<"}JF World{">"}
+            </span>
+          </div>
+          
+          {/* Navigation Items - Centered */}
+          <div className="flex-1 flex justify-center">
+            <div className="flex max-w-fit px-8 h-14 items-center gap-8 bg-black/20 backdrop-blur-sm rounded-md border border-gray-700/20">
+              {navItems.map((item) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  className="font-mono text-lg text-gray-600 hover:text-white dark:text-gray-300 transition-colors relative group"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="flex items-center gap-2">
+                    {item.icon}
+                    {item.name}
+                  </div>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Theme Toggle - Right */}
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-white/10 text-gray-600 dark:text-gray-300 hover:text-white transition-colors"
+            aria-label="Toggle theme"
           >
-            {item.name}
-          </motion.a>
-        ))}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={toggleTheme}
-          className="p-2 rounded-full hover:bg-white/10 text-gray-600 dark:text-gray-300 hover:text-white transition-colors"
-          aria-label="Toggle theme"
-        >
-          {isDark ? <FiSun className="w-4 h-4" /> : <FiMoon className="w-4 h-4" />}
-        </motion.button>
-      </div>
+            {isDark ? <FiSun className="w-4 h-4" /> : <FiMoon className="w-4 h-4" />}
+          </motion.button>
+        </div>
+      {/* </div> */}
 
       {/* Mobile Navigation */}
       <div className="md:hidden w-full px-4">

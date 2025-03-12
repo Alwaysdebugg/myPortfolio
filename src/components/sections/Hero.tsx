@@ -3,13 +3,15 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaXTwitter } from 'react-icons/fa6'
 import { HiMail } from 'react-icons/hi'
+import { RiTimeZoneLine } from "react-icons/ri";
 
 export default function Hero() {
   const [imageError, setImageError] = useState(false)
   const [displayText, setDisplayText] = useState('')
   const fullText = "<Frontend Developer />"
+  const [currentTime, setCurrentTime] = useState<string>('')
   
   useEffect(() => {
     let currentIndex = 0
@@ -37,6 +39,19 @@ export default function Hero() {
     return () => clearInterval(interval)
   }, [])
 
+  useEffect(() => {
+    // 仅在客户端更新时间
+    const updateTime = () => {
+      const now = new Date()
+      setCurrentTime(now.toLocaleTimeString())
+    }
+    
+    updateTime() // 初始化
+    const timer = setInterval(updateTime, 1000) // 每秒更新
+    
+    return () => clearInterval(timer) // 清理定时器
+  }, [])
+
   return (
     <div className="flex flex-col-reverse md:flex-row justify-center items-center w-full max-w-6xl mx-auto gap-8 md:gap-16 min-h-100vh px-4">
       <motion.div
@@ -59,14 +74,21 @@ export default function Hero() {
             <span className="px-3 py-1 bg-green-400/10 rounded-full hover:bg-green-400/20 transition-all duration-300 cursor-pointer">#FullStack</span>
             <span className="px-3 py-1 bg-green-400/10 rounded-full hover:bg-green-400/20 transition-all duration-300 cursor-pointer">#Code</span>
           </div>
-          <p className="text-gray-800 dark:text-gray-100 text-sm md:text-base max-w-xl leading-relaxed space-y-4">
-            <span className="block">
-              Bringing ideas to life through code excites me the most—I enjoy the process of turning concepts into functional and engaging experiences.
-            </span>
-            <span className="block">
-              Whether it's a small feature or a full-fledged application, I thrive on solving problems and crafting seamless user interfaces.
-            </span>
-          </p>
+          <div className="space-y-6 text-gray-800 dark:text-gray-100 text-base md:text-lg max-w-xl leading-relaxed font-mono">
+            <div className="group flex items-start space-x-2 hover:translate-x-2 transition-all duration-300">
+              <span className="text-green-500 dark:text-green-400 opacity-70">//</span>
+              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300">
+                Bringing ideas to life through code excites me the most—I enjoy the process of turning concepts into functional and engaging experiences.
+              </p>
+            </div>
+            
+            <div className="group flex items-start space-x-2 hover:translate-x-2 transition-all duration-300">
+              <span className="text-green-500 dark:text-green-400 opacity-70">//</span>
+              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300">
+                Whether it's a small feature or a full-fledged application, I thrive on solving problems and crafting seamless user interfaces.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="flex gap-6">
@@ -90,6 +112,17 @@ export default function Hero() {
           >
             <FaGithub className="w-6 h-6" />
           </motion.a>
+          {/* Twitter */}
+          <motion.a
+            href="https://x.com/none168902"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="text-gray-500 hover:text-white transition-colors hover:scale-210"
+          >
+            <FaXTwitter className="w-6 h-6" />
+          </motion.a>
           <motion.a
             href="mailto:fengjacky84@gmail.com"
             whileHover={{ scale: 1.1 }}
@@ -98,6 +131,11 @@ export default function Hero() {
           >
             <HiMail className="w-6 h-6" />
           </motion.a>
+          {/* 所处时区 */}
+          <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+            <RiTimeZoneLine className="w-6 h-6" />
+            <span>{currentTime + ' (PST)' || '加载中...'}</span>
+          </div>
         </div>
       </motion.div>
       

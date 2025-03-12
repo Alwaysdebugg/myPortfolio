@@ -55,7 +55,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="hover:scale-105 transition-all duration-300 cursor-pointer">
                 <div className="relative h-48">
