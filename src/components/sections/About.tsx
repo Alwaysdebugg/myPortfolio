@@ -40,12 +40,12 @@ export default function About() {
               <span className="mr-2">💪</span>
               <i className="font-bold">"Practise makes perfect"</i>
             </li>
-            <li className="flex items-center">
+            {/* <li className="flex items-center">
               <span className="mr-2">🏠</span>
               <a href="https://alwaysdebugg.github.io/hexoBlog2025" target="_blank" rel="noopener noreferrer">
                 <i className="font-bold">My Blog</i>
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       ),

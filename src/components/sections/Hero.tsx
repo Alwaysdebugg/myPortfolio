@@ -69,8 +69,8 @@ export default function Hero() {
             {displayText}
           </div>
           <div className="flex flex-wrap justify-center md:justify-start gap-3 text-green-400 font-bold font-mono text-lg items-center">
-            <span className="px-3 py-1 bg-green-400/10 rounded-full hover:bg-green-400/20 transition-all duration-300 cursor-pointer">#React</span>
             <span className="px-3 py-1 bg-green-400/10 rounded-full hover:bg-green-400/20 transition-all duration-300 cursor-pointer">#Frontend</span>
+            <span className="px-3 py-1 bg-green-400/10 rounded-full hover:bg-green-400/20 transition-all duration-300 cursor-pointer">#UI/UX</span>
             <span className="px-3 py-1 bg-green-400/10 rounded-full hover:bg-green-400/20 transition-all duration-300 cursor-pointer">#FullStack</span>
             <span className="px-3 py-1 bg-green-400/10 rounded-full hover:bg-green-400/20 transition-all duration-300 cursor-pointer">#Code</span>
           </div>
