@@ -5,10 +5,10 @@ import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi"
 import { motion, AnimatePresence } from "framer-motion"
 import { FaHome, FaProjectDiagram, FaFileAlt, FaCode } from "react-icons/fa"
 const navItems = [
-  { name: "Home", icon: <FaHome />, href: "/" },
-  { name: "Project", icon: <FaProjectDiagram />, href: "/#projects" },
-  { name: "Resume", icon: <FaFileAlt />, href: "/resume" },
-  { name: "Contributions", icon: <FaCode />, href: "/#contributions" },
+  { name: "Home", icon: <FaHome />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/` },
+  { name: "Project", icon: <FaProjectDiagram />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/#projects` },
+  { name: "Resume", icon: <FaFileAlt />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/resume` },
+  { name: "Contributions", icon: <FaCode />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/#contributions` },
 ]
 
 export default function Navbar() {
