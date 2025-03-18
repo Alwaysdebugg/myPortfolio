@@ -21,6 +21,7 @@ export default function Home() {
           <About />
           <Projects />
           <GitHubContributions />
+          <GitHubHeatmap />
         </div>
       </div>
       <Footer />

@@ -241,7 +241,7 @@ export default function GitHubHeatmap() {
             </div>
 
             {/* 活动摘要 */}
-            <div className="mt-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+            {/* <div className="mt-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
               <h3 className="text-lg font-bold mb-2 text-gray-800 dark:text-white">Activity Summary</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 In the past year, you've made <span className="font-bold">{stats.total}</span> contributions, 
@@ -249,7 +249,7 @@ export default function GitHubHeatmap() {
                 Your current streak is <span className="font-bold">{stats.streak}</span> days, 
                 and your most active day had <span className="font-bold">{stats.max}</span> contributions.
               </p>
-            </div>
+            </div> */}
           </motion.div>
         )}
       </motion.div>

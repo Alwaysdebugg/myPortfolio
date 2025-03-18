@@ -9,9 +9,9 @@ import { VscIssues } from 'react-icons/vsc'
 // 模拟GitHub数据，实际使用时可以通过API获取
 const githubStats = {
   username: "Alwaysdebugg",
-  repos: 12,
+  repos: 30,
   stars: 25,
-  forks: 8,
+  forks: 40,
   followers: 2,
   contributions: 486,
   pullRequests: 32,
