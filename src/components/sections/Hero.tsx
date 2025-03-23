@@ -64,8 +64,8 @@ export default function Hero() {
           <span className="w-full text-4xl font-bold md:text-5xl font-serif text-gray-800 dark:text-gray-100">
             Hola, I'm
           </span>
-          <span className="ml-5 text-4xl font-bold md:text-5xl font-serif text-gray-800 dark:text-gray-100 italic hover:not-italic transition-all duration-300 cursor-pointer">Jiaqi</span>
-          <div className="h-10 font-mono text-2xl md:text-2xl text-gray-800 dark:text-gray-100">
+          <span className="ml-5 text-4xl font-bold md:text-5xl font-serif text-gray-800 dark:text-gray-100 italic hover:not-italic transition-all duration-300 cursor-pointer">Jacky</span>
+          <div className="h-10 font-sans text-2xl md:text-3xl text-gray-800 dark:text-gray-100">
             {displayText}
           </div>
           <div className="flex flex-wrap justify-center md:justify-start gap-3 text-green-400 font-bold font-mono text-lg items-center">
@@ -77,14 +77,14 @@ export default function Hero() {
           <div className="space-y-6 text-gray-800 dark:text-gray-100 text-base md:text-lg max-w-xl leading-relaxed font-mono">
             <div className="group flex items-start space-x-2 hover:translate-x-2 transition-all duration-300">
               <span className="text-green-500 dark:text-green-400 opacity-70">//</span>
-              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300">
+              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300 font-serif font-bold">
                 Bringing ideas to life through code excites me the most—I enjoy the process of turning concepts into functional and engaging experiences.
               </p>
             </div>
             
             <div className="group flex items-start space-x-2 hover:translate-x-2 transition-all duration-300">
               <span className="text-green-500 dark:text-green-400 opacity-70">//</span>
-              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300">
+              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300 font-serif font-bold">
                 Whether it's a small feature or a full-fledged application, I thrive on solving problems and crafting seamless user interfaces.
               </p>
             </div>
@@ -98,7 +98,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="text-gray-500 hover:text-white transition-colors hover:scale-210"
+            className="text-gray-500 hover:text-white transition-colors hover:scale-150"
           >
             <FaLinkedin className="w-6 h-6" />
           </motion.a>
@@ -108,7 +108,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="text-gray-500 hover:text-white transition-colors hover:scale-210"
+            className="text-gray-500 hover:text-white transition-colors hover:scale-150"
           >
             <FaGithub className="w-6 h-6" />
           </motion.a>
@@ -119,7 +119,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="text-gray-500 hover:text-white transition-colors hover:scale-210"
+            className="text-gray-500 hover:text-white transition-colors hover:scale-150"
           >
             <FaXTwitter className="w-6 h-6" />
           </motion.a>
@@ -127,14 +127,14 @@ export default function Hero() {
             href="mailto:fengjacky84@gmail.com"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="text-gray-500 hover:text-white transition-colors hover:scale-210"
+            className="text-gray-500 hover:text-white transition-colors hover:scale-150"
           >
             <HiMail className="w-6 h-6" />
           </motion.a>
           {/* 所处时区 */}
           <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-            <RiTimeZoneLine className="w-6 h-6" />
-            <span>{currentTime + ' (PST)' || '加载中...'}</span>
+            <RiTimeZoneLine className="w-5 h-5" />
+            <span className="font-serif">{currentTime + ' (PST)' || '加载中...'}</span>
           </div>
         </div>
       </motion.div>

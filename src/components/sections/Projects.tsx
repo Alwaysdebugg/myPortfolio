@@ -7,25 +7,25 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
 const projects = [
   {
-    title: "3D Management Visualization System",
-    description: "Implemented an industrial-grade 3D visualization platform for a food factory's backend management system using React and Babylon.js.",
-    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/factory.jpg`,
-    tags: ["React", "Babylon.js", "Express.js", "Redux", "TailwindCSS", "Websocket"],
+    title: "Logistics Management System",
+    description: "Smart logistics system using Vue3, Vite, and TypeScript.",
+    image: "https://media2.giphy.com/media/1Or4ky3ZPIRerQMRe7/giphy.gif?cid=6c09b952jplewhopl1cqk72xju9o8nwo6pu22x3d28tfxf6g&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
+    tags: ["Vue3", "Vite", "TypeScript", "UniApp", "Jenkins", "CI/CD"],
     link: "#"
   },
   {
-    title: "E-Commerce Mobile Platform",
-    description: "Implemented a mobile e-commerce app with dynamic and responsive user interface components using Vue and Element UI.",
+    title: "E-Commerce Mobile App",
+    description: "E-Commerce mobile app using React Native and TypeScript.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/ecommerce-mobile.jpg`,
-    tags: ["Vue", "Element UI", "Axios", "Pinia", "Vite", "TailwindCSS"],
-    link: "#"
+    tags: ["React Native", "TypeScript", "Expo", "Redux", "Firebase"],
+    link: "https://github.com/Alwaysdebugg/e-commerce-mobile"
   },
   {
-    title: "Medium Clone (Blog Website)",
-    description: "Developed a full-stack blogging platform inspired by Medium using the MERN stack.",
-    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/medium-clone.jpg`,
-    tags: ["React","Node.js","Express","MongoDB","TailwindCSS","Vite","Redux"],
-    link: "https://github.com/Alwaysdebugg/myBlog"
+    title: "RecruitPro",
+    description: "Full-stack platform with resume parsing, interview scheduling, and candidate matching features.",
+    image: "https://media2.giphy.com/media/1Or4ky3ZPIRerQMRe7/giphy.gif?cid=6c09b952jplewhopl1cqk72xju9o8nwo6pu22x3d28tfxf6g&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
+    tags: ["React", "Tailwind", "NestJS", "PostgreSQL", "Supabase", "Redux Toolkit"],
+    link: "https://github.com/Alwaysdebugg/recruitPro"
   }
 ]
 
@@ -39,14 +39,8 @@ export default function Projects() {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto px-4"
       >
-        {/* line */}
-        <div className="relative">
-          <div className="border-t-2 border-gray-300 dark:border-gray-700 mt-10 mb-20 w-[80%] mx-auto"></div>
-          <div className="absolute inset-x-[10%] top-0 h-3 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent blur-sm"></div>
-          <div className="absolute inset-x-[10%] top-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
-        </div>
         <h2 className="text-xl md:text-3xl font-bold mb-12 text-center font-serif">
-          {"<"}MyProjects..{"/>"}
+          {"<"}MyProjects {"/>"}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -85,8 +79,8 @@ export default function Projects() {
               </div>
               
               <div className="p-6 relative z-10">
-                <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">{project.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+                <h3 className="w-full h-12 text-lg font-serif font-bold mb-4 text-black dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">{project.title}</h3>
+                <p className="text-lg font-serif text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
                   {project.description}
                 </p>
                 

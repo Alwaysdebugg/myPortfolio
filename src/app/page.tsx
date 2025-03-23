@@ -9,6 +9,7 @@ import Navbar from '../components/ui/navbar'
 import Footer from '../components/ui/foot'
 import GitHubContributions from '../components/sections/GitHubContributions'
 import GitHubHeatmap from '../components/sections/GitHubHeatmap'
+import { DivLine } from '@/components/ui/divLine'
 
 export default function Home() {
   return (
@@ -18,10 +19,13 @@ export default function Home() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center pt-10">
         <div className="space-y-10 w-full">
           <Hero />
+          <DivLine />
           <About />
+          <DivLine />
           <Projects />
-          <GitHubContributions />
-          <GitHubHeatmap />
+          <DivLine />
+          <Education />
+          <DivLine />
         </div>
       </div>
       <Footer />

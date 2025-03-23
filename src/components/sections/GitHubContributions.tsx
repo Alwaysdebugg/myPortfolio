@@ -67,11 +67,11 @@ export default function GitHubContributions() {
         className="max-w-7xl mx-auto px-4"
       >
         {/* 分隔线 */}
-        <div className="relative">
+        {/* <div className="relative">
           <div className="border-t-2 border-gray-300 dark:border-gray-700 mt-10 mb-20 w-[80%] mx-auto"></div>
           <div className="absolute inset-x-[10%] top-0 h-3 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent blur-sm"></div>
           <div className="absolute inset-x-[10%] top-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
-        </div>
+        </div> */}
 
         <div className="flex items-center justify-center mb-12">
           <FaGithub className="w-8 h-8 mr-3 text-gray-800 dark:text-white" />

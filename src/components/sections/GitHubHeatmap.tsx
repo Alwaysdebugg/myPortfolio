@@ -162,19 +162,19 @@ export default function GitHubHeatmap() {
             {/* 贡献统计 */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total Contributions</p>
+                <p className="text-sm font-serif text-gray-600 dark:text-gray-400">Total Contributions</p>
                 <p className="text-2xl font-bold text-gray-800 dark:text-white">{stats.total}</p>
               </div>
               <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400">Average Per Day</p>
+                <p className="text-sm font-serif text-gray-600 dark:text-gray-400">Average Per Day</p>
                 <p className="text-2xl font-bold text-gray-800 dark:text-white">{stats.average}</p>
               </div>
               <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400">Most in a Day</p>
+                <p className="text-sm font-serif text-gray-600 dark:text-gray-400">Most in a Day</p>
                 <p className="text-2xl font-bold text-gray-800 dark:text-white">{stats.max}</p>
               </div>
               <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-                <p className="text-sm text-gray-600 dark:text-gray-400">Current Streak</p>
+                <p className="text-sm font-serif text-gray-600 dark:text-gray-400">Current Streak</p>
                 <p className="text-2xl font-bold text-gray-800 dark:text-white">{stats.streak} days</p>
               </div>
             </div>

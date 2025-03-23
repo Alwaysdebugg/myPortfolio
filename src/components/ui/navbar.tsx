@@ -8,7 +8,7 @@ const navItems = [
   { name: "Home", icon: <FaHome />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/` },
   { name: "Project", icon: <FaProjectDiagram />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/#projects` },
   { name: "Resume", icon: <FaFileAlt />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/resume` },
-  { name: "Contributions", icon: <FaCode />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/#contributions` },
+  { name: "Education", icon: <FaCode />, href: `${process.env.NEXT_PUBLIC_BASE_PATH}/#education` },
 ]
 
 export default function Navbar() {
@@ -68,7 +68,7 @@ export default function Navbar() {
             <motion.a
               key={item.name}
               href={item.href}
-              className="font-mono text-lg text-gray-600 hover:text-white dark:text-gray-300 transition-colors relative group flex items-center gap-2"
+              className="font-serif text-lg text-thin text-gray-600 hover:text-white dark:text-gray-300 transition-colors relative group flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
