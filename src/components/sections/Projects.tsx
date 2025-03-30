@@ -9,16 +9,16 @@ const projects = [
   {
     title: "Logistics Management System",
     description: "Smart logistics system using Vue3, Vite, and TypeScript.",
-    image: "https://media2.giphy.com/media/1Or4ky3ZPIRerQMRe7/giphy.gif?cid=6c09b952jplewhopl1cqk72xju9o8nwo6pu22x3d28tfxf6g&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Back_system.png`,
     tags: ["Vue3", "Vite", "TypeScript", "UniApp", "Jenkins", "CI/CD"],
     link: "#"
   },
   {
-    title: "E-Commerce Mobile App",
-    description: "E-Commerce mobile app using React Native and TypeScript.",
-    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/ecommerce-mobile.jpg`,
-    tags: ["React Native", "TypeScript", "Expo", "Redux", "Firebase"],
-    link: "https://github.com/Alwaysdebugg/e-commerce-mobile"
+    title: "Blog Website",
+    description: "Blog website using React, Express, and MongoDB.",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/medium-clone.jpg`,
+    tags: ["React", "Express", "MongoDB", "Tailwind", "Node.js"],
+    link: "https://github.com/Alwaysdebugg/myBlog"
   },
   {
     title: "RecruitPro",
