@@ -1,35 +1,123 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import ProjectModal from './ProjectModal'
 
 const projects = [
   {
     title: "Logistics Management System",
     description: "Smart logistics system using Vue3, Vite, and TypeScript.",
-    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/Back_system.png`,
-    tags: ["Vue3", "Vite", "TypeScript", "UniApp", "Jenkins", "CI/CD"],
-    link: "#"
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/ulala_login.png`,
+    image2: `${
+      process.env.NEXT_PUBLIC_BASE_PATH || ""
+    }/images/Back_system2.png`,
+    tags: ["Vue3", "Vite", "TypeScript", "ElementUI", "RESTful API"],
+    content:
+      "This is a smart logistics management system using Vue3 and Vite. The system supports large-scale operations, including order management with a capacity for 100,000+ data entries, alongside features for delivery tracking, route planning, and user access control.",
+    features: [
+      "Order Management (100,000+ Data Capacity)",
+      "Delivery Information Visualization",
+      "Vehicle scheduling",
+      "Route planning",
+      "Approval workflow",
+    ],
+    hostLink: "https://beta.ulala.ca",
+    link:"https://beta.ulala.ca",
   },
   {
     title: "Blog Website",
     description: "Blog website using React, Express, and MongoDB.",
-    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/medium-clone.jpg`,
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/medium-clone.jpg`,
+    image2: `${
+      process.env.NEXT_PUBLIC_BASE_PATH || ""
+    }/images/medium-clone2.jpg`,
     tags: ["React", "Express", "MongoDB", "Tailwind", "Node.js"],
-    link: "https://github.com/Alwaysdebugg/myBlog"
+    content:
+      "This is a blog website built with React, Express, and MongoDB. It is a blog website that uses React, Express, and MongoDB to manage the blog of a company.",
+    features: [
+      "User authentication",
+      "Post management",
+      "Comment management",
+      "Tag management",
+      "Report generation"
+    ],
+    link: "https://github.com/Alwaysdebugg/myBlog",
   },
   {
     title: "RecruitPro",
-    description: "Full-stack platform with resume parsing, interview scheduling, and candidate matching features.",
-    image: "https://media2.giphy.com/media/1Or4ky3ZPIRerQMRe7/giphy.gif?cid=6c09b952jplewhopl1cqk72xju9o8nwo6pu22x3d28tfxf6g&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
-    tags: ["React", "Tailwind", "NestJS", "PostgreSQL", "Supabase", "Redux Toolkit"],
-    link: "https://github.com/Alwaysdebugg/recruitPro"
-  }
-]
+    description:
+      "Full-stack platform with resume parsing, interview scheduling, and candidate matching features.",
+    image:
+      `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/recruitPro.png`,
+    image2: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/recruitPro.png`,
+    tags: [
+      "React",
+      "Tailwind",
+      "NestJS",
+      "PostgreSQL",
+      "Supabase",
+      "Redux Toolkit",
+    ],
+    content:
+      "This is a full-stack platform with resume parsing, interview scheduling, and candidate matching features.",
+    features: [
+      "Resume parsing",
+      "Interview scheduling",
+      "Candidate matching",
+      "Role management",
+    ],
+    link: "https://github.com/Alwaysdebugg/recruitPro",
+  },
+  {
+    title: "My Portfolio",
+    description:
+      "My portfolio website built with React, Next.js, and Tailwind CSS.",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/portfolio.png`,
+    image2: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/portfolio2.png`,
+    tags: ["React", "Next.js", "Tailwind", "TypeScript", "Framer Motion"],
+    content:
+      "This is my portfolio website built with React, Next.js, and Tailwind CSS.",
+    features: [
+      "Bento layout",
+      "Animation",
+      "Responsive design",
+      "Resume download",
+      "Project showcase"
+    ],
+    hostLink: "https://alwaysdebugg.github.io/myPortfolio/",
+    link: "https://github.com/Alwaysdebugg/myPortfolio",
+  },
+];
+
+interface Project {
+  title: string;
+  image: string;
+  description: string;
+  tags: string[];
+  link?: string;
+  content: string;
+  image2: string;
+  features: string[];
+  hostLink?: string;
+}
 
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  }
+
+  const closeModal = () => {
+    setSelectedProject(null);
+    setIsModalOpen(false);
+  }
+  
   return (
     <section id="projects" className="py-10">
       <motion.div
@@ -51,6 +139,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              onClick={() => handleProjectClick(project)}
               className="group relative bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
             >
               <div className="relative h-64 overflow-hidden">
@@ -86,7 +175,7 @@ export default function Projects() {
                 
                 {/* 链接按钮 */}
                 <div className="flex justify-end space-x-3 mt-4">
-                  {project.link && project.link !== "#" && (
+                  {project.link && project.link !== "#" && project.link.includes("github") && (
                     <motion.a 
                       href={project.link}
                       target="_blank"
@@ -119,6 +208,12 @@ export default function Projects() {
           ))}
         </div>
       </motion.div>
+      
+      <ProjectModal
+        project={selectedProject!}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </section>
   );
 } 
