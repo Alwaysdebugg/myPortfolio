@@ -1,51 +1,44 @@
-💼 myPortfolio Website
+# Portfolio Website
 
-A modern, responsive personal portfolio website for frontend developers, built to showcase resume content including bio, work experience, projects, skills, and more.
+### Project Overview
+This is a personal portfolio website for a frontend developer, designed to showcase my resume content, including personal avatar, bio, work experience, project experience, technical skills, educational background, and contact information. The project is based on static web development using the Aceternity UI framework, focusing on rapid deployment and responsive design while demonstrating web styling capabilities.
 
-📷 Preview
+### preview 
 https://alwaysdebugg.github.io/myPortfolio/
 
-📝 Overview
+### Features
 
-This project is a statically generated portfolio website using Next.js and Aceternity UI, with a focus on:
-- Fast deployment
-- Clean UI design
-- Responsive layouts
-- Smooth animations and user interactions
+#### Main Modules
+- Personal Information Display
+    - Avatar display (Avatar component)
+    - Concise personal introduction
+    - Contact information (email, social media links, etc.)
+- Work & Project Experience
+    - Timeline-style work history display (Timeline component)
+    - Card-style project details (Card component)
+- Technical Skills
+    - Tag-style skill categorization (Badge component)
+    - Progress bars for key technology stack proficiency
+- Educational Background
+    - Time-ordered education history using lists (List component)
+    - Emphasis on specialized courses and key skills
+- Contact Features
+    - Social media quick buttons (Button component)
+    - Contact form (Form component)
 
-🚀 Features
-
-📌 Main Sections
-- 👤 Personal Info
-	- Avatar display (using Avatar component)
-	- Short bio and intro
-	- Contact info (email, social links)
-- 💼 Work & Project Experience
-	- Timeline-style work history (Timeline component)
-	- Project details in card layout (Card component)
-- 🛠️ Technical Skills
-	- Skill tags using badges (Badge component)
-	- Proficiency bars for core technologies
-- 🎓 Education
-	- Chronological education list (List component)
-	- Highlights of relevant courses and skills
-- 📬 Contact
-	- Quick social buttons (Button component)
-	- Functional contact form (Form component)
-
-✨ Additional Highlights
-- Fully responsive (mobile & desktop)
+#### Additional Features
+- Responsive design supporting both mobile and desktop access
 - Dark/light theme toggle
-- Scroll and animation effects
-- SEO optimized
-- Lazy loading for better performance
+- Animation and scroll effects for enhanced user experience
+- Optimized SEO configuration for search engine indexing
+- TailwindCSS for styling
+- Aceternity UI framework for component design
+- Next.js for static generation
+- GitHub Pages for deployment
+- Lazy loading for improved page load speed
 
-🛠 Tech Stack
-
-Layer	Technology
-Frontend	HTML5, CSS3, JavaScript
-Styling	TailwindCSS
-UI Kit	Aceternity UI
-Framework	Next.js (Static Site Generation)
-Deploy	GitHub Pages
- 
+#### Tech Stack
+- Frontend: HTML5, CSS3, JavaScript, TailwindCSS
+- UI Framework: Aceternity UI
+- Static Generator: Next.js
+- Deployment Platform: GitHub Pages
