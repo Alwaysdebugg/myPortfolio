@@ -8,37 +8,37 @@ https://alwaysdebugg.github.io/myPortfolio/
 📝 Overview
 
 This project is a statically generated portfolio website using Next.js and Aceternity UI, with a focus on:
-	•	Fast deployment
-	•	Clean UI design
-	•	Responsive layouts
-	•	Smooth animations and user interactions
+- Fast deployment
+- Clean UI design
+- Responsive layouts
+- Smooth animations and user interactions
 
 🚀 Features
 
 📌 Main Sections
-	•	👤 Personal Info
-	•	Avatar display (using Avatar component)
-	•	Short bio and intro
-	•	Contact info (email, social links)
-	•	💼 Work & Project Experience
-	•	Timeline-style work history (Timeline component)
-	•	Project details in card layout (Card component)
-	•	🛠️ Technical Skills
-	•	Skill tags using badges (Badge component)
-	•	Proficiency bars for core technologies
-	•	🎓 Education
-	•	Chronological education list (List component)
-	•	Highlights of relevant courses and skills
-	•	📬 Contact
-	•	Quick social buttons (Button component)
-	•	Functional contact form (Form component)
+- 👤 Personal Info
+	- Avatar display (using Avatar component)
+	- Short bio and intro
+	- Contact info (email, social links)
+- 💼 Work & Project Experience
+	- Timeline-style work history (Timeline component)
+	- Project details in card layout (Card component)
+- 🛠️ Technical Skills
+	- Skill tags using badges (Badge component)
+	- Proficiency bars for core technologies
+- 🎓 Education
+	- Chronological education list (List component)
+	- Highlights of relevant courses and skills
+- 📬 Contact
+	- Quick social buttons (Button component)
+	- Functional contact form (Form component)
 
 ✨ Additional Highlights
-	•	Fully responsive (mobile & desktop)
-	•	Dark/light theme toggle
-	•	Scroll and animation effects
-	•	SEO optimized
-	•	Lazy loading for better performance
+- Fully responsive (mobile & desktop)
+- Dark/light theme toggle
+- Scroll and animation effects
+- SEO optimized
+- Lazy loading for better performance
 
 🛠 Tech Stack
 
