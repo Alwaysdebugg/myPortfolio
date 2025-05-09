@@ -167,7 +167,7 @@ export default function Projects() {
                 </div>
               </div>
               
-              <div className="p-6 relative z-10">
+              <div className="p-6 relative z-10 hover:cursor-pointer">
                 <h3 className="w-full h-12 text-lg font-serif font-bold mb-4 text-black dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">{project.title}</h3>
                 <p className="text-lg font-serif text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
                   {project.description}

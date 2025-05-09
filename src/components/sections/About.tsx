@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { FaReact, FaVuejs, FaHtml5, FaCss3Alt, FaJs, FaNode, FaPython } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { BiLogoTypescript } from "react-icons/bi";
-import { SiMongodb, SiMysql, SiVite} from "react-icons/si";
+import { SiMongodb, SiMysql, SiVite, SiAmazon } from "react-icons/si";
 
 export default function About() {
   const items = [
@@ -35,7 +35,7 @@ export default function About() {
                 height={50}
               />
               <span className="font-bold text-xl font-serif ml-2">
-                Currently working in Startup
+                3+ years of experience
               </span>
             </li>
             <li className="flex items-center">
@@ -193,6 +193,14 @@ export default function About() {
               rel="noopener noreferrer"
             >
               <FaPython className="w-10 h-10 text-gray-700 dark:text-gray-300 dark:hover:scale-150 transition-all duration-300" />
+            </a>
+            {/* aws */}
+            <a
+              href="https://aws.amazon.com/cn/what-is-aws/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiAmazon className="w-10 h-10 text-gray-700 dark:text-gray-300 dark:hover:scale-150 transition-all duration-300" />
             </a>
           </div>
         </div>
