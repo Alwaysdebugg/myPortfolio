@@ -1,7 +1,10 @@
-# myPortfolio Website
+# Portfolio Website
 
 ### Project Overview
 This is a personal portfolio website for a frontend developer, designed to showcase my resume content, including personal avatar, bio, work experience, project experience, technical skills, educational background, and contact information. The project is based on static web development using the Aceternity UI framework, focusing on rapid deployment and responsive design while demonstrating web styling capabilities.
+
+### preview 
+https://alwaysdebugg.github.io/myPortfolio/
 
 ### Features
 
@@ -39,4 +42,3 @@ This is a personal portfolio website for a frontend developer, designed to showc
 - UI Framework: Aceternity UI
 - Static Generator: Next.js
 - Deployment Platform: GitHub Pages
-
