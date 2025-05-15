@@ -38,7 +38,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="relative w-full max-w-xl h-[85vh] md:h-[80vh] max-h-[700px] overflow-hidden bg-white dark:bg-gray-900 rounded-3xl shadow-2xl"
+            className="relative w-full max-w-xl h-[85vh] md:h-[80vh] max-h-[700px] overflow-hidden bg-[#DFD0B8] dark:bg-gray-900 rounded-3xl shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* 项目图片 */}
@@ -53,20 +53,20 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 
             {/* 项目信息 */}
             <div className="p-6 h-[calc(100%-16rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-gray-100 dark:scrollbar-track-gray-900">
-                <h2 className="text-[16px] md:text-2xl font-bold mb-2 font-serif">{project.title}</h2>
+                <h2 className="text-[16px] md:text-2xl font-bold mb-2 font-serif text-black dark:text-white">{project.title}</h2>
                 {/* 标签 */}
                 <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, index) => (
-                        <span key={index} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium">
+                        <span key={index} className="px-3 py-1 bg-[#F4CE14] text-[#379777] rounded-full text-sm font-medium">
                             {tag}
                         </span>
                     ))}
                 </div>
                 {/* 项目介绍 */}
                 <div className="mb-4">
-                    <h3 className="text-[16px] md:text-xl font-bold mb-2 font-serif">Introduction</h3>
+                    <h3 className="text-[16px] md:text-xl font-bold mb-2 font-serif text-black dark:text-white">Introduction</h3>
                     <p className="text-[14px] md:text-base text-gray-600 dark:text-gray-400 font-serif">{project.content}</p>
-                    <h3 className="text-[16px] md:text-xl font-bold mb-2 mt-4 font-serif">Features</h3>
+                    <h3 className="text-[16px] md:text-xl font-bold mb-2 mt-4 font-serif text-black dark:text-white">Features</h3>
                     {project.features.map((feature,index) => {
                         return (
                             <li key={index} className="text-[14px] md:text-base text-gray-600 dark:text-gray-400 font-serif">

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { FaReact, FaVuejs, FaHtml5, FaCss3Alt, FaJs, FaNode, FaPython } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { BiLogoTypescript } from "react-icons/bi";
-import { SiMongodb, SiMysql, SiVite, SiAmazon } from "react-icons/si";
+import { SiMongodb, SiMysql, SiVite, SiAmazon, SiNestjs } from "react-icons/si";
 
 export default function About() {
   const items = [
@@ -97,8 +97,8 @@ export default function About() {
       title: "",
       description: "",
       header: (
-        <div className="w-full h-full flex flex-col items-center justify-center space-y-4 rounded-xl px-8 py-4 md:py-0 md:px-6">
-          <div className="w-full h-auto flex flex-row items-center justify-center">
+        <div className="w-full h-full rounded-xl px-8 py-8 md:py-6 md:px-6">
+          {/* <div className="w-full h-auto flex flex-row items-center justify-center">
             <Image
               src="https://img.icons8.com/?size=100&id=65445&format=png&color=000000"
               alt="Tech Stack"
@@ -108,8 +108,8 @@ export default function About() {
             <h1 className="text-xl font-bold font-serif">
               Tech Stack
             </h1>
-          </div>
-          <div className="flex flex-wrap gap-2">
+          </div> */}
+          <div className="flex flex-wrap items-center gap-2">
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
               target="_blank"
@@ -150,7 +150,7 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaVuejs className="w-10 h-10 text-gray-700 dark:text-gray-300 dark:hover:scale-110 transition-all duration-300" />
+              <FaVuejs className="w-10 h-10 text-gray-700 dark:text-gray-300 dark:hover:scale-150 transition-all duration-300" />
             </a>
             <a
               href="https://vitejs.dev/guide/"
@@ -202,6 +202,14 @@ export default function About() {
             >
               <SiAmazon className="w-10 h-10 text-gray-700 dark:text-gray-300 dark:hover:scale-150 transition-all duration-300" />
             </a>
+            {/* nestjs */}
+            <a
+              href="https://docs.nestjs.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiNestjs className="w-10 h-10 text-gray-700 dark:text-gray-300 dark:hover:scale-150 transition-all duration-300" />
+            </a>
           </div>
         </div>
       ),
@@ -212,17 +220,29 @@ export default function About() {
       description: "",
       header: (
         <div className="w-full h-full flex items-center justify-center rounded-xl">
-          <div className="relative w-full h-full transition-all duration-300 group">
+          <div className="relative w-full h-full min-h-[350px] transition-all duration-300 group">
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/fishing.jpeg`}
+              src={`${
+                process.env.NEXT_PUBLIC_BASE_PATH || ""
+              }/images/fishing.jpeg`}
               alt="life hobby"
               fill
               className="object-cover z-0 rounded-xl cursor-pointer brightness-50 group-hover:brightness-100 transition-all duration-300"
               priority
             />
-            <div className="absolute inset-0 flex items-center justify-center z-10 px-4 cursor-pointer">
-              <p className="text-white text-2xl font-serif font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                After coding... <br />  
+            <div className="absolute inset-0 flex items-end justify-center z-10 px-4 cursor-pointer">
+              <p className="text-white text-3xl font-serif font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Image
+                  src={`${
+                    process.env.NEXT_PUBLIC_BASE_PATH || ""
+                  }/images/lure.png`}
+                  alt="life hobby"
+                  width={50}
+                  height={50}
+                  className="object-cover z-0 rounded-xl cursor-pointer brightness-50 group-hover:brightness-100 transition-all duration-300"
+                  priority
+                />
+                After coding... <br />
                 What else can I do?
               </p>
             </div>
@@ -237,7 +257,8 @@ export default function About() {
       header: (
         <div className="w-full h-full flex flex-col items-center justify-center space-y-2 rounded-xl py-6 px-2">
           <i className="font-serif text-lg text-black dark:text-white text-center">
-          "When something is important enough, you do it even if the odds are not in your favor."
+            "When something is important enough, you do it even if the odds are
+            not in your favor."
           </i>
           <i className="w-full font-serif text-sm text-black dark:text-white text-right mr-6">
             —— Elon Musk

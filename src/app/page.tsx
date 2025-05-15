@@ -13,7 +13,7 @@ import { DivLine } from '@/components/ui/divLine'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-300 dark:bg-gray-800">
+    <div className="min-h-screen bg-[#948979] dark:bg-gray-800">
       {/* Navbar - Center aligned */}
       <Navbar />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center pt-10">

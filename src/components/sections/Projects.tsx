@@ -24,8 +24,7 @@ const projects = [
       "Route planning",
       "Approval workflow",
     ],
-    hostLink: "https://beta.ulala.ca",
-    link:"https://beta.ulala.ca",
+    link:"https://github.com/Alwaysdebugg/tms-backend-ui",
   },
   {
     title: "Blog Website",
@@ -72,7 +71,7 @@ const projects = [
     link: "https://github.com/Alwaysdebugg/recruitPro",
   },
   {
-    title: "My Portfolio",
+    title: "Portfolio Website",
     description:
       "My portfolio website built with React, Next.js, and Tailwind CSS.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/portfolio.png`,
@@ -127,7 +126,7 @@ export default function Projects() {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto px-4"
       >
-        <h2 className="text-xl md:text-3xl font-bold mb-12 text-center font-serif">
+        <h2 className="text-xl md:text-3xl text-[#393E46] dark:text-white font-bold mb-12 text-center font-serif">
           {"<"}MyProjects {"/>"}
         </h2>
 
@@ -140,7 +139,7 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               onClick={() => handleProjectClick(project)}
-              className="group relative bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+              className="group relative bg-[#DFD0B8] dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
             >
               <div className="relative h-64 overflow-hidden">
                 <Image

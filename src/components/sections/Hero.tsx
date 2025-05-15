@@ -64,31 +64,52 @@ export default function Hero() {
           <span className="w-full text-4xl font-bold md:text-5xl font-serif text-gray-800 dark:text-gray-100">
             Hola, I'm
           </span>
-          <span className="ml-5 text-4xl font-bold md:text-5xl font-serif text-gray-800 dark:text-gray-100 italic hover:not-italic transition-all duration-300 cursor-pointer">Jacky</span>
+          <span className="ml-5 text-4xl font-bold md:text-5xl font-serif text-gray-800 dark:text-gray-100 italic hover:not-italic transition-all duration-300 cursor-pointer">
+            Jacky
+          </span>
           <div className="h-10 font-sans text-2xl md:text-3xl text-gray-800 dark:text-gray-100">
             {displayText}
           </div>
-          <div className="flex flex-wrap justify-center md:justify-start gap-3 text-green-400 font-bold font-mono text-lg items-center">
-            <span className="px-3 py-1 bg-gray-800 rounded-full hover:bg-green-400/20 transition-all duration-300 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">#Frontend</span>
-            <span className="px-3 py-1 bg-gray-800 rounded-full hover:bg-green-400/20 transition-all duration-300 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">#Node.js</span>
-            <span className="px-3 py-1 bg-gray-800 rounded-full hover:bg-green-400/20 transition-all duration-300 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">#React.js</span>
-            <span className="px-3 py-1 bg-gray-800 rounded-full hover:bg-green-400/20 transition-all duration-300 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">#Vue.js</span>
-            <span className="px-3 py-1 bg-gray-800 rounded-full hover:bg-green-400/20 transition-all duration-300 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">#Typescript</span>
-            <span className="px-3 py-1 bg-gray-800 rounded-full hover:bg-green-400/20 transition-all duration-300 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">#AWS</span>
-            <span className="px-3 py-1 bg-gray-800 rounded-full hover:bg-green-400/20 transition-all duration-300 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">#MongoDB</span>
+          <div className="flex flex-wrap justify-center md:justify-start gap-3 font-bold font-serif text-sm md:text-lg items-center">
+            <span className="px-3 py-1 bg-[#F4CE14] text-[#379777] rounded-full transition-all duration-300 dark:text-green-400 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">
+              #React
+            </span>
+            <span className="px-3 py-1 bg-[#F4CE14] text-[#379777] rounded-full transition-all duration-300 dark:text-green-400 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">
+              #Node.js
+            </span>
+            <span className="px-3 py-1 bg-[#F4CE14] text-[#379777] rounded-full transition-all duration-300 dark:text-green-400 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">
+              #MERN
+            </span>
+            <span className="px-3 py-1 bg-[#F4CE14] text-[#379777] rounded-full transition-all duration-300 dark:text-green-400 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">
+              #Next.js
+            </span>
+            <span className="px-3 py-1 bg-[#F4CE14] text-[#379777] rounded-full transition-all duration-300 dark:text-green-400 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">
+              #Vue
+            </span>  
+            <span className="px-3 py-1 bg-[#F4CE14] text-[#379777] rounded-full transition-all duration-300 dark:text-green-400 dark:bg-green-400/10 dark:hover:bg-green-400/20 cursor-pointer">
+              #Lifelong Learner
+            </span>         
           </div>
           <div className="space-y-6 text-gray-800 dark:text-gray-100 text-base md:text-lg max-w-xl leading-relaxed font-mono">
             <div className="group flex items-start space-x-2 hover:translate-x-2 transition-all duration-300">
-              <span className="text-green-500 dark:text-green-400 opacity-70">//</span>
-              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300 font-serif font-bold">
-                Bringing ideas to life through code excites me the most—I enjoy the process of turning concepts into functional and engaging experiences.
+              <span className="text-green-500 dark:text-green-400 opacity-70">
+                //
+              </span>
+              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300 text-lg md:text-xl font-serif font-medium">
+                I specialize in building performant, accessible web applications
+                with modern frameworks that delight users and solve real
+                problems.
               </p>
             </div>
-            
+
             <div className="group flex items-start space-x-2 hover:translate-x-2 transition-all duration-300">
-              <span className="text-green-500 dark:text-green-400 opacity-70">//</span>
-              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300 font-serif font-bold">
-                Whether it's a small feature or a full-fledged application, I thrive on solving problems and crafting seamless user interfaces.
+              <span className="text-green-500 dark:text-green-400 opacity-70">
+                //
+              </span>
+              <p className="group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors duration-300 text-lg md:text-xl font-serif font-medium">
+                From responsive interfaces to complex state management, I'm
+                committed to clean, maintainable code that scales and follows
+                best practices.
               </p>
             </div>
           </div>
@@ -137,11 +158,13 @@ export default function Hero() {
           {/* 所处时区 */}
           <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
             <RiTimeZoneLine className="w-5 h-5" />
-            <span className="font-serif">{currentTime + ' (PST)' || '加载中...'}</span>
+            <span className="font-serif">
+              {currentTime + " (PST)" || "加载中..."}
+            </span>
           </div>
         </div>
       </motion.div>
-      
+
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -155,7 +178,9 @@ export default function Hero() {
             </div>
           ) : (
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/avatar_new.png`}
+              src={`${
+                process.env.NEXT_PUBLIC_BASE_PATH || ""
+              }/images/avatar_new.png`}
               // src="/images/avatar.jpg"
               alt="Profile picture"
               width={320}
@@ -168,5 +193,5 @@ export default function Hero() {
         </div>
       </motion.div>
     </div>
-  )
+  );
 } 
