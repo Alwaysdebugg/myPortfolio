@@ -57,7 +57,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                 {/* 标签 */}
                 <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, index) => (
-                        <span key={index} className="px-3 py-1 bg-[#F4CE14] text-[#379777] rounded-full text-sm font-medium">
+                        <span key={index} className="px-3 py-1 bg-[#F4CE14] text-[#379777] dark:text-green-400 dark:bg-green-400/10 rounded-full font-serif text-sm font-medium">
                             {tag}
                         </span>
                     ))}
