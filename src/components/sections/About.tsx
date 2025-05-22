@@ -220,7 +220,7 @@ export default function About() {
       description: "",
       header: (
         <div className="w-full h-full flex items-center justify-center rounded-xl">
-          <div className="relative w-full h-full min-h-[350px] transition-all duration-300 group">
+          <div className="relative w-full h-full min-h-[350px] md:min-h-[300px] transition-all duration-300 group">
             <Image
               src={`${
                 process.env.NEXT_PUBLIC_BASE_PATH || ""
