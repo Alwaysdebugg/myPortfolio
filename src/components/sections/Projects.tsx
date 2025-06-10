@@ -26,25 +26,25 @@ const projects = [
     ],
     link:"https://github.com/Alwaysdebugg/tms-backend-ui",
   },
-  {
-    title: "Blog Website",
-    description: "Blog website using React, Express, and MongoDB.",
-    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/medium-clone.jpg`,
-    image2: `${
-      process.env.NEXT_PUBLIC_BASE_PATH || ""
-    }/images/medium-clone2.jpg`,
-    tags: ["React", "Express", "MongoDB", "Tailwind", "Node.js"],
-    content:
-      "This is a blog website built with React, Express, and MongoDB. It is a blog website that uses React, Express, and MongoDB to manage the blog of a company.",
-    features: [
-      "User authentication",
-      "Post management",
-      "Comment management",
-      "Tag management",
-      "Report generation"
-    ],
-    link: "https://github.com/Alwaysdebugg/myBlog",
-  },
+  // {
+  //   title: "Blog Website",
+  //   description: "Blog website using React, Express, and MongoDB.",
+  //   image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/medium-clone.jpg`,
+  //   image2: `${
+  //     process.env.NEXT_PUBLIC_BASE_PATH || ""
+  //   }/images/medium-clone2.jpg`,
+  //   tags: ["React", "Express", "MongoDB", "Tailwind", "Node.js"],
+  //   content:
+  //     "This is a blog website built with React, Express, and MongoDB. It is a blog website that uses React, Express, and MongoDB to manage the blog of a company.",
+  //   features: [
+  //     "User authentication",
+  //     "Post management",
+  //     "Comment management",
+  //     "Tag management",
+  //     "Report generation"
+  //   ],
+  //   link: "https://github.com/Alwaysdebugg/myBlog",
+  // },
   {
     title: "RecruitPro",
     description:
