@@ -38,7 +38,7 @@ export default function Experience() {
         viewport={{ once: true }}
         className="max-w-4xl mx-auto px-4"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-black dark:text-white font-sans">
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-black dark:text-white font-serif">
           Work Experience
         </h2>
         <div className="space-y-12">
@@ -53,12 +53,12 @@ export default function Experience() {
             >
               <div className="absolute w-4 h-4 bg-blue-600 rounded-full -left-[9px] top-0" />
               <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
-                <h3 className="text-xl font-bold mb-1">{exp.position}</h3>
-                <h4 className="text-lg text-blue-600 mb-2">{exp.company}</h4>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{exp.period}</p>
+                <h3 className="text-xl font-bold mb-1 font-serif">{exp.position}</h3>
+                <h4 className="text-lg text-blue-600 mb-2 font-serif">{exp.company}</h4>
+                <p className="text-gray-600 dark:text-gray-400 mb-4 font-serif">{exp.period}</p>
                 <ul className="list-disc list-inside space-y-2">
                   {exp.description.map((item, idx) => (
-                    <li key={idx} className="text-gray-700 dark:text-gray-300">
+                    <li key={idx} className="text-gray-700 dark:text-gray-300 font-serif">
                       {item}
                     </li>
                   ))}

@@ -1,33 +1,46 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { FiSun, FiMoon } from "react-icons/fi"
 import { motion } from "framer-motion"
+import { FiSun, FiMoon } from "react-icons/fi"
+import { useTheme } from "./theme-provider"
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false)
-
-  useEffect(() => {
-    // 初始化时检查系统主题
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    setIsDark(isDarkMode)
-    document.documentElement.classList.toggle('dark', isDarkMode)
-  }, [])
-
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle('dark')
-  }
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={toggleTheme}
-      className="fixed right-4 top-4 z-50 p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-gray-800 dark:text-white hover:bg-white/20 transition-colors"
-      aria-label="Toggle theme"
+      className="relative p-3 rounded-full bg-surface-light/80 dark:bg-surface-dark/80 border border-border-light/30 dark:border-border-dark/30 hover:border-accent-primary/50 transition-all duration-300 backdrop-blur-sm shadow-lg"
+      aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
     >
-      {isDark ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
+      <div className="relative w-5 h-5">
+        <motion.div
+          initial={false}
+          animate={{
+            scale: theme === "light" ? 1 : 0,
+            opacity: theme === "light" ? 1 : 0,
+            rotate: theme === "light" ? 0 : 180,
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <FiSun className="w-5 h-5 text-accent-warning" />
+        </motion.div>
+        <motion.div
+          initial={false}
+          animate={{
+            scale: theme === "dark" ? 1 : 0,
+            opacity: theme === "dark" ? 1 : 0,
+            rotate: theme === "dark" ? 0 : -180,
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <FiMoon className="w-5 h-5 text-accent-primary" />
+        </motion.div>
+      </div>
     </motion.button>
   )
 } 

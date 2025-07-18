@@ -25,11 +25,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh" className={`dark ${robotoMono.variable}`}>
+    <html lang="zh" className={robotoMono.variable}>
       <head>
         <link rel="icon" href="/myPortfolio/favicon.ico" />
       </head>
-      <body className={robotoMono.className}>
+      <body className={`${robotoMono.className} font-serif bg-black`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
