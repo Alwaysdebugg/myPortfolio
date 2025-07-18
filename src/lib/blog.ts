@@ -1,9 +1,6 @@
 import { BlogPost } from '@/types/blog'
 import { fallbackBlogPosts } from '@/data/blog-posts'
 
-// 为了避免构建时的fs模块问题，我们在静态导出模式下
-// 直接使用fallback数据，不进行文件系统操作
-
 /**
  * 计算阅读时间（基于字数，平均每分钟200字）
  */
@@ -15,9 +12,20 @@ function calculateReadingTime(content: string): number {
 
 /**
  * 获取所有博客文章
- * 在静态导出模式下直接返回fallback数据
+ * 优先使用生成的数据，回退到fallback数据
  */
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
+  try {
+    // 尝试从生成的数据中读取
+    const { default: generatedPosts } = await import('@/data/generated-posts.json')
+    if (generatedPosts && generatedPosts.length > 0) {
+      console.log('Using generated blog posts from Markdown files')
+      return generatedPosts
+    }
+  } catch (error) {
+    console.warn('Failed to load generated blog posts, falling back to static data:', error)
+  }
+  
   console.log('Using fallback blog posts for static export')
   return fallbackBlogPosts
 }

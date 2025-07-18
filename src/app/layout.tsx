@@ -11,7 +11,8 @@ const robotoMono = Roboto_Mono({
 
 // metadata 需要在服务器端组件中导出
 export const metadata: Metadata = {
-  title: "Jfeng | Dev World",
+  title: "Jfeng's Portfolio",
+  keywords: ['Portfolio', 'Frontend Developer', 'React', 'Next.js'],
   description: "Frontend developer portfolio showcasing projects and skills",
   icons: {
     // icon: '/myPortfolio/favicon.ico',

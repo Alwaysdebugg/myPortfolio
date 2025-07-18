@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { FaSearch, FaFilter } from 'react-icons/fa'
 import { useState, useMemo } from 'react'
+import Link from 'next/link'
 import { BlogListProps, BlogPost } from '@/types/blog'
 import BlogCard from './BlogCard'
 
@@ -56,6 +57,12 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* 返回首页 */}
+        <div>
+          <Link href="/" className="text-blue-400 hover:underline mb-4 inline-block">
+            Back to Home
+          </Link>
+        </div>
         {/* 页面标题 */}
         <motion.header
           initial={{ opacity: 0, y: 30 }}
@@ -63,9 +70,9 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">技术博客</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Technical Blogs</h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            分享前端开发、技术思考和实践经验
+            Sharing my journey as a frontend developer.
           </p>
         </motion.header>
 
@@ -81,7 +88,7 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
             <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
-              placeholder="搜索文章..."
+              placeholder="Searching..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-3 bg-gray-900/50 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none transition-colors"
@@ -92,7 +99,7 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
           <div className="flex flex-wrap gap-4 items-center">
             <div className="flex items-center gap-2">
               <FaFilter className="text-gray-400 w-4 h-4" />
-              <span className="text-sm text-gray-400">筛选:</span>
+              <span className="text-sm text-gray-400">Filter:</span>
             </div>
 
             {/* 标签过滤 */}
@@ -101,7 +108,7 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
               onChange={(e) => setSelectedTag(e.target.value)}
               className="px-3 py-2 bg-gray-900/50 border border-gray-700/50 rounded text-white text-sm focus:border-blue-400/50 focus:outline-none"
             >
-              <option value="">所有标签</option>
+              <option value="">Labels</option>
               {allTags.map(tag => (
                 <option key={tag} value={tag}>{tag}</option>
               ))}
@@ -113,14 +120,14 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
               onChange={(e) => setSortBy(e.target.value as 'date' | 'title' | 'readingTime')}
               className="px-3 py-2 bg-gray-900/50 border border-gray-700/50 rounded text-white text-sm focus:border-blue-400/50 focus:outline-none"
             >
-              <option value="date">按日期</option>
-              <option value="title">按标题</option>
-              <option value="readingTime">按阅读时间</option>
+              <option value="date">Dates</option>
+              <option value="title">Title</option>
+              <option value="readingTime">ReadingTime</option>
             </select>
 
             {/* 结果统计 */}
             <span className="text-sm text-gray-400 ml-auto">
-              {filteredAndSortedPosts.length} 篇文章
+              {filteredAndSortedPosts.length} results found
             </span>
           </div>
         </motion.div>
@@ -152,8 +159,8 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
             className="text-center py-12"
           >
             <div className="text-6xl mb-4">📝</div>
-            <h3 className="text-xl font-bold text-gray-400 mb-2">暂无文章</h3>
-            <p className="text-gray-500">没有找到匹配的文章，请尝试调整搜索条件</p>
+            <h3 className="text-xl font-bold text-gray-400 mb-2">No content</h3>
+            <p className="text-gray-500">No Matches</p>
           </motion.div>
         )}
 
