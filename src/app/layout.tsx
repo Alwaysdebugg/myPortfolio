@@ -11,7 +11,8 @@ const robotoMono = Roboto_Mono({
 
 // metadata 需要在服务器端组件中导出
 export const metadata: Metadata = {
-  title: "Jfeng | Dev World",
+  title: "Jfeng's Portfolio",
+  keywords: ['Portfolio', 'Frontend Developer', 'React', 'Next.js'],
   description: "Frontend developer portfolio showcasing projects and skills",
   icons: {
     // icon: '/myPortfolio/favicon.ico',
@@ -25,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh" className={`dark ${robotoMono.variable}`}>
+    <html lang="zh" className={robotoMono.variable}>
       <head>
         <link rel="icon" href="/myPortfolio/favicon.ico" />
       </head>
-      <body className={robotoMono.className}>
+      <body className={`${robotoMono.className} font-serif bg-black`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

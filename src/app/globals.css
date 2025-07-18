@@ -55,8 +55,9 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: hsl(var(--background));
+  background: linear-gradient(to bottom, #000000 0%, #000000 100%);
   color: hsl(var(--foreground));
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 
@@ -66,7 +67,7 @@ body {
 
 /* 添加自定义滚动条样式 */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -74,12 +75,31 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* 自定义滚动条样式类 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.4);
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.6);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
@@ -88,11 +108,16 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-/* 可选：添加渐变效果使背景更有层次感 */
-/* .gradient-bg {
+/* 全局黑色渐变背景 */
+.gradient-bg {
   background: linear-gradient(
     to bottom,
-    hsl(var(--background)),
-    hsl(0 0% 5%)
+    #000000 0%,
+    #000000 100%
   );
-} */
+}
+
+/* 确保所有页面都使用黑色背景 */
+html {
+  background: #000000;
+}

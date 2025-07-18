@@ -63,12 +63,12 @@ export default function Resume() {
                 {isFullscreen ? (
                   <>
                     <FiMinimize2 className="w-4 h-4" />
-                    <span className="font-mono text-sm">Exit Fullscreen</span>
+                    <span className="font-serif text-sm">Exit Fullscreen</span>
                   </>
                 ) : (
                   <>
                     <FiMaximize2 className="w-4 h-4" />
-                    <span className="font-mono text-sm">Fullscreen</span>
+                    <span className="font-serif text-sm">Fullscreen</span>
                   </>
                 )}
               </motion.button> */}
@@ -79,7 +79,7 @@ export default function Resume() {
                 className="flex items-center gap-2 px-4 py-2 bg-blue-600/80 backdrop-blur-sm text-white rounded-full hover:bg-blue-700 transition-all"
               >
                 <FiDownload className="w-4 h-4" />
-                <span className="font-mono text-sm">Download</span>
+                <span className="font-serif text-sm">Download</span>
               </motion.button>
             </div>
           </div>
