@@ -56,16 +56,11 @@ export default function Home() {
             >
               {/* Navbar - Center aligned */}
               <Navbar />
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center pt-10">
+              <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center pt-10">
                 <div className="space-y-16 w-full">
                   <Hero />
-                  {/* <DivLine /> */}
                   <About />
-                  {/* <DivLine /> */}
                   <Projects />
-                  {/* <DivLine /> */}
-                  {/* <Education /> */}
-                  {/* <DivLine /> */}
                 </div>
               </div>
               <Footer />

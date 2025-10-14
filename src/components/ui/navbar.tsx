@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { FaHome, FaProjectDiagram, FaFileAlt, FaCode } from "react-icons/fa"
 import { useTheme } from "./theme-provider"
 const navItems = [
-  { name: "Home", icon: <FaHome />, href: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/` },
+  { name: "Home", icon: <FaHome />, href: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/#hero` },
   { name: "Project", icon: <FaProjectDiagram />, href: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/#projects` },
   // { name: "Resume", icon: <FaFileAlt />, href: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/resume` },
   { name: "Blog", icon: <FaCode />, href: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/blog` },
@@ -77,7 +77,7 @@ export default function Navbar() {
         </div>
         
         {/* Theme Toggle */}
-        <div className="flex-none">
+        {/* <div className="flex-none">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -95,7 +95,7 @@ export default function Navbar() {
               <div className="w-5 h-5" />
             )}
           </motion.button>
-        </div>
+        </div> */}
       </div>
 
 
