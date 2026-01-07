@@ -4,13 +4,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SplashScreen from "../components/sections/SplashScreen";
 import Hero from "../components/sections/Hero";
-import About from "../components/sections/About";
-import Projects from "../components/sections/Projects";
-import Education from "../components/sections/Education";
 import Navbar from "../components/ui/navbar";
 import Footer from "../components/ui/foot";
-import { DivLine } from "@/components/ui/divLine";
-import Sidebar from "@/components/ui/sidebar";
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
