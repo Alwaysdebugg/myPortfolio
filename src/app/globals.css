@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -55,9 +55,10 @@ html {
 
 body {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #000000 0%, #000000 100%);
+  background: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
@@ -108,16 +109,16 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-/* 全局黑色渐变背景 */
+/* 全局渐变背景 */
 .gradient-bg {
   background: linear-gradient(
     to bottom,
-    #000000 0%,
-    #000000 100%
+    hsl(var(--background)) 0%,
+    hsl(var(--background)) 100%
   );
 }
 
-/* 确保所有页面都使用黑色背景 */
 html {
-  background: #000000;
+  background: hsl(var(--background));
+  transition: background-color 0.3s ease;
 }

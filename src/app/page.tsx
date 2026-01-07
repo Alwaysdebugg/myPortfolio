@@ -1,30 +1,31 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import SplashScreen from '../components/sections/SplashScreen'
-import Hero from '../components/sections/Hero'
-import About from '../components/sections/About'
-import Projects from '../components/sections/Projects'
-import Education from '../components/sections/Education'
-import Navbar from '../components/ui/navbar'
-import Footer from '../components/ui/foot'
-import { DivLine } from '@/components/ui/divLine'
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import SplashScreen from "../components/sections/SplashScreen";
+import Hero from "../components/sections/Hero";
+import About from "../components/sections/About";
+import Projects from "../components/sections/Projects";
+import Education from "../components/sections/Education";
+import Navbar from "../components/ui/navbar";
+import Footer from "../components/ui/foot";
+import { DivLine } from "@/components/ui/divLine";
+import Sidebar from "@/components/ui/sidebar";
 
 export default function Home() {
-  const [showContent, setShowContent] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [showContent, setShowContent] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   const handleDragDown = () => {
-    setShowContent(true)
-  }
+    setShowContent(true);
+  };
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   return (
@@ -32,13 +33,13 @@ export default function Home() {
       {/* Splash Screen */}
       <motion.div
         initial={{ opacity: 1 }}
-        animate={{ 
+        animate={{
           opacity: showContent ? 0 : 1,
-          y: showContent ? -100 : 0 
+          y: showContent ? -100 : 0,
         }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         className={`fixed inset-0 z-40 ${
-          showContent ? 'pointer-events-none' : 'pointer-events-auto'
+          showContent ? "pointer-events-none" : "pointer-events-auto"
         }`}
       >
         <SplashScreen onDragDown={handleDragDown} />
@@ -52,15 +53,15 @@ export default function Home() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="min-h-screen bg-black transition-colors duration-300"
+              className="min-h-screen bg-white dark:bg-black transition-colors duration-300"
             >
               {/* Navbar - Center aligned */}
               <Navbar />
-              <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center pt-10">
+              <div className="px-4 sm:px-6 lg:px-8 flex flex-col items-center pt-10">
                 <div className="space-y-16 w-full">
                   <Hero />
-                  <About />
-                  <Projects />
+                  {/* <About />
+                  <Projects /> */}
                 </div>
               </div>
               <Footer />
@@ -70,4 +71,4 @@ export default function Home() {
       </div>
     </div>
   );
-} 
+}

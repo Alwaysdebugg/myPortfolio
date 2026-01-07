@@ -15,7 +15,7 @@ export default function About() {
       {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-gray-600 rounded-full"
+            className="absolute w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -74,7 +74,7 @@ export default function About() {
       title: "About Me",
       description: "",
       header: (
-        <div className="w-full p-6 md:p-8 flex flex-col justify-center rounded-xl bg-gray-900/50 backdrop-blur-sm border border-gray-700/50">
+        <div className="w-full p-6 md:p-8 flex flex-col justify-center rounded-xl bg-gray-100/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
           <div className="mb-6">
             {/* <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mb-4"></div> */}
           </div>
@@ -96,10 +96,10 @@ export default function About() {
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-fluid-base text-white font-serif">
+                  <h4 className="font-bold text-fluid-base text-black dark:text-white font-serif">
                     {item.title}
                   </h4>
-                  <p className="text-sm text-gray-400 mt-1 font-serif">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 font-serif">
                     {item.description}
                   </p>
                 </div>
@@ -108,7 +108,7 @@ export default function About() {
           </div>
         </div>
       ),
-      className: "md:col-span-2 hover:shadow-xl transition-all duration-300 border border-gray-700/50 hover:border-blue-400/50 bg-gray-900/30 backdrop-blur-sm",
+      className: "md:col-span-2 hover:shadow-xl transition-all duration-300 border border-gray-300/50 dark:border-gray-700/50 hover:border-blue-500/50 dark:hover:border-blue-400/50 bg-gray-100/30 dark:bg-gray-900/30 backdrop-blur-sm",
     },
     {
       title: "Location",
@@ -135,12 +135,12 @@ export default function About() {
               >
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="text-white/80 text-sm font-medium font-serif">LOCATION</span>
+                  <span className="text-black/80 dark:text-white/80 text-sm font-medium font-serif">LOCATION</span>
                 </div>
-                <h3 className="text-white text-fluid-xl font-bold drop-shadow-lg font-serif">
+                <h3 className="text-black dark:text-white text-fluid-xl font-bold drop-shadow-lg font-serif">
                   Burnaby
                 </h3>
-                <p className="text-white/90 text-fluid-sm font-medium drop-shadow-lg font-serif">
+                <p className="text-black/90 dark:text-white/90 text-fluid-sm font-medium drop-shadow-lg font-serif">
                   British Columbia, Canada
                 </p>
               </motion.div>
@@ -154,9 +154,9 @@ export default function About() {
       title: "Tech Stack",
       description: "",
       header: (
-        <div className="w-full h-full rounded-xl p-6 bg-gray-900/50 backdrop-blur-sm border border-gray-700/50">
+        <div className="w-full h-full rounded-xl p-6 bg-gray-100/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
           <div className="mb-6">
-            <h3 className="text-fluid-lg font-bold text-white mb-2 font-serif">
+            <h3 className="text-fluid-lg font-bold text-black dark:text-white mb-2 font-serif">
               Tech Stack
             </h3>
             {/* <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></div> */}
@@ -174,10 +174,10 @@ export default function About() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   whileHover={{ scale: 1.15, y: -2 }}
-                  className="group relative p-3 rounded-xl bg-gray-800/50 hover:bg-blue-400/10 transition-all duration-300 border border-gray-600/50 hover:border-blue-400/50 shadow-sm hover:shadow-md backdrop-blur-sm"
+                  className="group relative p-3 rounded-xl bg-gray-200/50 dark:bg-gray-800/50 hover:bg-blue-500/10 dark:hover:bg-blue-400/10 transition-all duration-300 border border-gray-400/50 dark:border-gray-600/50 hover:border-blue-500/50 dark:hover:border-blue-400/50 shadow-sm hover:shadow-md backdrop-blur-sm"
                 >
                   <IconComponent className={`w-7 h-7 ${tech.color} transition-all duration-300`} />
-                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap font-serif">
+                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-2 py-1 rounded text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap font-serif">
                     {tech.name}
                   </div>
                 </motion.a>
@@ -225,10 +225,10 @@ export default function About() {
                     />
                   </div>
                 </motion.div>
-                <h3 className="text-white text-fluid-lg font-bold drop-shadow-lg mb-2 font-serif">
+                <h3 className="text-black dark:text-white text-fluid-lg font-bold drop-shadow-lg mb-2 font-serif">
                   Life Beyond Code
                 </h3>
-                <p className="text-white/90 text-fluid-sm drop-shadow-lg font-serif">
+                <p className="text-black/90 dark:text-white/90 text-fluid-sm drop-shadow-lg font-serif">
                   After coding... <br />
                   What else can I do?
                 </p>
@@ -243,7 +243,7 @@ export default function About() {
       title: "Philosophy",
       description: "",
       header: (
-        <div className="w-full h-full flex flex-col items-center justify-center space-y-6 rounded-xl py-6 px-6 bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 relative overflow-hidden">
+        <div className="w-full h-full flex flex-col items-center justify-center space-y-6 rounded-xl py-6 px-6 bg-gray-100/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50 relative overflow-hidden">
           {/* <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div> */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -254,13 +254,13 @@ export default function About() {
             <div className="w-12 h-12 mx-auto bg-blue-400/10 rounded-full flex items-center justify-center mb-4">
               <span className="text-2xl">💭</span>
             </div>
-            <blockquote className="text-fluid-base text-white text-center leading-relaxed font-medium italic font-serif">
+            <blockquote className="text-fluid-base text-black dark:text-white text-center leading-relaxed font-medium italic font-serif">
               "When something is important enough, you do it even if the odds are
               not in your favor."
             </blockquote>
             <div className="flex justify-end">
               <div className="bg-blue-400/10 px-3 py-1 rounded-full">
-                <cite className="text-sm text-white font-medium not-italic font-serif">
+                <cite className="text-sm text-black dark:text-white font-medium not-italic font-serif">
                   — Elon Musk
                 </cite>
               </div>
@@ -273,9 +273,9 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="w-full flex flex-col items-center bg-black text-white relative overflow-hidden py-16">
+    <section id="about" className="w-full flex flex-col items-center bg-white dark:bg-black text-black dark:text-white relative overflow-hidden py-16">
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900/20 via-black to-black"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-200/20 via-white to-white dark:from-gray-900/20 dark:via-black dark:to-black"></div>
       
       {/* Floating particles */}
       <FloatingParticles />
