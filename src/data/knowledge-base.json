@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "skills",
+    "content": "Proficient in React, Next.js, TypeScript, Vue3, etc. frontend technology stack..."
+  },
+  {
+    "id": 2,
+    "title": "work experience",
+    "content": "3+ years of frontend development experience, working in multiple companies as a frontend developer..."
+  },
+  {
+    "id": 3,
+    "title": "name",
+    "content": "Jacky Feng"
+  },
+  {
+    "id": 4,
+    "title": "job",
+    "content": "Frontend Developer"
+  },
+  {
+    "id": 5,
+    "title": "location",
+    "content": "Vancouver, Canada"
+  }
+]
