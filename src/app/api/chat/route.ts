@@ -2,12 +2,41 @@ import { google, GoogleGenerativeAIProviderOptions } from "@ai-sdk/google";
 import { streamText } from "ai";
 import { NextRequest } from "next/server";
 import { retrieveRelevantDocs, buildPrompt } from "@/lib/rag/retrieval";
+import { checkRateLimit, getClientIP } from "@/utils/rate";
 
-export const runtime = "edge"; // 或 'nodejs'
+export const runtime = "nodejs";
 
 const model = google("gemini-2.5-flash");
 export async function POST(req: NextRequest) {
   try {
+    // 速率限制检查
+    const clientIP = getClientIP(req);
+    const rateLimitResult = checkRateLimit(clientIP);
+    console.log({ rateLimitResult });
+    if (!rateLimitResult.allowed) {
+      const resetDate = new Date(rateLimitResult.resetAt);
+      return new Response(
+        JSON.stringify({
+          error: "Rate limit exceeded",
+          message: `Oops, you have hit the limit. Please try again at ${resetDate.toLocaleTimeString(
+            "en-US"
+          )}.`,
+          resetAt: rateLimitResult.resetAt,
+        }),
+        {
+          status: 429, // Too Many Requests
+          headers: {
+            "Content-Type": "application/json",
+            "X-RateLimit-Limit": "10",
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": rateLimitResult.resetAt.toString(),
+            "Retry-After": Math.ceil(
+              (rateLimitResult.resetAt - Date.now()) / 1000
+            ).toString(),
+          },
+        }
+      );
+    }
     const { message, history } = await req.json();
     // console.log({ message, history });
 
@@ -66,6 +95,9 @@ export async function POST(req: NextRequest) {
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",
         Connection: "keep-alive",
+        "X-RateLimit-Limit": "10",
+        "X-RateLimit-Remaining": rateLimitResult.remaining.toString(),
+        "X-RateLimit-Reset": rateLimitResult.resetAt.toString(),
       },
     });
   } catch (error) {

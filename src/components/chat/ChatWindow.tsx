@@ -46,8 +46,35 @@ export default function ChatWindow() {
         }),
       });
 
+      // 检查 HTTP 状态码
+      if (!response.ok) {
+        // 尝试解析错误响应（429 或其他错误）
+        let errorMessage = "oops, exceeded the limit";
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorData.error || errorMessage;
+        } catch {
+          // 如果无法解析 JSON，使用状态文本
+          errorMessage = `oops, failed to send message (${response.status}): ${response.statusText}`;
+        }
+
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: (Date.now() + 1).toString(),
+            role: "assistant",
+            content: errorMessage,
+            timestamp: new Date(),
+          },
+        ]);
+        return;
+      }
+
       // 处理流式响应
       const reader = response.body?.getReader();
+      if (!reader) {
+        throw new Error("oops, failed to read response stream");
+      }
       const decoder = new TextDecoder();
       let assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -81,7 +108,18 @@ export default function ChatWindow() {
         }
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.log("Error:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error";
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 2).toString(),
+          role: "assistant",
+          content: errorMessage,
+          timestamp: new Date(),
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
