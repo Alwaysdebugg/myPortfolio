@@ -39,7 +39,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
               : "text-gray-500 dark:text-gray-400"
           }`}
         >
-          {new Date(message.timestamp).toLocaleTimeString("zh-CN", {
+          {new Date(message.timestamp).toLocaleTimeString("en-US", {
             hour: "2-digit",
             minute: "2-digit",
           })}

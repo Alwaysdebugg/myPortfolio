@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaUser, FaRobot } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { PiRobotDuotone } from "react-icons/pi";
 import MessageBubble from "./MessageBubble";
 
 interface Message {
@@ -27,10 +28,10 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
             transition={{ duration: 0.5 }}
             className="mb-4"
           >
-            <FaRobot className="w-16 h-16 mx-auto text-gray-400 dark:text-gray-600" />
+            <PiRobotDuotone className="w-16 h-16 mx-auto text-gray-400 dark:text-gray-600" />
           </motion.div>
           <p className="text-gray-500 dark:text-gray-400 text-lg">
-            Start a conversation, ask me anything!
+            Ask me anything...
           </p>
         </div>
       </div>
@@ -51,7 +52,7 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
         >
           {message.role === "assistant" && (
             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-              <FaRobot className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <PiRobotDuotone className="w-4 h-4 text-blue-600 dark:text-blue-400" />
             </div>
           )}
 
@@ -72,7 +73,7 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
           className="flex items-start gap-3"
         >
           <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-            <FaRobot className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <PiRobotDuotone className="w-4 h-4 text-blue-600 dark:text-blue-400" />
           </div>
           <div className="flex items-center space-x-1 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-2xl rounded-tl-sm">
             <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>

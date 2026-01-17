@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "skills",
+    "title": "skill or tech stack",
     "content": "Proficient in React, Next.js, TypeScript, Vue3, etc. frontend technology stack..."
   },
   {
@@ -23,5 +23,20 @@
     "id": 5,
     "title": "location",
     "content": "Vancouver, Canada"
+  },
+  {
+    "id": 6,
+    "title": "fun fact",
+    "content": "fishing is my favorite hobby, but I'm not good at it..."
+  },
+  {
+    "id": 7,
+    "title": "motto",
+    "content": "Practice makes perfect - My motto"
+  },
+  {
+    "id": 8,
+    "title": "future plan or goals",
+    "content": "To be a high-level developer and a good husband and father..."
   }
 ]
