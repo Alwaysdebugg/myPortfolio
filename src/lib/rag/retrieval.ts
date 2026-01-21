@@ -1,12 +1,8 @@
 // RAG 检索逻辑
 import knowledgeBase from "@/data/knowledge-base.json";
 import { extractWords, wordExistsInText } from "@/utils/text";
-
-interface Doc {
-  id: number;
-  title: string;
-  content: string;
-}
+import { searchSupabase } from "./vector-store-supabase";
+import { Doc } from "./types";
 
 // Prompt 配置
 const promptConfig = {
@@ -36,8 +32,37 @@ const promptConfig = {
   },
 } as const;
 
-// 检索相关文档（基于关键词匹配）
-export function retrieveRelevantDocs(query: string, topK: number = 2): Doc[] {
+// 向量检索（主要方法）- 使用 Supabase Vector
+export async function retrieveRelevantDocs(
+  query: string,
+  topK: number = 2,
+  useVectorSearch: boolean = true
+): Promise<Doc[]> {
+  // 优先使用向量检索
+  if (useVectorSearch) {
+    try {
+      const vectorResults = await searchSupabase(query, topK, 0.5);
+      if (vectorResults.length > 0) {
+        return vectorResults;
+      }
+    } catch (error) {
+      console.error(
+        "Vector search failed, falling back to keyword search:",
+        error
+      );
+      // 如果向量检索失败，回退到关键词检索
+    }
+  }
+
+  // 回退到关键词检索（原有逻辑）
+  return retrieveRelevantDocsKeyword(query, topK);
+}
+
+// 关键词检索（作为回退方案）
+export function retrieveRelevantDocsKeyword(
+  query: string,
+  topK: number = 2
+): Doc[] {
   // 使用改进的分词和归一化
   const queryWords = extractWords(query);
 
