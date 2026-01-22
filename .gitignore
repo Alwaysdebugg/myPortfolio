@@ -16,5 +16,7 @@ doc.md
 
 myPortfolio/
 .env
+.env.local
+.env*.local
 
 

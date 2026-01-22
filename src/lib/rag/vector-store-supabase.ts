@@ -11,7 +11,7 @@ const supabase = createClient(
 );
 
 const TABLE_NAME = "knowledge_base_vectors";
-const VECTOR_DIMENSION = 1536; // text-embedding-3-small 的维度
+const VECTOR_DIMENSION = 768; // gemini-embedding-001 的维度
 
 /**
  * 初始化 Supabase 向量存储
@@ -29,7 +29,9 @@ export async function initializeSupabaseStore(): Promise<void> {
     }
 
     if (count && count > 0) {
-      console.log(`Supabase already has ${count} records. Skipping initialization.`);
+      console.log(
+        `Supabase already has ${count} records. Skipping initialization.`
+      );
       return;
     }
 

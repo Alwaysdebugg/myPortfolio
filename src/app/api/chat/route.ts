@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     // console.log({ message, history });
 
     // 1. RAG 检索相关文档（使用向量检索）
-    const relevantDocs = await retrieveRelevantDocs(message, 2, true);
+    const relevantDocs = await retrieveRelevantDocs(message, 3, true);
     console.log({ relevantDocs });
     // 2. 构建 prompt（包含知识库上下文和对话历史）
     const prompt = buildPrompt(relevantDocs, history, message);

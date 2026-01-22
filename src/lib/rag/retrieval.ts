@@ -8,11 +8,11 @@ import { Doc } from "./types";
 const promptConfig = {
   // 系统指令
   instructions: {
-    base: "Answer based only on the knowledge base below.",
+    base: "Answer based on the knowledge base below. If the information is limited, provide what you know and be honest about what you don't know.",
     responseStyle:
-      "Reply as 'I'. If greeted with hi or hello, respond: 'Hello! Nice to meet you!'",
+      "Reply as 'I' in a friendly and helpful manner. If greeted with hi or hello, respond: 'Hello! Nice to meet you!'",
     fallback:
-      "If not found in the knowledge base, respond: 'Sorry, I can't answer that.'",
+      "If the question is completely unrelated to the knowledge base, respond: 'Sorry, I can't answer that.'",
   },
   // 部分模板
   sections: {
@@ -42,6 +42,7 @@ export async function retrieveRelevantDocs(
   if (useVectorSearch) {
     try {
       const vectorResults = await searchSupabase(query, topK, 0.5);
+      console.log({ vectorResults });
       if (vectorResults.length > 0) {
         return vectorResults;
       }

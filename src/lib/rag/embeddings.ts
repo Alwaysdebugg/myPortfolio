@@ -1,41 +1,47 @@
-// OpenAI Embedding 服务
-// 使用 text-embedding-3-small 模型
+// Google Gemini Embedding 服务
+// 使用 gemini-embedding-001 模型
 
 /**
  * 获取单个文本的 embedding 向量
  * @param text 要嵌入的文本
- * @returns embedding 向量数组（1536 维）
+ * @returns embedding 向量数组（768 维）
  */
 export async function getEmbedding(text: string): Promise<number[]> {
   try {
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error("OPENAI_API_KEY is not set");
+    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+      throw new Error("GOOGLE_GENERATIVE_AI_API_KEY is not set");
     }
 
-    const response = await fetch("https://api.openai.com/v1/embeddings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "text-embedding-3-small",
-        input: text,
-      }),
-    });
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/embedding-001:embedContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "models/embedding-001",
+          content: {
+            parts: [{ text }],
+          },
+        }),
+      }
+    );
 
     if (!response.ok) {
-      const error = await response.json().catch(() => ({ error: response.statusText }));
-      throw new Error(`OpenAI API error: ${JSON.stringify(error)}`);
+      const error = await response
+        .json()
+        .catch(() => ({ error: response.statusText }));
+      throw new Error(`Gemini API error: ${JSON.stringify(error)}`);
     }
 
     const data = await response.json();
-    
-    if (!data.data || !data.data[0] || !data.data[0].embedding) {
-      throw new Error("Invalid response from OpenAI API");
+
+    if (!data.embedding || !data.embedding.values) {
+      throw new Error("Invalid response from Gemini API");
     }
 
-    return data.data[0].embedding;
+    return data.embedding.values;
   } catch (error) {
     console.error("Error generating embedding:", error);
     throw error;
@@ -49,35 +55,47 @@ export async function getEmbedding(text: string): Promise<number[]> {
  */
 export async function getEmbeddings(texts: string[]): Promise<number[][]> {
   try {
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error("OPENAI_API_KEY is not set");
+    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+      throw new Error("GOOGLE_GENERATIVE_AI_API_KEY is not set");
     }
 
-    // OpenAI 支持批量请求，最多 2048 个输入
-    const response = await fetch("https://api.openai.com/v1/embeddings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "text-embedding-3-small",
-        input: texts,
-      }),
-    });
+    // Gemini API 需要逐个请求，因为 embedContent 不支持批量
+    const embeddings = await Promise.all(
+      texts.map(async (text) => {
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/embedding-001:embedContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model: "models/embedding-001",
+              content: {
+                parts: [{ text }],
+              },
+            }),
+          }
+        );
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ error: response.statusText }));
-      throw new Error(`OpenAI API error: ${JSON.stringify(error)}`);
-    }
+        if (!response.ok) {
+          const error = await response
+            .json()
+            .catch(() => ({ error: response.statusText }));
+          throw new Error(`Gemini API error: ${JSON.stringify(error)}`);
+        }
 
-    const data = await response.json();
-    
-    if (!data.data || !Array.isArray(data.data)) {
-      throw new Error("Invalid response from OpenAI API");
-    }
+        const data = await response.json();
 
-    return data.data.map((item: any) => item.embedding);
+        if (!data.embedding || !data.embedding.values) {
+          throw new Error("Invalid response from Gemini API");
+        }
+
+        return data.embedding.values;
+      })
+    );
+
+    return embeddings;
   } catch (error) {
     console.error("Error generating embeddings:", error);
     throw error;
