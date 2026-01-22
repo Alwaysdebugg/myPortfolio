@@ -77,7 +77,7 @@ async function checkEnvVars() {
   const requiredVars = {
     SUPABASE_URL: process.env.SUPABASE_URL,
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    GOOGLE_GENERATIVE_AI_API_KEY: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
   };
 
   const missing = [];

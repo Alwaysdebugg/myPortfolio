@@ -1,200 +1,199 @@
 # Jacky Feng's Portfolio Website
 
-A modern personal portfolio website showcasing frontend development skills and project experience.
+A modern personal portfolio website showcasing frontend development skills, project experience, and an **AI-powered chat** backed by RAG (Retrieval Augmented Generation).
 
 ## 🔗 Live Preview
 
-**Live Demo:** [vercel link](https://myportfolio-tau-ten-34.vercel.app/)
+**Live Demo:** [Vercel](https://myportfolio-tau-ten-34.vercel.app/)
 
 ## ✨ Features
 
 ### 🎨 Design Highlights
-- **Interactive Splash Screen** - Gesture-controlled SplashScreen with drag-to-navigate
-- **Responsive Design** - Perfect adaptation for desktop and mobile devices
-- **Dark Theme** - Consistent black theme color scheme
-- **Smooth Animations** - Rich interactive animations powered by Framer Motion
+
+- **Interactive Splash Screen** - Gesture-controlled launch page with drag-to-navigate
+- **Responsive Design** - Optimized for desktop and mobile
+- **Dark / Light Theme** - System preference detection with manual toggle
+- **Smooth Animations** - Framer Motion–driven interactions
 - **Real-time Clock** - Live time display in Hero section
 
-### 📝 Content Modules
-- **Personal Introduction** - Dynamic typewriter effect for personal information
-- **Skills Showcase** - Technology stack tags and capability demonstration
-- **Project Experience** - Card-style project display with modal details
-- **Work History** - Timeline-style career progression
-- **Educational Background** - Academic history and achievements
-- **Blog System** - Markdown-supported technical articles
-- **Contact Information** - Social media links and contact details
+### 📝 Content & Pages
+
+- **Hero Section** - Typewriter-style intro, skill tags, and social links
+- **Blog System** - Markdown articles with search, tags, and reading time
+- **Resume Page** - `/resume` route (available in codebase)
+- **AI Chat** - Floating chat button opens a modal; RAG-powered Q&A about you and your work
+
+### 🤖 AI Chat (RAG)
+
+- **Vector Search** - Supabase `pgvector` stores embeddings from `knowledge-base.json`
+- **Streaming Responses** - Google Gemini 2.5 Flash via Vercel AI SDK
+- **Rate Limiting** - Per-IP limits to protect the API
+- **Knowledge Base** - Editable in `src/data/knowledge-base.json`; init via `/api/vector-store/init`
 
 ### 🚀 Technical Implementation
-- **Next.js 15** - Full-stack React framework with static export support
-- **TypeScript** - Type-safe JavaScript development
-- **Tailwind CSS** - Atomic CSS framework
-- **Framer Motion** - Professional animation library
-- **NextUI + Aceternity UI** - Modern UI component libraries
-- **Markdown Support** - Blog articles with code highlighting, images, and links
+
+- **Next.js 15** - App Router, API routes, optional static export
+- **TypeScript** - Full type safety
+- **Tailwind CSS** - Utility-first styling
+- **Framer Motion** - Animations
+- **NextUI + Aceternity UI** - UI components
+- **Markdown** - Blog posts with code highlighting, images, links
 
 ## 🛠️ Tech Stack
 
-| Category | Technology | Version |
-|----------|------------|---------|
-| Framework | Next.js | 15.1.3 |
-| Language | TypeScript | 5.7.2 |
-| Styling | Tailwind CSS | 3.4.17 |
-| UI Library | NextUI | 2.6.10 |
-| UI Enhancement | Aceternity UI | 0.2.2 |
-| Animation | Framer Motion | 11.16.1 |
-| Icons | React Icons | 5.4.0 |
-| Deployment | GitHub Pages | - |
+| Category   | Technology                                       |
+| ---------- | ------------------------------------------------ |
+| Framework  | Next.js 15.x                                     |
+| Language   | TypeScript 5.7                                   |
+| Styling    | Tailwind CSS 3.4                                 |
+| UI         | NextUI, Aceternity UI                            |
+| Animation  | Framer Motion                                    |
+| AI / Chat  | Vercel AI SDK, @ai-sdk/google (Gemini 2.5 Flash) |
+| Vector DB  | Supabase (pgvector)                              |
+| Deployment | Vercel (default), GitHub Pages (static)          |
 
 ## 📦 Main Features
 
-### 🏠 Homepage Modules
-- **SplashScreen** - Drag gesture-supported launch page
-- **Hero Section** - Personal introduction and skill tags
-- **About Section** - Detailed personal information with Bento grid layout
-- **Projects Section** - Project showcase with modal detail windows
-- **Experience Section** - Work history timeline
-- **Skills Section** - Technology stack and tools display
-- **Contact Section** - Contact methods and social links
+### 🏠 Homepage
 
-### 📚 Blog System
-- **Article List** - Search and tag filtering support
-- **Article Details** - Markdown rendering with code highlighting
-- **Tag System** - Article categorization and filtering
-- **Reading Time** - Automatic estimated reading time calculation
+- **SplashScreen** - Drag-to-enter launch screen
+- **Hero** - Intro, typewriter effect, skills, links
+- **Floating Chat** - Opens AI chat modal
+- **Navbar** - Home, Blog, theme toggle
 
-### 📱 Responsive Features
-- **Mobile Optimization** - Perfect mobile experience
-- **Touch Gestures** - Swipe and tap interaction support
-- **Performance Optimization** - Lazy loading and code splitting
-- **SEO Friendly** - Optimized meta tags and structure
+### 📚 Blog
+
+- **Article List** - Search and tag filters
+- **Article Detail** - Markdown + code highlighting
+- **Tags & Reading Time** - Auto-calculated
+
+### 📁 Available Section Components
+
+The following live in `src/components/sections/` and can be wired into the homepage:
+
+- **About** - Bento grid layout
+- **Projects** - Cards with modal details
+- **Experience** - Work timeline
+- **Skills** - Tech stack
+- **Education** - Academic background
+- **Contact** - Social links
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 
-### Installation Steps
+### Installation
 
-1. **Clone the Repository**
-```bash
-git clone https://github.com/Alwaysdebugg/myPortfolio.git
-cd myPortfolio
-```
+1. **Clone and install**
 
-2. **Install Dependencies**
-```bash
-npm install
-# or
-yarn install
-```
+   ```bash
+   git clone https://github.com/Alwaysdebugg/myPortfolio.git
+   cd myPortfolio
+   npm install
+   ```
 
-3. **Start Development Server**
-```bash
-npm run dev
-# or
-yarn dev
-```
+2. **Start development**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3001](http://localhost:3001).
 
-4. **Open Browser**
-Visit [http://localhost:3000](http://localhost:3000)
-
-### Build & Deploy
+### Build & Scripts
 
 ```bash
-# Build for production
+# Production build (includes blog data generation)
 npm run build
 
 # Start production server
 npm run start
 
-# Lint code
+# Static export for GitHub Pages
+npm run build:static
+
+# Lint
 npm run lint
 ```
+
+## 🔐 Environment Variables
+
+For **AI Chat** and **RAG** to work, create `.env.local`:
+
+| Variable                       | Description                         |
+| ------------------------------ | ----------------------------------- |
+| `SUPABASE_URL`                 | Supabase project URL                |
+| `SUPABASE_SERVICE_ROLE_KEY`    | Supabase service role key           |
+| `GOOGLE_GENERATIVE_AI_API_KEY` | Gemini API key (for @ai-sdk/google) |
+
+**Note:** The project uses **Google Gemini** for both chat and embeddings. Use `GOOGLE_GENERATIVE_AI_API_KEY`;
+
+### AI Chat Setup (Supabase + Vector Store)
+
+1. Create a Supabase project and run `sql/supabase-init.sql` in the SQL Editor.
+2. Add the env vars above to `.env.local`.
+3. Run `node scripts/setup-supabase.js` to verify.
+4. With dev server running, call `POST http://localhost:3001/api/vector-store/init` to seed the vector store from `knowledge-base.json`.
+
+See **[Doc/QUICK_START.md](Doc/QUICK_START.md)** for a step-by-step guide.
 
 ## 📁 Project Structure
 
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout component
-│   ├── page.tsx           # Homepage
-│   ├── blog/              # Blog pages
-│   └── resume/            # Resume page
+├── app/
+│   ├── layout.tsx          # Root layout, theme provider
+│   ├── page.tsx            # Homepage (Splash, Hero, Chat modal)
+│   ├── blog/               # Blog list & detail
+│   ├── resume/             # Resume page
+│   └── api/
+│       ├── chat/           # POST /api/chat (streaming RAG + Gemini)
+│       └── vector-store/
+│           └── init/       # POST /api/vector-store/init (seed vectors)
 ├── components/
-│   ├── sections/          # Page section components
-│   │   ├── Hero.tsx       # Hero section
-│   │   ├── About.tsx      # About me
-│   │   ├── Projects.tsx   # Project showcase
-│   │   ├── Experience.tsx # Work experience
-│   │   └── SplashScreen.tsx # Launch screen
-│   ├── blog/              # Blog-related components
-│   └── ui/                # Reusable UI components
-├── lib/                   # Utility functions
-├── types/                 # TypeScript type definitions
-└── data/                  # Static data
+│   ├── sections/           # Hero, SplashScreen, About, Projects, etc.
+│   ├── chat/               # ChatWindow, MessageList, MessageInput, etc.
+│   ├── blog/               # BlogCard, BlogList, BlogDetail
+│   └── ui/                 # Navbar, Footer, theme, bento-grid, etc.
+├── lib/
+│   ├── rag/                # retrieval, embeddings, vector-store-supabase
+│   └── ...
+├── data/
+│   ├── knowledge-base.json # RAG knowledge base
+│   └── ...
+├── types/
+└── utils/
 ```
 
 ## 🎨 Customization
 
-### Personal Information Updates
-Edit the following files to update personal information:
-- `src/components/sections/Hero.tsx` - Main personal information
-- `src/components/sections/About.tsx` - Detailed introduction
-- `src/components/sections/Experience.tsx` - Work experience
-- `src/data/blog-posts.ts` - Blog article data
+- **Hero / intro:** `src/constants/heroContent.ts`, `src/components/sections/Hero.tsx`
+- **About / Experience:** `About.tsx`, `Experience.tsx`
+- **Projects / Skills / Contact:** `Projects.tsx`, `Skills.tsx`, `Contact.tsx`
+- **Blog data:** `src/data/blog-posts.ts`, `content/blog/`
+- **RAG knowledge:** `src/data/knowledge-base.json`
+- **Styles:** `src/app/globals.css`, `tailwind.config.ts`
 
-### Style Customization
-- `src/app/globals.css` - Global styles
-- `tailwind.config.ts` - Tailwind configuration
-- Component-level className adjustments for local styling
+## 📈 Performance & Deployment
 
-### Content Updates
-- Project information: `src/components/sections/Projects.tsx`
-- Skill tags: `src/components/sections/Skills.tsx`
-- Contact methods: `src/components/sections/Contact.tsx`
-
-## 📈 Performance Optimizations
-
-- ✅ **Static Export** - Fully static website
-- ✅ **Code Splitting** - Load components on demand
-- ✅ **Image Optimization** - WebP format and lazy loading
-- ✅ **CSS Optimization** - Tailwind CSS purge configuration
-- ✅ **SEO Optimization** - Complete meta tags and structured data
-
-## 🔧 Development Guide
-
-### Adding New Page Sections
-1. Create new component in `src/components/sections/`
-2. Use `"use client"` directive for interactivity
-3. Import to `src/app/page.tsx` and add to page
-4. Add appropriate Framer Motion animations
-
-### Blog Article Management
-- Article data stored in `src/data/blog-posts.ts`
-- Supports Markdown syntax and frontmatter metadata
-- Automatic reading time calculation and tag categorization
-
-### Deploy to GitHub Pages
-Project is configured for automatic deployment to GitHub Pages:
-1. Push code to main branch
-2. GitHub Actions automatically builds and deploys
-3. Visit `https://username.github.io/myPortfolio/`
+- **Vercel (recommended):** Use `npm run build:vercel` (or `npm run build`). Configure env vars in the Vercel dashboard.
+- **GitHub Pages:** Use `BUILD_STATIC=true` and `NEXT_PUBLIC_BASE_PATH` with `npm run build:static`. Note: API routes and AI chat require a Node server, so they are **not** available in static export.
 
 ## 🤝 Contributing
 
-Issues and Pull Requests are welcome!
+Issues and Pull Requests are welcome.
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details
+MIT License - see [LICENSE](LICENSE) for details.
 
 ## 👨‍💻 Author
 
-**Jacky Feng** - Frontend Developer
+**Jacky Feng** – Frontend Developer
 
-- 📧 Email: [fengjacky84@gmail.com]
-- 🐙 GitHub: [@Alwaysdebugg](https://github.com/Alwaysdebugg)
+- 📧 [fengjacky84@gmail.com](mailto:fengjacky84@gmail.com)
+- 🐙 [@Alwaysdebugg](https://github.com/Alwaysdebugg)
 
 ---
 
