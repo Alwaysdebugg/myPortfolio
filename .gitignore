@@ -15,6 +15,9 @@ doc.md
 .git/
 
 myPortfolio/
+.env
+.env.local
+.env*.local
 
 
 out/

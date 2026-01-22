@@ -211,7 +211,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="space-y-4 text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4 max-w-2xl"
+              className="space-y-4 text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4 max-w-2xl text-left"
             >
               {HERO_CONTENT.introduction.paragraphs.map((paragraph, index) => (
                 <p

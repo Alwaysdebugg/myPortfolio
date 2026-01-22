@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "title": "skill or tech stack",
+    "content": "Proficient in Frontend (React, React Native, Vue3/Pinia, TypeScript, Tailwind CSS, Babylon.js), Backend & Database (Node.js, Express.js, Nest.js, MongoDB, PostgreSQL, Supabase), and Tools (AWS S3, Docker, Git, CI/CD pipelines with Jenkins/GitHub Actions/Expo EAS)."
+  },
+  {
+    "id": 2,
+    "title": "work experience",
+    "content": "Software Developer (Frontend/Mobile) with experience at Alpha Pay (React Native, Expo), Ulala Technologies (Vue3, AWS S3), and Cognizant (React, 3D visualization with Babylon.js). Experienced in agile workflows, CI/CD automation, and cross-platform mobile development."
+  },
+  {
+    "id": 3,
+    "title": "name",
+    "content": "Jacky Feng"
+  },
+  {
+    "id": 4,
+    "title": "job",
+    "content": "Software Developer - Frontend/Mobile"
+  },
+  {
+    "id": 5,
+    "title": "location",
+    "content": "Vancouver, BC"
+  },
+  {
+    "id": 6,
+    "title": "fun fact",
+    "content": "fishing is my favorite hobby, but I'm not good at it..."
+  },
+  {
+    "id": 7,
+    "title": "motto",
+    "content": "Practice makes perfect - My motto"
+  },
+  {
+    "id": 8,
+    "title": "future plan or goals",
+    "content": "To be a high-level developer and a good husband and father..."
+  },
+  {
+    "id": 9,
+    "title": "education",
+    "content": "Master of Science in Cybersecurity from New York Institute of Technology (Vancouver, 2023-2024); Bachelor of Engineering in Software Engineering from Sanda University (Shanghai, 2018-2022)."
+  },
+  {
+    "id": 10,
+    "title": "projects",
+    "content": "MoodTrack: A full-stack AI-powered mood tracking platform using React, TypeScript, PostgreSQL, and Google Gemini API. Features include real-time AI report streaming (SSE), progressive UI rendering, and community interaction modules."
+  },
+  {
+    "id": 11,
+    "title": "contact info",
+    "content": "Phone: 236-965-9413 | Email: fengjacky84@gmail.com | LinkedIn: linkedin.com/in/jfeng | GitHub: github.com/jfeng"
+  }
+]
