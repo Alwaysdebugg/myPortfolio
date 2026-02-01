@@ -37,9 +37,9 @@ async function testVectorStore() {
     const testText = "Hello, this is a test";
     const embedding = await getEmbedding(testText);
     console.log(`✅ Embedding 生成成功，维度: ${embedding.length}`);
-    if (embedding.length !== 1536) {
+    if (embedding.length !== 768) {
       console.warn(
-        `⚠️  警告: 期望维度 1536，实际维度 ${embedding.length}`
+        `⚠️  警告: 期望维度 768，实际维度 ${embedding.length}`
       );
     }
   } catch (error) {

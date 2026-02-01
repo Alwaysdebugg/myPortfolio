@@ -1,7 +1,11 @@
 import { google, GoogleGenerativeAIProviderOptions } from "@ai-sdk/google";
 import { streamText } from "ai";
 import { NextRequest } from "next/server";
-import { retrieveRelevantDocs, buildPrompt } from "@/lib/rag/retrieval";
+import {
+  retrieveRelevantDocs,
+  buildPrompt,
+  getSystemPrompt,
+} from "@/lib/rag/retrieval";
 import { checkRateLimit, getClientIP } from "@/utils/rate";
 
 export const runtime = "nodejs";
@@ -43,12 +47,14 @@ export async function POST(req: NextRequest) {
     // 1. RAG 检索相关文档（使用向量检索）
     const relevantDocs = await retrieveRelevantDocs(message, 3, true);
     console.log({ relevantDocs });
-    // 2. 构建 prompt（包含知识库上下文和对话历史）
+    // 2. 构建 system prompt（第一人称等）和 user prompt（知识库 + 历史 + 当前问题）
+    const system = getSystemPrompt();
     const prompt = buildPrompt(relevantDocs, history, message);
 
     // 3. 调用 Gemini API（流式）
     const result = streamText({
       model: model,
+      system,
       prompt,
       providerOptions: {
         google: {

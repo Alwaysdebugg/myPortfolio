@@ -81,7 +81,7 @@
    - `doc_id` (integer)
    - `title` (text)
    - `content` (text)
-   - `embedding` (vector(1536))
+   - `embedding` (vector(768))
    - `created_at` (timestamp)
    - `updated_at` (timestamp)
 
@@ -236,7 +236,7 @@ http://localhost:3001/api/vector-store/init
 1. 在 Supabase Dashboard 中，进入 **Table Editor**
 2. 选择 `knowledge_base_vectors` 表
 3. 应该能看到知识库文档已转换为向量存储
-4. 检查 `embedding` 列，应该包含 1536 维的向量数据
+4. 检查 `embedding` 列，应该包含 768 维的向量数据
 
 ## 📋 第七步：测试向量检索
 

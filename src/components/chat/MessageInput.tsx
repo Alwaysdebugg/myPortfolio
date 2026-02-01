@@ -28,27 +28,27 @@ export default function MessageInput({ onSend, disabled }: MessageInputProps) {
   };
 
   return (
-    <div className="px-4 py-4 border-t border-gray-200 dark:border-gray-800">
-      <div className="flex items-end gap-3">
-        <div className="flex-1 relative">
+    <div className="flex-shrink-0 px-3 py-3 sm:px-4 sm:py-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] border-t border-gray-200 dark:border-gray-800">
+      <div className="flex items-end gap-2 sm:gap-3">
+        <div className="flex-1 min-w-0 relative">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyPress}
-            placeholder="Type your message here..."
+            placeholder="Type your message..."
             disabled={disabled}
             rows={1}
-            className="w-full px-4 py-3 pr-12 bg-gray-50 dark:bg-gray-900 
-                     border border-gray-200 dark:border-gray-700 
-                     rounded-2xl text-black dark:text-white 
+            className="w-full px-3 py-2.5 sm:px-4 sm:py-3 pr-11 sm:pr-12 bg-gray-50 dark:bg-gray-900
+                     border border-gray-200 dark:border-gray-700
+                     rounded-xl sm:rounded-2xl text-black dark:text-white text-base
                      placeholder-gray-400 dark:placeholder-gray-500
                      focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
                      focus:border-transparent
                      disabled:opacity-50 disabled:cursor-not-allowed
                      resize-none overflow-hidden
-                     max-h-32"
+                     max-h-28 sm:max-h-32 touch-manipulation"
             style={{
-              minHeight: "48px",
+              minHeight: "44px",
               height: "auto",
             }}
             onInput={(e) => {
@@ -64,20 +64,22 @@ export default function MessageInput({ onSend, disabled }: MessageInputProps) {
           disabled={disabled || !input.trim()}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex-shrink-0 w-12 h-12 rounded-full 
-                   bg-blue-600 dark:bg-blue-500 
-                   text-white 
+          className="flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-full
+                   bg-blue-600 dark:bg-blue-500
+                   text-white
                    flex items-center justify-center
                    disabled:opacity-50 disabled:cursor-not-allowed
                    transition-all duration-200
                    hover:bg-blue-700 dark:hover:bg-blue-600
-                   shadow-lg hover:shadow-xl"
+                   active:scale-95
+                   shadow-lg hover:shadow-xl touch-manipulation"
+          aria-label="Send message"
         >
           <FiSend className="w-5 h-5" />
         </motion.button>
       </div>
 
-      <p className="text-xs text-gray-400 dark:text-gray-500 mt-2 text-center">
+      <p className="hidden sm:block text-xs text-gray-400 dark:text-gray-500 mt-2 text-center">
         Press Enter to send, Shift + Enter to newline
       </p>
     </div>

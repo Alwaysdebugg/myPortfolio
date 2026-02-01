@@ -13,6 +13,14 @@ interface Message {
   timestamp: Date;
 }
 
+// 预设问题（空对话时展示）
+const PRESET_QUESTIONS = [
+  "Introduce yourself",
+  "What's your tech stack?",
+  "What projects have you built?",
+  "Tell me about your experience",
+];
+
 export default function ChatWindow() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -129,20 +137,27 @@ export default function ChatWindow() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full max-w-4xl mx-auto h-[600px] flex flex-col 
-                 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 
-                 rounded-2xl shadow-lg overflow-hidden"
+      className="w-full max-w-4xl mx-auto h-full min-h-0 flex flex-col
+                 sm:h-[600px] sm:min-h-[400px]
+                 bg-white dark:bg-black border-0 sm:border border-gray-200 dark:border-gray-800
+                 rounded-none sm:rounded-2xl shadow-lg overflow-hidden
+                 touch-manipulation"
     >
       {/* 头部 */}
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-800">
-        <h2 className="text-2xl font-bold text-black dark:text-white">
+      <div className="flex-shrink-0 px-3 py-3 sm:px-6 sm:py-4 border-b border-gray-200 dark:border-gray-800">
+        <h2 className="text-lg sm:text-2xl font-bold text-black dark:text-white truncate pr-8">
           Chat with Jacky's AI assistant
         </h2>
       </div>
 
       {/* 消息列表 */}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
-        <MessageList messages={messages} isLoading={isLoading} />
+      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-3 py-3 sm:px-4 sm:py-4 overscroll-contain">
+        <MessageList
+          messages={messages}
+          isLoading={isLoading}
+          presetQuestions={PRESET_QUESTIONS}
+          onPresetClick={handleSend}
+        />
         <div ref={messagesEndRef} />
       </div>
 

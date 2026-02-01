@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS knowledge_base_vectors (
   doc_id INTEGER NOT NULL UNIQUE,
   title TEXT NOT NULL,
   content TEXT NOT NULL,
-  embedding vector(1536) NOT NULL, -- text-embedding-3-small 的维度是 1536
+  embedding vector(768) NOT NULL, -- text-embedding-3-small 的维度是 768
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
 );
@@ -25,7 +25,7 @@ WITH (lists = 100);
 -- 4. 创建向量搜索函数
 -- 使用余弦相似度进行搜索
 CREATE OR REPLACE FUNCTION match_documents (
-  query_embedding vector(1536),
+  query_embedding vector(768),
   match_threshold float DEFAULT 0.5,
   match_count int DEFAULT 5
 )
@@ -68,7 +68,7 @@ CREATE TRIGGER update_knowledge_base_vectors_updated_at
 -- 6. 添加注释说明
 COMMENT ON TABLE knowledge_base_vectors IS '知识库文档向量存储表';
 COMMENT ON COLUMN knowledge_base_vectors.doc_id IS '原始文档 ID';
-COMMENT ON COLUMN knowledge_base_vectors.embedding IS '文档的向量表示（1536 维）';
+COMMENT ON COLUMN knowledge_base_vectors.embedding IS '文档的向量表示（768 维）';
 COMMENT ON FUNCTION match_documents IS '向量相似度搜索函数，使用余弦相似度';
 
 -- 7. 设置 Row Level Security (RLS) - 根据需要调整

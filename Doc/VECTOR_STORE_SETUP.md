@@ -90,7 +90,7 @@ await initializeSupabaseStore();
 1. 进入 **Table Editor**
 2. 查看 `knowledge_base_vectors` 表
 3. 应该看到知识库文档已转换为向量存储
-4. 检查 `embedding` 列，应该包含 1536 维的向量数据
+4. 检查 `embedding` 列，应该包含 768 维的向量数据
 
 #### 方式 C: 使用测试脚本（可选）
 
@@ -106,7 +106,7 @@ npx tsx scripts/test-vector-store.ts
 ### 向量维度
 
 - **模型**: `text-embedding-3-small`
-- **维度**: 1536
+- **维度**: 768
 - **距离度量**: 余弦相似度 (Cosine Similarity)
 
 ### 相似度阈值

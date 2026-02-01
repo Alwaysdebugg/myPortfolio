@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh" className={robotoMono.variable}>
+    <html lang="zh" className={robotoMono.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/myPortfolio/favicon.ico" />
         <script

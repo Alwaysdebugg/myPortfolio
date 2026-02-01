@@ -15,6 +15,7 @@ const config: Config = {
         'fade-in': 'fadeIn 0.5s ease-in',
         'slide-up': 'slideUp 0.6s ease-out',
         'scale-in': 'scaleIn 0.4s ease-out',
+        'chat-glow': 'chatGlow 2.5s ease-in-out infinite',
       },
       keyframes: {
         aurora: {
@@ -37,6 +38,14 @@ const config: Config = {
           '0%': { transform: 'scale(0.9)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
+        chatGlow: {
+          '0%, 100%': { opacity: '0.4', transform: 'scale(1.15)' },
+          '50%': { opacity: '0.7', transform: 'scale(1.25)' },
+        },
+      },
+      boxShadow: {
+        'chat': '0 0 0 0 rgba(99, 102, 246, 0.4), 0 10px 40px -10px rgba(99, 102, 246, 0.35), 0 0 60px -15px rgba(168, 85, 247, 0.25)',
+        'chat-hover': '0 0 0 0 rgba(99, 102, 246, 0.5), 0 20px 50px -12px rgba(99, 102, 246, 0.45), 0 0 80px -10px rgba(168, 85, 247, 0.4)',
       },
       fontFamily: {
         mono: ['var(--font-roboto-mono)'],

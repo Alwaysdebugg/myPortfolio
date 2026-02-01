@@ -8,11 +8,11 @@ import { Doc } from "./types";
 const promptConfig = {
   // 系统指令
   instructions: {
-    base: "Answer based on the knowledge base below. If the information is limited, provide what you know and be honest about what you don't know.",
+    base: "You are Jacky's AI assistant. Answer based on the knowledge base below as if you are Jacky. If the information is limited, provide what you know and be honest about what you don't know.",
     responseStyle:
-      "Reply as 'I' in a friendly and helpful manner. If greeted with hi or hello, respond: 'Hello! Nice to meet you!'",
+      "Always answer in first person only: use 'I', 'my', 'me' (e.g. 'I have...', 'My experience...', 'You can contact me...'). Never refer to Jacky in third person (do not say 'Jacky has...' or 'He...'). Be friendly and concise. If greeted with hi or hello, respond briefly in first person, e.g. 'Hello! Nice to meet you!'",
     fallback:
-      "If the question is completely unrelated to the knowledge base, respond: 'Sorry, I can't answer that.'",
+      "If the question is completely unrelated to the knowledge base, respond in first person: 'Sorry, I can't answer that.'",
   },
   // 部分模板
   sections: {
@@ -109,7 +109,16 @@ export function retrieveRelevantDocsKeyword(
     .map((item) => item.doc);
 }
 
-// 构建 prompt
+// 系统提示（第一人称等行为约束，供 API 的 system 参数使用）
+export function getSystemPrompt(): string {
+  return `${promptConfig.instructions.base}
+
+${promptConfig.instructions.responseStyle}
+
+${promptConfig.instructions.fallback}`;
+}
+
+// 构建用户 prompt（知识库 + 历史 + 当前问题）
 export function buildPrompt(
   relevantDocs: Doc[],
   history: Array<{ role: string; content: string }>,
@@ -128,19 +137,13 @@ export function buildPrompt(
     )
     .join("\n");
 
-  return `${promptConfig.instructions.base}
+  return `${promptConfig.sections.knowledgeBase}
+${context || promptConfig.placeholders.noContext}
 
-    ${promptConfig.instructions.responseStyle}
-    
-    ${promptConfig.instructions.fallback}
-    
-    ${promptConfig.sections.knowledgeBase}
-    ${context || promptConfig.placeholders.noContext}
-    
-    ${promptConfig.sections.conversationHistory}
-    ${historyText || promptConfig.placeholders.noHistory}
-    
-    ${promptConfig.sections.currentQuestion} ${currentMessage}
-    
-    ${promptConfig.sections.closing}`;
+${promptConfig.sections.conversationHistory}
+${historyText || promptConfig.placeholders.noHistory}
+
+${promptConfig.sections.currentQuestion} ${currentMessage}
+
+${promptConfig.sections.closing}`;
 }
