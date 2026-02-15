@@ -2,12 +2,12 @@
   {
     "id": 1,
     "title": "skill or tech stack",
-    "content": "Proficient in Frontend (React, React Native, Vue3/Pinia, TypeScript, Tailwind CSS, Babylon.js), Backend & Database (Node.js, Express.js, Nest.js, MongoDB, PostgreSQL, Supabase), and Tools (AWS S3, Docker, Git, CI/CD pipelines with Jenkins/GitHub Actions/Expo EAS)."
+    "content": "Languages: JavaScript, TypeScript, Python, HTML/CSS, C/C++, C#. Frontend: React (Redux/Context), Next.js, React Native (Expo), Vue3 (Pinia), Tailwind CSS. Backend & Database: Node.js, Express.js, Nest.js, FastAPI, RESTful APIs, PostgreSQL, MongoDB, MySQL, Supabase (Vector Database). Tools & DevOps: AWS S3, Docker, Jenkins, GitHub Actions, Vercel, Vite, Webpack, Linux. Specialized Libs: Babylon.js (3D), LangChain (AI/RAG), Vercel AI SDK, Shadcn UI, Ant Design."
   },
   {
     "id": 2,
     "title": "work experience",
-    "content": "Software Developer (Frontend/Mobile) with experience at Alpha Pay (React Native, Expo), Ulala Technologies (Vue3, AWS S3), and Cognizant (React, 3D visualization with Babylon.js). Experienced in agile workflows, CI/CD automation, and cross-platform mobile development."
+    "content": "Software Developer (Frontend/Mobile) at Alpha Pay (Richmond, BC): Architected React Native apps with Redux Toolkit, integrated multi-region routing (USD/CAD), and built CI/CD pipelines with Expo EAS. Software Developer at Ulala Technologies (Delta, BC): Optimized Vue 3 data architecture for 100K+ records and bridged AWS S3 with pre-signed URLs. Full-Stack Developer at NYIT (Vancouver): Engineered an AI campus assistant using LangChain, RAG, and Supabase. Frontend Developer at Cognizant (Shanghai): Developed 3D industrial interfaces using Babylon.js and integrated real-time IoT telemetry via WebSockets."
   },
   {
     "id": 3,
@@ -17,7 +17,7 @@
   {
     "id": 4,
     "title": "job",
-    "content": "Software Developer - Frontend/Mobile"
+    "content": "Full-Stack Developer / Frontend & Mobile Specialist"
   },
   {
     "id": 5,
@@ -47,11 +47,21 @@
   {
     "id": 10,
     "title": "projects",
-    "content": "MoodTrack: A full-stack AI-powered mood tracking platform using React, TypeScript, PostgreSQL, and Google Gemini API. Features include real-time AI report streaming (SSE), progressive UI rendering, and community interaction modules."
+    "content": "MoodTrack: A full-stack AI-powered mood tracking platform using React, TypeScript, PostgreSQL, and Google Gemini API. Features include real-time AI report streaming via SSE, Vercel AI SDK integration, and anonymous community modules. AI Campus Assistant: RAG-based chatbot using LangChain and Supabase to reduce manual registrar inquiries by 30%."
   },
   {
     "id": 11,
     "title": "contact info",
-    "content": "Phone: 236-965-9413 | Email: fengjacky84@gmail.com | LinkedIn: linkedin.com/in/jfeng | GitHub: github.com/jfeng"
+    "content": "Phone: 236-965-9413 | Email: fengjacky84@gmail.com | LinkedIn: linkedin.com/in/jfeng-307210291 | GitHub: github.com/Alwaysdebugg"
+  },
+  {
+    "id": 12,
+    "title": "summary",
+    "content": "Full-Stack developer with a Master's in Cybersecurity and 3+ years of experience across Canada and Asia. Expert in React, Vue 3, and AI-driven applications (RAG). Legally authorized to work in Canada (Open Work Permit valid until Jan 2028)."
+  },
+  {
+    "id": 13,
+    "title": "introduce yourself",
+    "content": "When asked to introduce myself: I am Jacky Feng, a Full-Stack Developer and Frontend & Mobile Specialist based in Vancouver, BC. I have a Master's in Cybersecurity and 3+ years of experience across Canada and Asia, with expertise in React, Vue 3, and AI-driven applications. I am legally authorized to work in Canada. Happy to connect—you can reach me via email, LinkedIn, or GitHub."
   }
 ]

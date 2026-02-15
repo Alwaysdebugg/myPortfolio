@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { FaClock, FaCalendar, FaUser, FaArrowRight } from 'react-icons/fa'
 import { BlogCardProps } from '@/types/blog'
 
@@ -13,15 +14,8 @@ export default function BlogCard({ post, onClick }: BlogCardProps) {
     })
   }
 
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5, scale: 1.02 }}
-      transition={{ duration: 0.3 }}
-      className="bg-gray-900/50 border border-gray-700/50 rounded-lg overflow-hidden backdrop-blur-sm hover:border-blue-400/50 cursor-pointer group"
-      onClick={() => onClick?.(post)}
-    >
+  const cardContent = (
+    <>
       {/* 封面图 */}
       {post.coverImage && (
         <div className="relative overflow-hidden h-48">
@@ -83,6 +77,27 @@ export default function BlogCard({ post, onClick }: BlogCardProps) {
           </div>
         </div>
       </div>
-    </motion.article>
+    </>
+  )
+
+  const cardClassName =
+    'bg-gray-900/50 border border-gray-700/50 rounded-lg overflow-hidden backdrop-blur-sm hover:border-blue-400/50 cursor-pointer group block'
+
+  const MotionArticle = motion.article
+
+  return (
+    <MotionArticle
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+      className={cardClassName}
+    >
+      {onClick ? (
+        <div onClick={() => onClick(post)}>{cardContent}</div>
+      ) : (
+        <Link href={`/blog/${post.slug}`}>{cardContent}</Link>
+      )}
+    </MotionArticle>
   )
 }

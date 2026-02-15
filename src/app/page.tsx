@@ -51,14 +51,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="h-screen overflow-hidden bg-white dark:bg-black transition-colors duration-300 flex flex-col"
+              className="min-h-screen md:h-screen overflow-y-auto md:overflow-hidden bg-white dark:bg-black transition-colors duration-300 flex flex-col"
             >
               {/* Navbar - Center aligned */}
               <Navbar />
-              <div className="flex-1 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden">
-                <div className="w-full">
+              <div className="flex-1 min-h-0 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center md:overflow-hidden py-4 md:py-0">
+                <div className="w-full flex-1 min-h-0 flex flex-col">
                   <Hero />
-                  {/* <ChatWindow /> */}
                 </div>
               </div>
               <Footer />

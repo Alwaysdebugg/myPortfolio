@@ -32,10 +32,11 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 
 /**
  * 根据slug获取单篇博客文章
+ * 优先从 generated 数据查找，回退到 fallback
  */
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  console.log('Looking for post in fallback data')
-  return fallbackBlogPosts.find(post => post.slug === slug) || null
+  const allPosts = await getAllBlogPosts()
+  return allPosts.find(post => post.slug === slug) || null
 }
 
 /**

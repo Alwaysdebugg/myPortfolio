@@ -2,15 +2,96 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa6";
 import { HiMail } from "react-icons/hi";
 import { HERO_CONTENT } from "@/constants/heroContent";
+
+// 稳定图片 URL，避免因父组件频繁 re-render 导致重复请求
+const AVATAR_IMAGE_SRC = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/avatar_2025.png`;
+
+const HeroAvatar = memo(function HeroAvatar({
+  imageError,
+  onImageError,
+}: {
+  imageError: boolean;
+  onImageError: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+      animate={{ opacity: 1, scale: 1, rotate: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12 relative w-36 sm:w-44 md:w-80 mb-4 sm:mb-6 md:mb-0 z-10"
+    >
+      <div className="relative z-10 w-[85%] aspect-square max-w-full mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-400/20">
+        {imageError ? (
+          <div className="w-full h-full bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
+            <span className="text-6xl">👨‍💻</span>
+          </div>
+        ) : (
+          <Image
+            src={AVATAR_IMAGE_SRC}
+            alt="Profile picture"
+            width={320}
+            height={320}
+            className="object-cover"
+            onError={onImageError}
+            priority
+          />
+        )}
+      </div>
+
+      {/* Social links */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        className="flex flex-wrap gap-6 items-center"
+      >
+        <div className="flex gap-4">
+          <motion.a
+            href={HERO_CONTENT.social.linkedin.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={HERO_CONTENT.social.linkedin.label}
+            whileHover={{ scale: 1.2, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
+          >
+            <FaLinkedin className="w-6 h-6" />
+          </motion.a>
+          <motion.a
+            href={HERO_CONTENT.social.github.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={HERO_CONTENT.social.github.label}
+            whileHover={{ scale: 1.2, rotate: -5 }}
+            whileTap={{ scale: 0.9 }}
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
+          >
+            <FaGithub className="w-6 h-6" />
+          </motion.a>
+          <motion.a
+            href={HERO_CONTENT.social.email.url}
+            aria-label={HERO_CONTENT.social.email.label}
+            whileHover={{ scale: 1.2, rotate: -5 }}
+            whileTap={{ scale: 0.9 }}
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
+          >
+            <HiMail className="w-6 h-6" />
+          </motion.a>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+});
 
 export default function Hero() {
   const [imageError, setImageError] = useState(false);
   const [displayText, setDisplayText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
+  const handleImageError = useCallback(() => setImageError(true), []);
 
   // 光标闪烁效果
   useEffect(() => {
@@ -74,7 +155,7 @@ export default function Hero() {
   return (
     <div
       id="hero"
-      className="flex flex-col md:flex-row justify-center items-center w-full gap-8 md:gap-20 min-h-[70vh] py-20 md:py-0 px-4 sm:px-6 text-black dark:text-white relative overflow-visible"
+      className="flex flex-col md:flex-row justify-center items-center w-full gap-6 md:gap-20 min-h-0 md:min-h-[70vh] py-6 sm:py-10 md:py-0 px-4 sm:px-6 text-black dark:text-white relative overflow-visible shrink-0"
     >
       {/* Background subtle pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-200/20 via-transparent to-transparent dark:from-gray-900/20 dark:via-transparent dark:to-transparent"></div>
@@ -102,76 +183,8 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Left side - Avatar */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center justify-center gap-12 relative w-48 md:w-80 mb-8 md:mb-0 z-10"
-      >
-        <div className="relative z-10 w-[85%] h-[85%] mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-400/20">
-          {imageError ? (
-            <div className="w-full h-full bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
-              <span className="text-6xl">👨‍💻</span>
-            </div>
-          ) : (
-            <Image
-              src={`${
-                process.env.NEXT_PUBLIC_BASE_PATH || ""
-              }/images/avatar_2025.png`}
-              // src="/images/avatar.jpg"
-              alt="Profile picture"
-              width={320}
-              height={320}
-              className="object-cover"
-              onError={() => setImageError(true)}
-              priority
-            />
-          )}
-        </div>
-
-        {/* Social links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4, duration: 0.6 }}
-          className="flex flex-wrap gap-6 items-center"
-        >
-          <div className="flex gap-4">
-            <motion.a
-              href={HERO_CONTENT.social.linkedin.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={HERO_CONTENT.social.linkedin.label}
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
-            >
-              <FaLinkedin className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              href={HERO_CONTENT.social.github.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={HERO_CONTENT.social.github.label}
-              whileHover={{ scale: 1.2, rotate: -5 }}
-              whileTap={{ scale: 0.9 }}
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
-            >
-              <FaGithub className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              href={HERO_CONTENT.social.email.url}
-              aria-label={HERO_CONTENT.social.email.label}
-              whileHover={{ scale: 1.2, rotate: -5 }}
-              whileTap={{ scale: 0.9 }}
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
-            >
-              <HiMail className="w-6 h-6" />
-            </motion.a>
-          </div>
-        </motion.div>
-      </motion.div>
+      {/* Left side - Avatar（独立 memo 组件，避免打字机 re-render 导致图片重复请求） */}
+      <HeroAvatar imageError={imageError} onImageError={handleImageError} />
 
       {/* Right side - Text Content */}
       <motion.div
@@ -194,7 +207,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="h-12 font-serif text-fluid-2xl text-gray-600 dark:text-gray-400"
+              className="min-h-[2.5rem] sm:min-h-12 font-serif text-fluid-2xl text-gray-600 dark:text-gray-400"
             >
               {displayText}
               <span
@@ -211,7 +224,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="space-y-4 text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4 max-w-2xl text-left"
+              className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-2 sm:mt-4 max-w-2xl text-left"
             >
               {HERO_CONTENT.introduction.paragraphs.map((paragraph, index) => (
                 <p

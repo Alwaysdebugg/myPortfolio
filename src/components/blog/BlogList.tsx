@@ -4,10 +4,10 @@ import { motion } from 'framer-motion'
 import { FaSearch, FaFilter } from 'react-icons/fa'
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { BlogListProps, BlogPost } from '@/types/blog'
+import { BlogListProps } from '@/types/blog'
 import BlogCard from './BlogCard'
 
-export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPageChange, onPostClick }: BlogListProps) {
+export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPageChange }: BlogListProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedTag, setSelectedTag] = useState<string>('')
   const [sortBy, setSortBy] = useState<'date' | 'title' | 'readingTime'>('date')
@@ -47,12 +47,6 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
 
     return filtered
   }, [posts, searchTerm, selectedTag, sortBy])
-
-  const handlePostClick = (post: BlogPost) => {
-    if (onPostClick) {
-      onPostClick(post)
-    }
-  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -147,7 +141,7 @@ export default function BlogList({ posts, currentPage = 1, totalPages = 1, onPag
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <BlogCard post={post} onClick={handlePostClick} />
+                <BlogCard post={post} />
               </motion.div>
             ))}
           </motion.div>

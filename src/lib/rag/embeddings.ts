@@ -13,17 +13,18 @@ export async function getEmbedding(text: string): Promise<number[]> {
     }
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/embedding-001:embedContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "models/embedding-001",
+          model: "models/gemini-embedding-001",
           content: {
             parts: [{ text }],
           },
+          outputDimensionality: 768,
         }),
       }
     );
@@ -63,17 +64,18 @@ export async function getEmbeddings(texts: string[]): Promise<number[][]> {
     const embeddings = await Promise.all(
       texts.map(async (text) => {
         const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/embedding-001:embedContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              model: "models/embedding-001",
+              model: "models/gemini-embedding-001",
               content: {
                 parts: [{ text }],
               },
+              outputDimensionality: 768,
             }),
           }
         );

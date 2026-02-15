@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { FaArrowLeft, FaClock, FaCalendar, FaUser, FaTag } from 'react-icons/fa'
 import { BlogDetailProps } from '@/types/blog'
 import { MarkdownRenderer } from '@/lib/markdown'
@@ -18,18 +19,30 @@ export default function BlogDetail({ post, onBack }: BlogDetailProps) {
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* 返回按钮 */}
-        {onBack && (
-          <motion.button
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            onClick={onBack}
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8 group"
-          >
-            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-            <span>返回博客列表</span>
-          </motion.button>
-        )}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          {onBack ? (
+            <button
+              onClick={onBack}
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
+            >
+              <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+              <span>返回博客列表</span>
+            </button>
+          ) : (
+            <Link
+              href="/blog"
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group w-fit"
+            >
+              <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+              <span>返回博客列表</span>
+            </Link>
+          )}
+        </motion.div>
 
         {/* 文章头部 */}
         <motion.header
