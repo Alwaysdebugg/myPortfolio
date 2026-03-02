@@ -20,7 +20,8 @@ const navItems = [
   {
     name: "Blog",
     icon: <FaCode />,
-    href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/blog`,
+    href: "https://jacvan.dev/",
+    external: true,
   },
 ];
 
@@ -70,6 +71,8 @@ export default function Navbar() {
               <motion.a
                 key={item.name}
                 href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
                 className="font-serif text-lg text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors relative group flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -169,6 +172,8 @@ export default function Navbar() {
                   <motion.a
                     key={item.name}
                     href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
                     className="font-serif text-base text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors px-4 py-3 rounded-lg hover:bg-accent-primary/10 flex items-center gap-3"
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setIsMenuOpen(false)}
