@@ -19,16 +19,19 @@ A modern personal portfolio website showcasing frontend development skills, proj
 ### 📝 Content & Pages
 
 - **Hero Section** - Typewriter-style intro, skill tags, and social links
-- **Blog System** - Markdown articles with search, tags, and reading time
+- **Debug Journal** - Dated build logs, engineering decisions, bugs, and learning notes
 - **Resume Page** - `/resume` route (available in codebase)
-- **AI Chat** - Floating chat button opens a modal; RAG-powered Q&A about you and your work
+- **Trace** - A second editorial voice that answers from dated, cited portfolio records
 
 ### 🤖 AI Chat (RAG)
 
-- **Vector Search** - Supabase `pgvector` stores embeddings from `knowledge-base.json`
-- **Streaming Responses** - Google Gemini 2.5 Flash via Vercel AI SDK
+- **Hybrid Retrieval** - Supabase full-text + `pgvector` rankings fused with RRF, with a fast local fallback
+- **Model Routing** - GPT-5.6 Terra through AI Gateway, with Claude Sonnet 5 and Gemini 3.6 Flash fallbacks
+- **Local Development** - Direct Gemini 3.5 Flash fallback when Gateway credentials are unavailable
+- **Standard Streaming** - AI SDK 7 UI message streams via `@ai-sdk/react`
+- **Grounded Answers** - Source IDs, verification dates, confidence levels, and visible evidence links
 - **Rate Limiting** - Per-IP limits to protect the API
-- **Knowledge Base** - Editable in `src/data/knowledge-base.json`; init via `/api/vector-store/init`
+- **Knowledge Base** - Editable in `src/data/knowledge-base.json`; protected sync via `/api/vector-store/init`
 
 ### 🚀 Technical Implementation
 
@@ -37,7 +40,7 @@ A modern personal portfolio website showcasing frontend development skills, proj
 - **Tailwind CSS** - Utility-first styling
 - **Framer Motion** - Animations
 - **NextUI + Aceternity UI** - UI components
-- **Markdown** - Blog posts with code highlighting, images, links
+- **Markdown** - Journal entries and AI responses with code highlighting and links
 
 ## 🛠️ Tech Stack
 
@@ -48,7 +51,7 @@ A modern personal portfolio website showcasing frontend development skills, proj
 | Styling    | Tailwind CSS 3.4                                 |
 | UI         | NextUI, Aceternity UI                            |
 | Animation  | Framer Motion                                    |
-| AI / Chat  | Vercel AI SDK, @ai-sdk/google (Gemini 2.5 Flash) |
+| AI / Chat  | AI SDK 7, AI Gateway, Gemini 3.5/3.6 Flash       |
 | Vector DB  | Supabase (pgvector)                              |
 | Deployment | Vercel (default), GitHub Pages (static)          |
 
@@ -58,10 +61,10 @@ A modern personal portfolio website showcasing frontend development skills, proj
 
 - **SplashScreen** - Drag-to-enter launch screen
 - **Hero** - Intro, typewriter effect, skills, links
-- **Floating Chat** - Opens AI chat modal
-- **Navbar** - Home, Blog, theme toggle
+- **Trace** - Opens the portfolio's source-grounded second perspective
+- **Navbar** - Home and Journal
 
-### 📚 Blog
+### 📚 Debug Journal
 
 - **Article List** - Search and tag filters
 - **Article Detail** - Markdown + code highlighting
@@ -82,7 +85,7 @@ The following live in `src/components/sections/` and can be wired into the homep
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 24 LTS
 - npm or yarn
 
 ### Installation
@@ -104,7 +107,7 @@ The following live in `src/components/sections/` and can be wired into the homep
 ### Build & Scripts
 
 ```bash
-# Production build (includes blog data generation)
+# Production build (includes journal data generation)
 npm run build
 
 # Start production server
@@ -125,18 +128,28 @@ For **AI Chat** and **RAG** to work, create `.env.local`:
 | ------------------------------ | ----------------------------------- |
 | `SUPABASE_URL`                 | Supabase project URL                |
 | `SUPABASE_SERVICE_ROLE_KEY`    | Supabase service role key           |
-| `GOOGLE_GENERATIVE_AI_API_KEY` | Gemini API key (for @ai-sdk/google) |
+| `AI_GATEWAY_API_KEY`           | Recommended outside Vercel; enables primary and fallback model routing |
+| `VERCEL_OIDC_TOKEN`            | Supplied automatically by a connected Vercel project |
+| `GOOGLE_GENERATIVE_AI_API_KEY` | Direct local chat fallback and Gemini Embedding 2 |
+| `INIT_SECRET`                  | Protects the vector-store synchronization endpoint |
 
-**Note:** The project uses **Google Gemini** for both chat and embeddings. Use `GOOGLE_GENERATIVE_AI_API_KEY`;
+Trace uses AI Gateway when Gateway/OIDC authentication is present. Local development falls back to direct Google, so `GOOGLE_GENERATIVE_AI_API_KEY` remains required for embeddings and useful for local chat.
 
 ### AI Chat Setup (Supabase + Vector Store)
 
 1. Create a Supabase project and run `sql/supabase-init.sql` in the SQL Editor.
 2. Add the env vars above to `.env.local`.
 3. Run `node scripts/setup-supabase.js` to verify.
-4. With dev server running, call `POST http://localhost:3001/api/vector-store/init` to seed the vector store from `knowledge-base.json`.
+4. With the dev server running, synchronize the dated knowledge records:
 
-See **[Doc/QUICK_START.md](Doc/QUICK_START.md)** for a step-by-step guide.
+   ```bash
+   curl -X POST http://localhost:3001/api/vector-store/init \
+     -H "Authorization: Bearer $INIT_SECRET"
+   ```
+
+If Supabase is unavailable or has not been resynchronized yet, Trace uses its local lexical retriever instead of comparing incompatible or stale vectors.
+
+See **[Doc/README_SUPABASE.md](Doc/README_SUPABASE.md)** for the current step-by-step guide.
 
 ## 📁 Project Structure
 
@@ -145,7 +158,7 @@ src/
 ├── app/
 │   ├── layout.tsx          # Root layout, theme provider
 │   ├── page.tsx            # Homepage (Splash, Hero, Chat modal)
-│   ├── blog/               # Blog list & detail
+│   ├── journal/            # Journal list & detail
 │   ├── resume/             # Resume page
 │   └── api/
 │       ├── chat/           # POST /api/chat (streaming RAG + Gemini)
@@ -154,7 +167,7 @@ src/
 ├── components/
 │   ├── sections/           # Hero, SplashScreen, About, Projects, etc.
 │   ├── chat/               # ChatWindow, MessageList, MessageInput, etc.
-│   ├── blog/               # BlogCard, BlogList, BlogDetail
+│   ├── journal/            # Journal list, filters, cards, and Markdown
 │   └── ui/                 # Navbar, Footer, theme, bento-grid, etc.
 ├── lib/
 │   ├── rag/                # retrieval, embeddings, vector-store-supabase
@@ -171,7 +184,7 @@ src/
 - **Hero / intro:** `src/constants/heroContent.ts`, `src/components/sections/Hero.tsx`
 - **About / Experience:** `About.tsx`, `Experience.tsx`
 - **Projects / Skills / Contact:** `Projects.tsx`, `Skills.tsx`, `Contact.tsx`
-- **Blog data:** `src/data/blog-posts.ts`, `content/blog/`
+- **Journal data:** `content/journal/`, generated by `scripts/generate-journal-data.js`
 - **RAG knowledge:** `src/data/knowledge-base.json`
 - **Styles:** `src/app/globals.css`, `tailwind.config.ts`
 

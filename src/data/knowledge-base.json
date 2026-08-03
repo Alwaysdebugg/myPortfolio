@@ -1,67 +1,211 @@
 [
   {
     "id": 1,
-    "title": "skill or tech stack",
-    "content": "Languages: JavaScript, TypeScript, Python, HTML/CSS, C/C++, C#. Frontend: React (Redux/Context), Next.js, React Native (Expo), Vue3 (Pinia), Tailwind CSS. Backend & Database: Node.js, Express.js, Nest.js, FastAPI, RESTful APIs, PostgreSQL, MongoDB, MySQL, Supabase (Vector Database). Tools & DevOps: AWS S3, Docker, Jenkins, GitHub Actions, Vercel, Vite, Webpack, Linux. Specialized Libs: Babylon.js (3D), LangChain (AI/RAG), Vercel AI SDK, Shadcn UI, Ant Design."
+    "title": "Current professional profile",
+    "content": "Jacky Feng is a Vancouver-based full-stack developer with a frontend and mobile specialization. He has 3+ years of professional experience across Canada and China, and currently works on production React Native applications at Alpha Pay. His strongest recurring themes are product-facing frontend architecture, reliable data flows, mobile delivery, and practical AI/RAG systems.",
+    "category": "identity",
+    "keywords": ["Jacky Feng", "full-stack", "frontend", "mobile", "Vancouver", "current role", "Alpha Pay"],
+    "sourceLabel": "Current portfolio profile",
+    "sourceUrl": "/#about",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
   },
   {
     "id": 2,
-    "title": "work experience",
-    "content": "Software Developer (Frontend/Mobile) at Alpha Pay (Richmond, BC): Architected React Native apps with Redux Toolkit, integrated multi-region routing (USD/CAD), and built CI/CD pipelines with Expo EAS. Software Developer at Ulala Technologies (Delta, BC): Optimized Vue 3 data architecture for 100K+ records and bridged AWS S3 with pre-signed URLs. Full-Stack Developer at NYIT (Vancouver): Engineered an AI campus assistant using LangChain, RAG, and Supabase. Frontend Developer at Cognizant (Shanghai): Developed 3D industrial interfaces using Babylon.js and integrated real-time IoT telemetry via WebSockets."
+    "title": "Alpha Pay — production mobile engineering",
+    "content": "At Alpha Pay in Richmond, BC, Jacky works as a Software Developer focused on frontend and mobile systems. He has architected React Native applications with Redux Toolkit, integrated multi-region USD/CAD routing, and built CI/CD delivery pipelines with Expo EAS. This is the newest record of his employment and supersedes the older résumé PDF when answering who his current employer is.",
+    "category": "experience",
+    "keywords": ["Alpha Pay", "React Native", "Redux Toolkit", "Expo EAS", "CI/CD", "USD", "CAD", "payments", "current employer"],
+    "sourceLabel": "Current portfolio profile",
+    "sourceUrl": "/#experience",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
   },
   {
     "id": 3,
-    "title": "name",
-    "content": "Jacky Feng"
+    "title": "Ulala Technologies — high-volume logistics UI",
+    "content": "At Ulala Technologies in Delta, BC, Jacky built Vue 3 and TypeScript logistics interfaces. He improved the data architecture for views handling more than 100,000 records, implemented order, delivery, route, and role-based access workflows, and used AWS S3 presigned URLs for uploads. His résumé records a 25% upload-latency improvement and experience with Jenkins CI/CD and Jest. The résumé dated April 2025 calls this role current; newer portfolio records show Alpha Pay as his current employer.",
+    "category": "experience",
+    "keywords": ["Ulala", "logistics", "Vue 3", "TypeScript", "100000 records", "AWS S3", "presigned URL", "Jenkins", "Jest", "RBAC"],
+    "sourceLabel": "Résumé PDF and current portfolio",
+    "sourceUrl": "/resume.pdf",
+    "lastVerified": "2025-04-08",
+    "confidence": "historical"
   },
   {
     "id": 4,
-    "title": "job",
-    "content": "Full-Stack Developer / Frontend & Mobile Specialist"
+    "title": "NYIT — AI campus assistant",
+    "content": "At New York Institute of Technology in Vancouver, Jacky engineered an AI campus assistant using LangChain, retrieval-augmented generation, and Supabase vector search. The project was designed around registrar questions and reduced manual registrar inquiries by 30%. It demonstrates that he has built RAG for a real information domain rather than only a generic chat interface.",
+    "category": "experience",
+    "keywords": ["NYIT", "AI campus assistant", "LangChain", "RAG", "Supabase", "vector search", "registrar", "30 percent"],
+    "sourceLabel": "Current portfolio profile",
+    "sourceUrl": "/#projects",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
   },
   {
     "id": 5,
-    "title": "location",
-    "content": "Vancouver, BC"
+    "title": "Cognizant — real-time 3D industrial interface",
+    "content": "As a Frontend Developer at Cognizant in Shanghai from July 2022 to May 2023, Jacky developed an industrial 3D factory-management interface with React, TypeScript, Babylon.js, and Ant Design. He rendered equipment-position data from REST APIs into a factory model and integrated real-time IoT telemetry through WebSockets. A later résumé also describes more than 100 equipment nodes, Redux Toolkit, JWT authentication, and Webpack Module Federation.",
+    "category": "experience",
+    "keywords": ["Cognizant", "React", "Babylon.js", "3D", "factory", "IoT", "WebSocket", "REST", "Module Federation", "Shanghai"],
+    "sourceLabel": "Project notes and résumé PDF",
+    "sourceUrl": "/resume.pdf",
+    "lastVerified": "2025-04-08",
+    "confidence": "verified"
   },
   {
     "id": 6,
-    "title": "fun fact",
-    "content": "fishing is my favorite hobby, but I'm not good at it..."
+    "title": "Cognizant trainee — mobile product foundations",
+    "content": "During his Cognizant trainee period from March to July 2022, Jacky worked on mobile commerce interfaces and API integration. Available records describe responsive UI, centralized state, delivery tracking and data visualization, plus Scrum planning and feature testing. The underlying résumé and older project notes differ on whether the client stack was React Native or Vue, so Trace should describe the product responsibilities confidently but avoid asserting one framework unless the distinction is directly requested.",
+    "category": "experience",
+    "keywords": ["Cognizant trainee", "mobile", "e-commerce", "Scrum", "testing", "ECharts", "Leaflet", "React Native", "Vue"],
+    "sourceLabel": "Project notes and résumé PDF",
+    "sourceUrl": "/resume.pdf",
+    "lastVerified": "2025-04-08",
+    "confidence": "historical"
   },
   {
     "id": 7,
-    "title": "motto",
-    "content": "Practice makes perfect - My motto"
+    "title": "MoodTrack — AI product engineering",
+    "content": "MoodTrack is Jacky's full-stack AI-powered mood tracking platform built with React, TypeScript, PostgreSQL, and Google Gemini. Its product work includes streamed AI reports, Vercel AI SDK integration, and anonymous community features. It is useful evidence of connecting an AI feature to a broader product experience rather than treating the model response as the whole application.",
+    "category": "project",
+    "keywords": ["MoodTrack", "AI", "Gemini", "React", "TypeScript", "PostgreSQL", "streaming", "community", "Vercel AI SDK"],
+    "sourceLabel": "Current portfolio projects",
+    "sourceUrl": "/#projects",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
   },
   {
     "id": 8,
-    "title": "future plan or goals",
-    "content": "To be a high-level developer and a good husband and father..."
+    "title": "RecruitPro — multi-module recruiting platform",
+    "content": "RecruitPro is a recruiting platform project with résumé parsing, interview scheduling, candidate matching, role-based access, and analytics. Jacky implemented more than five coordinated modules and managed shared application state with Redux. The project is evidence of workflow design and cross-feature state management.",
+    "category": "project",
+    "keywords": ["RecruitPro", "recruiting", "resume parsing", "interview scheduling", "candidate matching", "RBAC", "Redux", "analytics"],
+    "sourceLabel": "Résumé PDF and portfolio projects",
+    "sourceUrl": "/resume.pdf",
+    "lastVerified": "2025-04-08",
+    "confidence": "verified"
   },
   {
     "id": 9,
-    "title": "education",
-    "content": "Master of Science in Cybersecurity from New York Institute of Technology (Vancouver, 2023-2024); Bachelor of Engineering in Software Engineering from Sanda University (Shanghai, 2018-2022)."
+    "title": "Medium-style publishing platform",
+    "content": "Jacky built a MERN publishing platform from June to September 2024 with rich-text editing, CRUD workflows, comments, tags, image uploads, dark mode, and responsive typography. He sanitized user-authored HTML with DOMPurify to mitigate XSS and used JWT with HTTP-only cookies for sessions. The repository is public on GitHub.",
+    "category": "project",
+    "keywords": ["Medium clone", "MERN", "ReactQuill", "DOMPurify", "XSS", "JWT", "HTTP-only cookies", "MongoDB", "Express"],
+    "sourceLabel": "Project detail notes",
+    "sourceUrl": "https://github.com/Alwaysdebugg/myBlog",
+    "lastVerified": "2024-09-30",
+    "confidence": "verified"
   },
   {
     "id": 10,
-    "title": "projects",
-    "content": "MoodTrack: A full-stack AI-powered mood tracking platform using React, TypeScript, PostgreSQL, and Google Gemini API. Features include real-time AI report streaming via SSE, Vercel AI SDK integration, and anonymous community modules. AI Campus Assistant: RAG-based chatbot using LangChain and Supabase to reduce manual registrar inquiries by 30%."
+    "title": "Technical capabilities",
+    "content": "Jacky's working stack includes JavaScript, TypeScript, Python, HTML/CSS, C/C++, and C#; React, Next.js, React Native with Expo, Vue 3, Redux, Pinia, and Tailwind CSS; Node.js, Express, NestJS, FastAPI, PostgreSQL, MongoDB, MySQL, and Supabase; AWS S3, Docker, Jenkins, GitHub Actions, Vercel, Vite, Webpack, and Linux. Specialized experience includes Babylon.js for 3D interfaces and LangChain plus the Vercel AI SDK for RAG and AI applications. This list shows exposure; project and work records are stronger evidence of depth.",
+    "category": "capability",
+    "keywords": ["skills", "tech stack", "JavaScript", "TypeScript", "React", "Next.js", "React Native", "Vue", "Node.js", "PostgreSQL", "Supabase", "Docker", "Vercel"],
+    "sourceLabel": "Current portfolio profile",
+    "sourceUrl": "/#about",
+    "lastVerified": "2026-08-02",
+    "confidence": "profile"
   },
   {
     "id": 11,
-    "title": "contact info",
-    "content": "Phone: 236-965-9413 | Email: fengjacky84@gmail.com | LinkedIn: linkedin.com/in/jfeng-307210291 | GitHub: github.com/Alwaysdebugg"
+    "title": "Education and security perspective",
+    "content": "Jacky completed a Master of Science in Cybersecurity at New York Institute of Technology in Vancouver from 2023 to 2024. He earned a Bachelor of Engineering in Software Engineering from Sanda University in Shanghai from 2018 to 2022. His security education is supported by implementation examples such as XSS sanitization, HTTP-only cookie sessions, JWT authentication, and role-based access control; it should not be presented as proof of a dedicated security-engineering role.",
+    "category": "education",
+    "keywords": ["education", "Cybersecurity", "NYIT", "Sanda University", "master", "bachelor", "security", "XSS", "authentication"],
+    "sourceLabel": "Résumé PDF and current portfolio",
+    "sourceUrl": "/resume.pdf",
+    "lastVerified": "2025-04-08",
+    "confidence": "verified"
   },
   {
     "id": 12,
-    "title": "summary",
-    "content": "Full-Stack developer with a Master's in Cybersecurity and 3+ years of experience across Canada and Asia. Expert in React, Vue 3, and AI-driven applications (RAG). Legally authorized to work in Canada (Open Work Permit valid until Jan 2028)."
+    "title": "Working style — evidence before polish",
+    "content": "Jacky's portfolio identity is 'Always Debugging': a practice of learning, building, questioning, and revising. The Debug Journal records build logs, engineering decisions, bugs, trade-offs, and learning notes. The site intentionally exposes reasoning and incomplete thinking instead of presenting only polished outcomes. This supports an inference that he values iteration, intellectual honesty, documentation, and reflective learning.",
+    "category": "working-style",
+    "keywords": ["Always Debugging", "working style", "iteration", "learning", "reflection", "documentation", "trade-offs", "soft skills"],
+    "sourceLabel": "Debug Journal",
+    "sourceUrl": "/journal",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
   },
   {
     "id": 13,
-    "title": "introduce yourself",
-    "content": "When asked to introduce myself: I am Jacky Feng, a Full-Stack Developer and Frontend & Mobile Specialist based in Vancouver, BC. I have a Master's in Cybersecurity and 3+ years of experience across Canada and Asia, with expertise in React, Vue 3, and AI-driven applications. I am legally authorized to work in Canada. Happy to connect—you can reach me via email, LinkedIn, or GitHub."
+    "title": "Splash redesign — product and accessibility judgment",
+    "content": "In August 2026, Jacky rebuilt the portfolio Splash around 'Still learning. Still building. Still debugging.' He kept the deliberate drag gesture, removed generic developer language, made motion deterministic, and improved keyboard and reduced-motion accessibility. The decision shows attention to interaction intent, accessibility, restraint, and maintaining a distinctive product voice.",
+    "category": "site",
+    "keywords": ["Splash", "design decision", "accessibility", "keyboard", "reduced motion", "interaction", "taste", "product judgment"],
+    "sourceLabel": "Debug Journal — Splash Screen V2",
+    "sourceUrl": "/journal/splash-screen-v2",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
+  },
+  {
+    "id": 14,
+    "title": "Trace — the portfolio's second voice",
+    "content": "Trace is the AI guide embedded in Jacky's portfolio. It is intentionally a second perspective rather than a chat bubble pretending to be Jacky. Trace answers from curated public records, separates documented facts from interpretation, cites the records used, and says when the available evidence is incomplete. It refers to Jacky in the third person.",
+    "category": "site",
+    "keywords": ["Trace", "AI guide", "second voice", "chatbot", "portfolio", "citations", "grounded"],
+    "sourceLabel": "Portfolio interaction design",
+    "sourceUrl": "/",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
+  },
+  {
+    "id": 15,
+    "title": "Strongest evidence for engineering roles",
+    "content": "The best-supported engineering evidence is: production React Native architecture and delivery at Alpha Pay; high-volume Vue data handling for 100,000+ logistics records at Ulala; a real-time 3D industrial interface at Cognizant; and a domain-specific RAG assistant at NYIT that reduced manual inquiries by 30%. This is an editorial synthesis of documented work, not an objective ranking. The common thread is translating operational complexity into usable product interfaces.",
+    "category": "capability",
+    "keywords": ["strongest evidence", "best work", "engineering impact", "production", "scale", "RAG", "real-time", "mobile"],
+    "sourceLabel": "Trace synthesis of current portfolio records",
+    "sourceUrl": "/#experience",
+    "lastVerified": "2026-08-02",
+    "confidence": "profile"
+  },
+  {
+    "id": 16,
+    "title": "Growth areas and honest boundaries",
+    "content": "The public record strongly supports frontend, mobile, product integration, and applied RAG work. It contains less evidence of owning very large distributed backend systems, formal people management, or a dedicated security-engineering position. That absence should be described as a limit of the available record, not as proof that Jacky lacks those abilities. His current growth direction is toward deeper full-stack and higher-level engineering responsibility.",
+    "category": "working-style",
+    "keywords": ["growth", "weakness", "gap", "backend", "leadership", "security engineer", "limitations", "career direction"],
+    "sourceLabel": "Trace synthesis of available evidence",
+    "sourceUrl": "/#about",
+    "lastVerified": "2026-08-02",
+    "confidence": "profile"
+  },
+  {
+    "id": 17,
+    "title": "Work authorization and location",
+    "content": "Jacky is based in Vancouver, British Columbia and is legally authorized to work in Canada. His current public profile records an open work permit valid until January 2028.",
+    "category": "identity",
+    "keywords": ["Vancouver", "Canada", "location", "work authorization", "work permit", "January 2028"],
+    "sourceLabel": "Current portfolio profile",
+    "sourceUrl": "/#about",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
+  },
+  {
+    "id": 18,
+    "title": "Personal notes and long-term values",
+    "content": "Jacky's favorite hobby is fishing, although he jokes that he is not very good at it. His stated motto is 'Practice makes perfect.' His long-term aspiration is to become a high-level developer while also being a good husband and father. These are self-described personal notes, not professional-performance claims.",
+    "category": "personal",
+    "keywords": ["personal", "hobby", "fishing", "motto", "practice makes perfect", "family", "goals"],
+    "sourceLabel": "Portfolio personal profile",
+    "sourceUrl": "/#about",
+    "lastVerified": "2026-08-02",
+    "confidence": "profile"
+  },
+  {
+    "id": 19,
+    "title": "Contact and public profiles",
+    "content": "Jacky can be contacted at fengjacky84@gmail.com. His LinkedIn is linkedin.com/in/jfeng-307210291 and his GitHub is github.com/Alwaysdebugg.",
+    "category": "identity",
+    "keywords": ["contact", "email", "LinkedIn", "GitHub", "fengjacky84", "Alwaysdebugg"],
+    "sourceLabel": "Current portfolio contact section",
+    "sourceUrl": "/#contact",
+    "lastVerified": "2026-08-02",
+    "confidence": "verified"
   }
 ]

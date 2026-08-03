@@ -1,115 +1,164 @@
-import { google, GoogleGenerativeAIProviderOptions } from "@ai-sdk/google";
-import { streamText } from "ai";
+import {
+  google,
+  type GoogleGenerativeAIProviderOptions,
+} from "@ai-sdk/google";
+import {
+  convertToModelMessages,
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+  type InferUIMessageChunk,
+  streamText,
+  toUIMessageStream,
+} from "ai";
 import { NextRequest } from "next/server";
 import {
-  retrieveRelevantDocs,
-  buildPrompt,
+  buildKnowledgeContext,
+  buildTraceSources,
   getSystemPrompt,
+  retrieveRelevantDocs,
 } from "@/lib/rag/retrieval";
+import type { TraceChatMessage } from "@/types/chat";
 import { checkRateLimit, getClientIP } from "@/utils/rate";
 
 export const runtime = "nodejs";
 
-const model = google("gemini-2.5-flash");
+const PRIMARY_MODEL = "openai/gpt-5.6-terra";
+const FALLBACK_MODELS = [
+  "anthropic/claude-sonnet-5",
+  "google/gemini-3.6-flash",
+];
+
+function textFromMessage(message: TraceChatMessage): string {
+  return message.parts
+    .filter((part) => part.type === "text")
+    .map((part) => part.text)
+    .join("\n")
+    .trim();
+}
+
+function gatewayIsConfigured(): boolean {
+  return Boolean(
+    process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN
+  );
+}
+
 export async function POST(req: NextRequest) {
+  const clientIP = getClientIP(req);
+  const rateLimit = checkRateLimit(clientIP);
+
+  if (!rateLimit.allowed) {
+    const retryAfter = Math.max(
+      1,
+      Math.ceil((rateLimit.resetAt - Date.now()) / 1000)
+    );
+    return Response.json(
+      {
+        error: "Rate limit exceeded",
+        message: "Trace has reached the conversation limit. Please try again shortly.",
+      },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(retryAfter),
+          "X-RateLimit-Limit": "10",
+          "X-RateLimit-Remaining": "0",
+          "X-RateLimit-Reset": String(rateLimit.resetAt),
+        },
+      }
+    );
+  }
+
   try {
-    // 速率限制检查
-    const clientIP = getClientIP(req);
-    const rateLimitResult = checkRateLimit(clientIP);
-    console.log({ rateLimitResult });
-    if (!rateLimitResult.allowed) {
-      const resetDate = new Date(rateLimitResult.resetAt);
-      return new Response(
-        JSON.stringify({
-          error: "Rate limit exceeded",
-          message: `Oops, you have hit the limit. Please try again at ${resetDate.toLocaleTimeString(
-            "en-US"
-          )}.`,
-          resetAt: rateLimitResult.resetAt,
-        }),
-        {
-          status: 429, // Too Many Requests
-          headers: {
-            "Content-Type": "application/json",
-            "X-RateLimit-Limit": "10",
-            "X-RateLimit-Remaining": "0",
-            "X-RateLimit-Reset": rateLimitResult.resetAt.toString(),
-            "Retry-After": Math.ceil(
-              (rateLimitResult.resetAt - Date.now()) / 1000
-            ).toString(),
-          },
-        }
+    const body = (await req.json()) as { messages?: TraceChatMessage[] };
+    const messages = Array.isArray(body.messages) ? body.messages : [];
+    const lastUserMessage = [...messages]
+      .reverse()
+      .find((message) => message.role === "user");
+    const question = lastUserMessage ? textFromMessage(lastUserMessage) : "";
+
+    if (!question) {
+      return Response.json({ error: "A question is required." }, { status: 400 });
+    }
+
+    const retrievalResults = await retrieveRelevantDocs(question, 5);
+    const sources = buildTraceSources(retrievalResults);
+    const context = buildKnowledgeContext(retrievalResults);
+    const useGateway = gatewayIsConfigured();
+
+    if (!useGateway && !process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+      return Response.json(
+        { error: "Trace's model provider is not configured." },
+        { status: 503 }
       );
     }
-    const { message, history } = await req.json();
-    // console.log({ message, history });
 
-    // 1. RAG 检索相关文档（使用向量检索）
-    const relevantDocs = await retrieveRelevantDocs(message, 3, true);
-    console.log({ relevantDocs });
-    // 2. 构建 system prompt（第一人称等）和 user prompt（知识库 + 历史 + 当前问题）
-    const system = getSystemPrompt();
-    const prompt = buildPrompt(relevantDocs, history, message);
+    const recentMessages = messages.slice(-10);
+    const modelMessages = await convertToModelMessages(recentMessages, {
+      convertDataPart: () => undefined,
+    });
 
-    // 3. 调用 Gemini API（流式）
     const result = streamText({
-      model: model,
-      system,
-      prompt,
-      providerOptions: {
-        google: {
-          thinkingConfig: {
-            thinkingBudget: 8192,
-            includeThoughts: false,
-          },
-        } satisfies GoogleGenerativeAIProviderOptions,
-      },
-    });
-
-    // 4. 返回流式响应
-    const stream = new ReadableStream({
-      async start(controller) {
-        const encoder = new TextEncoder();
-
-        try {
-          // 流式传输文本
-          for await (const chunk of result.textStream) {
-            const data = `data: ${JSON.stringify({ text: chunk })}\n\n`;
-            controller.enqueue(encoder.encode(data));
+      model: useGateway ? PRIMARY_MODEL : google("gemini-3.5-flash"),
+      system: getSystemPrompt(context),
+      messages: modelMessages,
+      maxOutputTokens: 1_200,
+      temperature: 0.2,
+      providerOptions: useGateway
+        ? {
+            gateway: {
+              models: FALLBACK_MODELS,
+              disallowPromptTraining: true,
+              serviceTier: "priority",
+            },
           }
+        : {
+            google: {
+              thinkingConfig: {
+                thinkingLevel: "minimal",
+                includeThoughts: false,
+              },
+            } satisfies GoogleGenerativeAIProviderOptions,
+          },
+    });
+    const responseStartedAt = new Date().toISOString();
 
-          // 获取完整结果
-          const fullResult = await result;
-
-          // 发送完成标记
-          const doneData = `data: ${JSON.stringify({
-            done: true,
-            reasoning: fullResult.reasoning,
-          })}\n\n`;
-          controller.enqueue(encoder.encode(doneData));
-          controller.close();
-        } catch (error) {
-          controller.error(error);
-        }
+    const stream = createUIMessageStream<TraceChatMessage>({
+      originalMessages: messages,
+      execute: ({ writer }) => {
+        writer.write({ type: "data-sources", data: sources });
+        const modelStream = toUIMessageStream({
+          stream: result.stream,
+          originalMessages: messages,
+          sendReasoning: false,
+          sendSources: false,
+          messageMetadata: () => ({
+            route: useGateway ? "gateway" : "direct-google",
+            createdAt: responseStartedAt,
+          }),
+        }) as ReadableStream<InferUIMessageChunk<TraceChatMessage>>;
+        writer.merge(modelStream);
+      },
+      onError: (error) => {
+        console.error("Trace stream failed", error);
+        return "Trace could not finish that answer. Please try again.";
       },
     });
 
-    // console.log({ stream });
-
-    return new Response(stream, {
+    return createUIMessageStreamResponse({
+      stream,
       headers: {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        Connection: "keep-alive",
         "X-RateLimit-Limit": "10",
-        "X-RateLimit-Remaining": rateLimitResult.remaining.toString(),
-        "X-RateLimit-Reset": rateLimitResult.resetAt.toString(),
+        "X-RateLimit-Remaining": String(rateLimit.remaining),
+        "X-RateLimit-Reset": String(rateLimit.resetAt),
       },
     });
   } catch (error) {
-    return new Response(JSON.stringify({ error: String(error) }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    console.error("Trace request failed", error);
+    return Response.json(
+      {
+        error: "Trace could not answer that question right now.",
+      },
+      { status: 500 }
+    );
   }
 }

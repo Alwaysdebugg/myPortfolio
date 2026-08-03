@@ -5,25 +5,52 @@ import { motion } from 'framer-motion'
 
 const experiences = [
   {
-    company: "Cognizant",
-    position: "Frontend Developer",
-    period: "07.2022 - 05.2023",
+    company: "AlphaPay",
+    position: "Software Developer",
+    period: "10.2025 - Present",
     description: [
-      "Implemented backend management system using React and Babylon.js.",
-      "Integrated data from an Express.js backend via RESTful APIs and rendered it onto 3D model.",
-      "Developed responsive and interactive user interfaces with React and Ant Design UI.",
-      "Collaborated with the development team to implement version control best practices using GitHub."
+      "Developed a 60+ screen React Native (Expo) app for iOS and Android with Redux Toolkit and React Context.",
+      "Automated TestFlight and Google Play delivery with Expo EAS, shell scripts, and in-app OTA update detection.",
+      "Led an AI-assisted migration from PHP to Java and Spring Boot, while supporting merchant API integrations and internal payment sandbox testing."
+    ]
+  },
+  {
+    company: "Ulala Technologies",
+    position: "Software Developer - Frontend / Mobile",
+    period: "01.2025 - 05.2025",
+    description: [
+      "Built responsive logistics dashboards for 100K+ records using virtual scrolling, pagination, and lazy loading.",
+      "Implemented a resilient AWS S3 upload pipeline with validation, chunked uploads, and retry handling, reducing failures by 80%.",
+      "Established Jenkins CI/CD, reached 95% Jest coverage, and developed real-time delivery tracking with OpenLayers."
+    ]
+  },
+  {
+    company: "New York Institute of Technology - Vancouver",
+    position: "Full-Stack Developer",
+    period: "09.2024 - 12.2024",
+    description: [
+      "Deployed a RAG-based campus support chatbot with LangChain and a vector store.",
+      "Embedded institutional documents to deliver accurate, around-the-clock responses to student inquiries."
     ]
   },
   {
     company: "Cognizant",
-    position: "Frontend Development Trainee",
-    period: "03.2022 - 07.2022",
+    position: "Frontend Developer",
+    period: "05.2022 - 05.2023",
     description: [
-      "Implemented dynamic, responsive user interface components for a mobile e-commerce app.",
-      "Integrated centralized state management with Vuex.",
-      "Developed interactive data visualization features using ECharts and Leaflet.",
-      "Collaborated in a Scrum development environment."
+      "Built React and Babylon.js components that rendered 100+ CAD-derived machine nodes for real-time factory monitoring.",
+      "Integrated Redux Toolkit and WebSocket clients supporting 1,000+ concurrent connections.",
+      "Worked with backend teams on streaming APIs, helping reduce front-end update latency by more than 40%."
+    ]
+  },
+  {
+    company: "Cognizant",
+    position: "Frontend Developer Intern",
+    period: "03.2022 - 05.2022",
+    description: [
+      "Developed mobile-first e-commerce modules with Vue.js and Element UI.",
+      "Built reusable components and managed application data with Vue Router, Vuex/Pinia, Axios, and REST APIs.",
+      "Translated Figma designs into responsive interfaces and collaborated with 4-5 peers through Git and code reviews."
     ]
   }
 ]
@@ -70,4 +97,4 @@ export default function Experience() {
       </motion.div>
     </section>
   )
-} 
+}

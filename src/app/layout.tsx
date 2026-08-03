@@ -11,9 +11,17 @@ const robotoMono = Roboto_Mono({
 
 // metadata 需要在服务器端组件中导出
 export const metadata: Metadata = {
-  title: "Bio.me - Jacky Feng",
-  keywords: ["Portfolio", "Frontend Developer", "React", "Next.js"],
-  description: "Frontend developer portfolio showcasing projects and skills",
+  title: "Jacky Feng — Always Debugging",
+  keywords: [
+    "Jacky Feng",
+    "Software Developer",
+    "Frontend Developer",
+    "React Native",
+    "React",
+    "Next.js",
+  ],
+  description:
+    "The living portfolio and Debug Journal of Jacky Feng, a Vancouver-based frontend, mobile, and full-stack developer.",
   icons: {
     // icon: '/myPortfolio/favicon.ico',
     icon: "/favicon.ico",
@@ -26,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh" className={robotoMono.variable} suppressHydrationWarning>
+    <html lang="en" className={robotoMono.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/myPortfolio/favicon.ico" />
         <script

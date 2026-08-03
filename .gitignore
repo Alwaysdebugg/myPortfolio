@@ -6,6 +6,8 @@ node_modules/
 
 # 忽略其他临时文件
 *.log
+*.tsbuildinfo
+tmp/
 .DS_Store
 .cursorrules
 

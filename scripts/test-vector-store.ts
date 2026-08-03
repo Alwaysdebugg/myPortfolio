@@ -75,8 +75,10 @@ async function testVectorStore() {
       console.log(`\n查询: "${query}"`);
       const results = await searchSupabase(query, 2, 0.5);
       console.log(`找到 ${results.length} 个相关文档:`);
-      results.forEach((doc, index) => {
-        console.log(`  ${index + 1}. [${doc.title}] ${doc.content.substring(0, 50)}...`);
+      results.forEach((result, index) => {
+        console.log(
+          `  ${index + 1}. [${result.doc.title}] ${result.doc.content.substring(0, 50)}...`
+        );
       });
     }
     console.log("\n✅ 向量搜索测试通过");
