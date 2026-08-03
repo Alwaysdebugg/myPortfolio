@@ -1,121 +1,102 @@
 "use client";
 
+import type { ChatStatus } from "ai";
 import { motion } from "framer-motion";
-import { PiRobotDuotone } from "react-icons/pi";
+import type { TraceChatMessage } from "@/types/chat";
 import MessageBubble from "./MessageBubble";
 
-const USER_AVATAR_EMOJI = "👤";
-
-interface Message {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-  timestamp: Date;
-}
-
 interface MessageListProps {
-  messages: Message[];
-  isLoading: boolean;
+  messages: TraceChatMessage[];
+  status: ChatStatus;
+  error?: Error;
   presetQuestions?: string[];
   onPresetClick?: (question: string) => void;
 }
 
 export default function MessageList({
   messages,
-  isLoading,
+  status,
+  error,
   presetQuestions = [],
   onPresetClick,
 }: MessageListProps) {
-  if (messages.length === 0 && !isLoading) {
+  if (messages.length === 0 && status === "ready") {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[200px] py-6 sm:py-8">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mb-3 sm:mb-4"
-        >
-          <PiRobotDuotone className="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-gray-400 dark:text-gray-600" />
-        </motion.div>
-        <p className="text-gray-500 dark:text-gray-400 text-base sm:text-lg mb-4 sm:mb-5 px-2">
-          Ask me anything...
+      <div className="mx-auto flex min-h-full max-w-3xl flex-col justify-center py-8 sm:py-12">
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-indigo-400 sm:text-xs">
+          Trace / Opening note
         </p>
-        {presetQuestions.length > 0 && onPresetClick && (
-          <div className="w-full max-w-md px-2 flex flex-wrap justify-center gap-2">
-            {presetQuestions.map((q, i) => (
+        <p className="mt-5 max-w-2xl font-serif text-3xl leading-tight tracking-[-0.03em] text-[#f5f2ea] sm:text-5xl">
+          I&apos;m here to add context—not to speak for Jacky.
+        </p>
+        <p className="mt-5 max-w-2xl font-sans text-sm leading-7 text-neutral-400 sm:text-base">
+          Ask about evidence, experience, projects, or gaps. Answers are grounded
+          in dated portfolio records, and the exact evidence appears with each
+          response.
+        </p>
+
+        {presetQuestions.length > 0 && onPresetClick ? (
+          <div className="mt-9 grid gap-px bg-white/10 sm:grid-cols-2">
+            {presetQuestions.map((question, index) => (
               <motion.button
-                key={q}
+                key={question}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
-                onClick={() => onPresetClick(q)}
-                className="px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl
-                         text-sm sm:text-base text-left
-                         bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700
-                         text-gray-700 dark:text-gray-300
-                         border border-gray-200 dark:border-gray-700
-                         active:scale-[0.98] transition-colors touch-manipulation
-                         focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                transition={{ duration: 0.3, delay: 0.08 + index * 0.04 }}
+                type="button"
+                onClick={() => onPresetClick(question)}
+                className="group flex min-h-24 flex-col justify-between bg-[#080808] p-4 text-left transition-colors hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-400"
               >
-                {q}
+                <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-neutral-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="mt-4 font-sans text-sm leading-5 text-neutral-300 transition-colors group-hover:text-white">
+                  {question} →
+                </span>
               </motion.button>
             ))}
           </div>
-        )}
+        ) : null}
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
-      {messages.map((message, index) => (
-        <motion.div
+    <div className="mx-auto max-w-3xl border-t border-white/10">
+      {messages.map((message) => (
+        <motion.article
           key={message.id}
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: index * 0.1 }}
-          className={`flex items-start gap-3 ${
-            message.role === "user" ? "justify-end" : "justify-start"
-          }`}
+          className="grid gap-3 border-b border-white/10 py-6 sm:grid-cols-[5rem_1fr] sm:gap-6"
         >
-          {message.role === "assistant" && (
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-              <PiRobotDuotone className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            </div>
-          )}
-
+          <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-neutral-500 sm:pt-1 sm:text-[10px]">
+            {message.role === "assistant" ? "Trace" : "You"}
+          </div>
           <MessageBubble message={message} />
-
-          {message.role === "user" && (
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-lg leading-none select-none">
-              {USER_AVATAR_EMOJI}
-            </div>
-          )}
-        </motion.div>
+        </motion.article>
       ))}
 
-      {isLoading && (
+      {status === "submitted" ? (
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-start gap-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="grid gap-3 border-b border-white/10 py-6 sm:grid-cols-[5rem_1fr] sm:gap-6"
         >
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-            <PiRobotDuotone className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-          </div>
-          <div className="flex items-center space-x-1 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-2xl rounded-tl-sm">
-            <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
-            <div
-              className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"
-              style={{ animationDelay: "0.1s" }}
-            ></div>
-            <div
-              className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"
-              style={{ animationDelay: "0.2s" }}
-            ></div>
-          </div>
+          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-indigo-400 sm:pt-1 sm:text-[10px]">
+            Trace
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+            Retrieving dated evidence<span className="animate-pulse">…</span>
+          </span>
         </motion.div>
-      )}
+      ) : null}
+
+      {error ? (
+        <div className="border-b border-red-400/20 py-5 font-sans text-sm leading-6 text-red-300">
+          {error.message || "Trace could not complete that answer."}
+        </div>
+      ) : null}
     </div>
   );
 }

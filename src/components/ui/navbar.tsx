@@ -1,192 +1,80 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { FiMonitor, FiMoon, FiSun } from "react-icons/fi";
 import { useEffect, useState } from "react";
-import { FiSun, FiMoon, FiMenu, FiX, FiMonitor } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaHome, FaProjectDiagram, FaFileAlt, FaCode } from "react-icons/fa";
 import { useTheme } from "./theme-provider";
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const navItems = [
-  {
-    name: "Home",
-    icon: <FaHome />,
-    href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/#hero`,
-  },
-  // {
-  //   name: "Project",
-  //   icon: <FaProjectDiagram />,
-  //   href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/#projects`,
-  // },
-  // { name: "Resume", icon: <FaFileAlt />, href: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/resume` },
-  {
-    name: "Blog",
-    icon: <FaCode />,
-    href: "https://jacvan.dev/",
-    external: true,
-  },
+  { name: "Home", href: `${BASE_PATH}/#hero` },
+  { name: "Journal", href: `${BASE_PATH}/journal` },
 ];
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // 添加点击外部关闭菜单的功能
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.getElementById("mobile-menu");
-      if (menu && !menu.contains(event.target as Node) && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMenuOpen]);
-
-  // 添加滚动时自动关闭菜单
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isMenuOpen) setIsMenuOpen(false);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMenuOpen]);
+  const themeLabel =
+    theme === "light"
+      ? "Switch to dark mode"
+      : theme === "dark"
+      ? "Switch to system theme"
+      : "Switch to light mode";
 
   return (
-    <nav className="sticky top-0 z-50 w-full">
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center justify-between w-full max-w-7xl mx-auto p-4">
-        <div className="flex-1 flex justify-center">
-          <div className="flex max-w-fit px-8 h-14 items-center gap-8 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm rounded-full border border-border-light/30 dark:border-border-dark/30">
+    <header className="relative z-30 border-b border-black/10 dark:border-white/10">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8 sm:py-7">
+        <a
+          href={`${BASE_PATH}/#hero`}
+          className="group flex items-center gap-3 rounded-sm font-mono text-[10px] uppercase tracking-[0.2em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-4 dark:focus-visible:ring-offset-black sm:text-xs"
+        >
+          <span className="h-2 w-2 rounded-full bg-indigo-500" />
+          <span className="hidden transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400 sm:inline">
+            Always debugging
+          </span>
+          <span className="transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400 sm:hidden">
+            AD
+          </span>
+        </a>
+
+        <div className="flex items-center gap-4 sm:gap-6">
+          <nav aria-label="Primary" className="flex items-center gap-4 font-mono text-[9px] uppercase tracking-[0.18em] text-neutral-500 sm:gap-6 sm:text-[10px]">
             {navItems.map((item) => (
-              <motion.a
+              <a
                 key={item.name}
                 href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-                className="font-serif text-lg text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors relative group flex items-center gap-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="transition-colors hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:hover:text-indigo-400"
               >
-                {item.icon}
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-primary group-hover:w-full transition-all duration-300"></span>
-              </motion.a>
+              </a>
             ))}
-          </div>
-        </div>
+          </nav>
 
-        {/* Theme Toggle */}
-        <div className="flex-none">
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            type="button"
+            whileTap={{ scale: 0.92 }}
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-surface-light/80 dark:bg-surface-dark/80 border border-border-light/30 dark:border-border-dark/30 hover:border-accent-primary/50 transition-all duration-300 backdrop-blur-sm"
-            aria-label={
-              theme === "light"
-                ? "Switch to dark mode"
-                : theme === "dark"
-                ? "Switch to system theme"
-                : "Switch to light mode"
-            }
+            className="flex h-8 w-8 items-center justify-center border border-black/15 text-neutral-600 transition-colors hover:border-indigo-500 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/15 dark:text-neutral-300 dark:hover:text-indigo-400"
+            aria-label={themeLabel}
           >
             {mounted ? (
               theme === "light" ? (
-                <FiSun className="w-5 h-5 text-accent-warning" />
+                <FiSun className="h-3.5 w-3.5" />
               ) : theme === "dark" ? (
-                <FiMoon className="w-5 h-5 text-accent-primary" />
+                <FiMoon className="h-3.5 w-3.5" />
               ) : (
-                <FiMonitor className="w-5 h-5 text-accent-secondary" />
+                <FiMonitor className="h-3.5 w-3.5" />
               )
             ) : (
-              <div className="w-5 h-5" />
+              <span className="h-3.5 w-3.5" />
             )}
           </motion.button>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      <div className="md:hidden w-full px-4 py-2">
-        <div className="flex justify-between items-center bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm rounded-full px-4 py-2 border border-border-light/30 dark:border-border-dark/30">
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            onClick={toggleMenu}
-            className="text-text-secondary-light dark:text-text-secondary-dark p-2 hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {isMenuOpen ? (
-              <FiX className="w-6 h-6" />
-            ) : (
-              <FiMenu className="w-6 h-6" />
-            )}
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={toggleTheme}
-            className="p-2 rounded-full bg-surface-light/80 dark:bg-surface-dark/80 border border-border-light/30 dark:border-border-dark/30 hover:border-accent-primary/50 transition-all duration-300 backdrop-blur-sm"
-            aria-label={
-              theme === "light"
-                ? "Switch to dark mode"
-                : theme === "dark"
-                ? "Switch to system theme"
-                : "Switch to light mode"
-            }
-          >
-            {mounted ? (
-              theme === "light" ? (
-                <FiSun className="w-5 h-5 text-accent-warning" />
-              ) : theme === "dark" ? (
-                <FiMoon className="w-5 h-5 text-accent-primary" />
-              ) : (
-                <FiMonitor className="w-5 h-5 text-accent-secondary" />
-              )
-            ) : (
-              <div className="w-5 h-5" />
-            )}
-          </motion.button>
-        </div>
-
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              id="mobile-menu"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-18 left-4 right-4 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-lg rounded-xl shadow-lg p-4 z-50 border border-border-light/30 dark:border-border-dark/30"
-            >
-              <div className="flex flex-col space-y-2">
-                {navItems.map((item) => (
-                  <motion.a
-                    key={item.name}
-                    href={item.href}
-                    target={item.external ? "_blank" : undefined}
-                    rel={item.external ? "noopener noreferrer" : undefined}
-                    className="font-serif text-base text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors px-4 py-3 rounded-lg hover:bg-accent-primary/10 flex items-center gap-3"
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.icon}
-                    {item.name}
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </nav>
+    </header>
   );
 }

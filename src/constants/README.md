@@ -88,7 +88,7 @@ import { ABOUT_CONTENT } from '@/constants/aboutContent'
 ## When to Use Other Approaches
 
 - **i18n Files** - If you need multi-language support
-- **Markdown Files** - For blog posts and long-form content
+- **Markdown Files** - For journal entries and long-form content
 - **CMS/API** - For dynamic content that changes frequently
 - **Database** - For user-generated or frequently updated content
 
@@ -111,4 +111,3 @@ Consider adding:
 - Content validation schemas
 - Automated content testing
 - Integration with CMS for easier editing
-

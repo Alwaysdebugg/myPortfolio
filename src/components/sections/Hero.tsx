@@ -1,249 +1,251 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useState, useEffect, useCallback, memo } from "react";
-import { FaLinkedin, FaGithub } from "react-icons/fa6";
-import { HiMail } from "react-icons/hi";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { useCallback, useState } from "react";
 import { HERO_CONTENT } from "@/constants/heroContent";
 
-// 稳定图片 URL，避免因父组件频繁 re-render 导致重复请求
-const AVATAR_IMAGE_SRC = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/avatar_2025.png`;
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const AVATAR_IMAGE_SRC = `${BASE_PATH}/images/avatar_2025.png`;
 
-const HeroAvatar = memo(function HeroAvatar({
-  imageError,
-  onImageError,
-}: {
-  imageError: boolean;
-  onImageError: () => void;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-      animate={{ opacity: 1, scale: 1, rotate: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12 relative w-36 sm:w-44 md:w-80 mb-4 sm:mb-6 md:mb-0 z-10"
-    >
-      <div className="relative z-10 w-[85%] aspect-square max-w-full mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-400/20">
-        {imageError ? (
-          <div className="w-full h-full bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
-            <span className="text-6xl">👨‍💻</span>
-          </div>
-        ) : (
-          <Image
-            src={AVATAR_IMAGE_SRC}
-            alt="Profile picture"
-            width={320}
-            height={320}
-            className="object-cover"
-            onError={onImageError}
-            priority
-          />
-        )}
-      </div>
+const evidence = [
+  { value: "3+", label: "years building across Canada & Asia" },
+  { value: "100K+", label: "records handled in a production UI" },
+  { value: "30%", label: "fewer manual inquiries with a RAG assistant" },
+];
 
-      {/* Social links */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="flex flex-wrap gap-6 items-center"
-      >
-        <div className="flex gap-4">
-          <motion.a
-            href={HERO_CONTENT.social.linkedin.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={HERO_CONTENT.social.linkedin.label}
-            whileHover={{ scale: 1.2, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-            className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
-          >
-            <FaLinkedin className="w-6 h-6" />
-          </motion.a>
-          <motion.a
-            href={HERO_CONTENT.social.github.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={HERO_CONTENT.social.github.label}
-            whileHover={{ scale: 1.2, rotate: -5 }}
-            whileTap={{ scale: 0.9 }}
-            className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
-          >
-            <FaGithub className="w-6 h-6" />
-          </motion.a>
-          <motion.a
-            href={HERO_CONTENT.social.email.url}
-            aria-label={HERO_CONTENT.social.email.label}
-            whileHover={{ scale: 1.2, rotate: -5 }}
-            whileTap={{ scale: 0.9 }}
-            className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
-          >
-            <HiMail className="w-6 h-6" />
-          </motion.a>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-});
+const tracePrompts = [
+  "What is Jacky's strongest engineering evidence?",
+  "How does Jacky approach product decisions?",
+  "Which project should I ask him about?",
+];
 
-export default function Hero() {
+interface HeroProps {
+  onAskAI: (question?: string) => void;
+}
+
+export default function Hero({ onAskAI }: HeroProps) {
   const [imageError, setImageError] = useState(false);
-  const [displayText, setDisplayText] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
+  const prefersReducedMotion = useReducedMotion();
   const handleImageError = useCallback(() => setImageError(true), []);
 
-  // 光标闪烁效果
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 500);
-
-    return () => clearInterval(cursorInterval);
-  }, []);
-
-  // 打字机效果
-  useEffect(() => {
-    let currentTextIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-    let timeoutId: NodeJS.Timeout;
-
-    const typeSpeed = 100; // 打字速度
-    const deleteSpeed = 50; // 删除速度
-    const pauseTime = 2000; // 暂停时间
-
-    const type = () => {
-      const currentText = HERO_CONTENT.typewriterText[currentTextIndex];
-
-      if (!isDeleting) {
-        // 正在打字
-        setDisplayText(currentText.slice(0, currentCharIndex));
-        currentCharIndex++;
-
-        if (currentCharIndex > currentText.length) {
-          // 打字完成，暂停后开始删除
-          timeoutId = setTimeout(() => {
-            isDeleting = true;
-            type();
-          }, pauseTime);
-          return;
-        }
-      } else {
-        // 正在删除
-        currentCharIndex--;
-        setDisplayText(currentText.slice(0, currentCharIndex));
-
-        if (currentCharIndex === 0) {
-          // 删除完成，切换到下一个文本
-          isDeleting = false;
-          currentTextIndex =
-            (currentTextIndex + 1) % HERO_CONTENT.typewriterText.length;
-        }
-      }
-
-      // 继续动画
-      timeoutId = setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
-    };
-
-    // 开始动画
-    timeoutId = setTimeout(type, typeSpeed);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
+  const reveal = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.65, ease: "easeOut" as const };
 
   return (
-    <div
-      id="hero"
-      className="flex flex-col md:flex-row justify-center items-center w-full gap-6 md:gap-20 min-h-0 md:min-h-[70vh] py-6 sm:py-10 md:py-0 px-4 sm:px-6 text-black dark:text-white relative overflow-visible shrink-0"
-    >
-      {/* Background subtle pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-200/20 via-transparent to-transparent dark:from-gray-900/20 dark:via-transparent dark:to-transparent"></div>
-
-      {/* Subtle floating particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(10)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Left side - Avatar（独立 memo 组件，避免打字机 re-render 导致图片重复请求） */}
-      <HeroAvatar imageError={imageError} onImageError={handleImageError} />
-
-      {/* Right side - Text Content */}
+    <main id="hero" className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center md:items-start space-y-6 w-full md:w-1/2 relative z-10"
+        transition={reveal}
       >
-        <div className="space-y-6 text-center md:text-left">
-          <div className="flex flex-col gap-2 md:gap-4">
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-fluid-4xl font-bold text-black dark:text-white font-serif"
-            >
-              {HERO_CONTENT.greeting}
-            </motion.span>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="min-h-[2.5rem] sm:min-h-12 font-serif text-fluid-2xl text-gray-600 dark:text-gray-400"
-            >
-              {displayText}
-              <span
-                className={`${
-                  showCursor ? "opacity-100" : "opacity-0"
-                } transition-opacity`}
-              >
-                |
-              </span>
-            </motion.div>
+        <div className="flex flex-wrap items-center justify-between gap-4 border-y border-black/10 py-4 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500 dark:border-white/10 dark:text-neutral-400 sm:text-xs">
+          <span>01 / Home</span>
+          <span>Vancouver, BC · Frontend / Mobile / Full Stack</span>
+        </div>
 
-            {/* Introduction paragraphs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-2 sm:mt-4 max-w-2xl text-left"
-            >
-              {HERO_CONTENT.introduction.paragraphs.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="text-gray-700 dark:text-gray-300 font-sans"
+        <div className="grid gap-12 py-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(19rem,0.65fr)] lg:gap-16 lg:py-16">
+          <section aria-labelledby="jacky-heading" className="flex flex-col justify-between">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-indigo-600 dark:text-indigo-400 sm:text-xs">
+                Jacky Feng / Software developer
+              </p>
+              <h1
+                id="jacky-heading"
+                className="mt-6 max-w-4xl font-serif text-[clamp(3.6rem,9vw,7.8rem)] font-semibold leading-[0.84] tracking-[-0.065em] text-neutral-950 dark:text-[#f5f2ea]"
+              >
+                I build,
+                <br />
+                then I question
+                <br />
+                what I built<span className="text-indigo-600 dark:text-indigo-400">.</span>
+              </h1>
+
+              <p className="mt-8 max-w-2xl font-sans text-base leading-8 text-neutral-600 dark:text-neutral-400 sm:mt-10 sm:text-lg">
+                I&apos;m Jacky, a Vancouver-based developer working across React,
+                React Native, backend systems, and AI products. This site is not
+                a finished portrait. It is a record of the decisions, mistakes,
+                and revisions behind the work.
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-x-7 gap-y-4 font-mono text-[10px] uppercase tracking-[0.16em] sm:text-xs">
+              <a
+                href={HERO_CONTENT.social.linkedin.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-black/25 pb-1 transition-colors hover:border-indigo-600 hover:text-indigo-600 dark:border-white/25 dark:hover:border-indigo-400 dark:hover:text-indigo-400"
+              >
+                LinkedIn ↗
+              </a>
+              <a
+                href={HERO_CONTENT.social.github.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-black/25 pb-1 transition-colors hover:border-indigo-600 hover:text-indigo-600 dark:border-white/25 dark:hover:border-indigo-400 dark:hover:text-indigo-400"
+              >
+                GitHub ↗
+              </a>
+              <a
+                href={HERO_CONTENT.social.email.url}
+                className="border-b border-black/25 pb-1 transition-colors hover:border-indigo-600 hover:text-indigo-600 dark:border-white/25 dark:hover:border-indigo-400 dark:hover:text-indigo-400"
+              >
+                Email ↗
+              </a>
+              <a
+                href={`${BASE_PATH}/resume.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-black/25 pb-1 transition-colors hover:border-indigo-600 hover:text-indigo-600 dark:border-white/25 dark:hover:border-indigo-400 dark:hover:text-indigo-400"
+              >
+                Résumé ↗
+              </a>
+            </div>
+          </section>
+
+          <aside className="flex flex-col gap-6" aria-label="Portrait and current focus">
+            <figure>
+              <div className="relative aspect-[4/5] overflow-hidden bg-neutral-200 dark:bg-neutral-900">
+                {imageError ? (
+                  <div className="flex h-full items-center justify-center font-mono text-xs uppercase tracking-[0.18em] text-neutral-500">
+                    Portrait unavailable
+                  </div>
+                ) : (
+                  <Image
+                    src={AVATAR_IMAGE_SRC}
+                    alt="Jacky Feng"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 360px, 80vw"
+                    className="object-cover object-center grayscale-[20%] contrast-[1.03]"
+                    onError={handleImageError}
+                  />
+                )}
+                <span className="absolute left-4 top-4 bg-[#f4f1eb] px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-neutral-900 dark:bg-[#080808] dark:text-neutral-100">
+                  Subject / 01
+                </span>
+              </div>
+              <figcaption className="mt-3 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.18em] text-neutral-500 sm:text-[10px]">
+                <span>Jacky, in progress</span>
+                <span>2026</span>
+              </figcaption>
+            </figure>
+
+            <div className="border-l-2 border-indigo-500 pl-4 font-sans text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+              Currently interested in interfaces that make complex systems feel
+              legible—and AI features that earn their place in the product.
+            </div>
+          </aside>
+        </div>
+
+        <section aria-labelledby="evidence-heading" className="border-t border-black/10 dark:border-white/10">
+          <div className="grid lg:grid-cols-[0.55fr_1.45fr]">
+            <div className="border-b border-black/10 py-8 dark:border-white/10 lg:border-b-0 lg:border-r lg:pr-10">
+              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-neutral-500 sm:text-xs">
+                02 / Selected evidence
+              </p>
+              <h2 id="evidence-heading" className="mt-4 font-serif text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                Claims need receipts<span className="text-indigo-600 dark:text-indigo-400">.</span>
+              </h2>
+            </div>
+            <dl className="grid sm:grid-cols-3 lg:pl-10">
+              {evidence.map((item) => (
+                <div
+                  key={item.value}
+                  className="border-b border-black/10 py-7 last:border-b-0 dark:border-white/10 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0"
                 >
-                  {paragraph}
-                </p>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-neutral-500 sm:text-xs">
+                    {item.label}
+                  </dt>
+                  <dd className="mt-3 font-serif text-4xl font-semibold tracking-[-0.04em] text-indigo-600 dark:text-indigo-400 sm:text-5xl">
+                    {item.value}
+                  </dd>
+                </div>
               ))}
-            </motion.div>
+            </dl>
           </div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            className="space-y-6 text-black dark:text-white text-fluid-lg max-w-2xl leading-relaxed font-serif"
-          ></motion.div>
+        </section>
+
+        <section
+          aria-labelledby="trace-heading"
+          className="mt-12 bg-neutral-950 text-[#f5f2ea] dark:bg-[#f5f2ea] dark:text-neutral-950 sm:mt-16"
+        >
+          <div className="grid lg:grid-cols-[0.55fr_1.45fr]">
+            <div className="flex flex-col justify-between border-b border-white/15 p-6 dark:border-black/15 sm:p-8 lg:border-b-0 lg:border-r">
+              <div>
+                <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] sm:text-xs">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-60 motion-reduce:animate-none" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-indigo-500" />
+                  </span>
+                  Trace / Online
+                </div>
+                <h2 id="trace-heading" className="mt-6 font-serif text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                  A second
+                  <br />
+                  perspective<span className="text-indigo-400 dark:text-indigo-600">.</span>
+                </h2>
+              </div>
+              <p className="mt-8 font-mono text-[9px] uppercase leading-5 tracking-[0.16em] opacity-55 sm:text-[10px]">
+                AI voice · Grounded in Jacky&apos;s public notes · Not Jacky
+              </p>
+            </div>
+
+            <div className="p-6 sm:p-8 lg:p-10">
+              <p className="max-w-3xl font-serif text-2xl leading-snug tracking-[-0.02em] sm:text-3xl">
+                “Jacky says he is always debugging. My job is to show you the
+                evidence—and point out where the work is still unfinished.”
+              </p>
+              <p className="mt-6 max-w-2xl font-sans text-sm leading-7 opacity-65 sm:text-base">
+                I read the curated portfolio knowledge base and answer as an
+                independent guide. Ask me for the thread between projects,
+                decisions, and the way Jacky works.
+              </p>
+
+              <div className="mt-8 grid gap-px bg-white/15 dark:bg-black/15 sm:grid-cols-3">
+                {tracePrompts.map((question, index) => (
+                  <button
+                    key={question}
+                    type="button"
+                    onClick={() => onAskAI(question)}
+                    className="group flex min-h-28 flex-col justify-between bg-neutral-950 p-4 text-left transition-colors hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-400 dark:bg-[#f5f2ea] dark:hover:bg-indigo-200 dark:focus-visible:ring-indigo-600"
+                  >
+                    <span className="font-mono text-[9px] uppercase tracking-[0.18em] opacity-50">
+                      Prompt / {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="mt-5 font-sans text-sm leading-5">
+                      {question}
+                    </span>
+                    <span aria-hidden="true" className="mt-4 transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onAskAI()}
+                className="mt-7 border-b border-current pb-1 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors hover:text-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 dark:hover:text-indigo-600 sm:text-xs"
+              >
+                Open a conversation with Trace ↗
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <div className="mt-12 flex flex-col gap-4 border-y border-black/10 py-6 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between sm:text-xs">
+          <span>The work changes. The record stays.</span>
+          <Link
+            href={`${BASE_PATH}/journal`}
+            className="w-fit text-neutral-800 transition-colors hover:text-indigo-600 dark:text-neutral-200 dark:hover:text-indigo-400"
+          >
+            Read the Debug Journal →
+          </Link>
         </div>
       </motion.div>
-    </div>
+    </main>
   );
 }

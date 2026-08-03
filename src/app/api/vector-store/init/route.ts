@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { initializeSupabaseStore } from "@/lib/rag/vector-store-supabase";
+import { syncSupabaseStore } from "@/lib/rag/vector-store-supabase";
 
 export const runtime = "nodejs";
 
@@ -10,17 +10,24 @@ export const runtime = "nodejs";
  */
 export async function POST(req: NextRequest) {
   try {
-    // 可以添加认证检查，确保只有授权用户可以初始化
-    // const authHeader = req.headers.get("authorization");
-    // if (authHeader !== `Bearer ${process.env.INIT_SECRET}`) {
-    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
+    const secret = process.env.INIT_SECRET;
+    if (!secret) {
+      return NextResponse.json(
+        { error: "Vector-store sync is disabled until INIT_SECRET is set." },
+        { status: 503 }
+      );
+    }
 
-    await initializeSupabaseStore();
+    if (req.headers.get("authorization") !== `Bearer ${secret}`) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const count = await syncSupabaseStore();
     
     return NextResponse.json({
       success: true,
-      message: "Vector store initialized successfully",
+      message: "Vector store synchronized successfully",
+      count,
     });
   } catch (error) {
     console.error("Init error:", error);
