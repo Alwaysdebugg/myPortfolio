@@ -53,7 +53,7 @@ export default function ChatWindow({ initialQuestion }: ChatWindowProps) {
   }, [handleSend, initialQuestion]);
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col bg-[#080808]">
+    <div className="flex min-h-0 flex-1 flex-col bg-[#f4f1eb] transition-colors duration-300 dark:bg-[#080808]">
       <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-6 sm:px-8 sm:py-8">
         <MessageList
           messages={messages}

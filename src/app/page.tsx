@@ -67,7 +67,7 @@ export default function Home() {
       <AnimatePresence>
         {isTraceOpen ? (
           <motion.div
-            className="fixed inset-0 z-[70] flex items-end justify-center bg-black/70 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+            className="fixed inset-0 z-[70] flex items-end justify-center bg-neutral-950/45 p-0 backdrop-blur-sm dark:bg-black/70 sm:items-center sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -82,16 +82,16 @@ export default function Home() {
               exit={{ opacity: 0, y: 20, scale: 0.98 }}
               transition={{ duration: 0.25 }}
               onMouseDown={(event) => event.stopPropagation()}
-              className="flex h-[92dvh] w-full max-w-5xl flex-col overflow-hidden border border-white/15 bg-[#080808] text-[#f5f2ea] shadow-2xl sm:h-[min(760px,88dvh)]"
+              className="flex h-[92dvh] w-full max-w-5xl flex-col overflow-hidden border border-black/15 bg-[#f4f1eb] text-neutral-950 shadow-2xl transition-colors duration-300 dark:border-white/15 dark:bg-[#080808] dark:text-[#f5f2ea] sm:h-[min(760px,88dvh)]"
             >
-              <header className="flex items-center justify-between border-b border-white/10 px-5 py-4 sm:px-7">
+              <header className="flex items-center justify-between border-b border-black/10 px-5 py-4 dark:border-white/10 sm:px-7">
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-indigo-500" />
                   <div>
                     <h2 id="trace-dialog-title" className="font-mono text-[10px] uppercase tracking-[0.22em] sm:text-xs">
                       Trace / Second perspective
                     </h2>
-                    <p className="mt-1 font-sans text-[11px] text-neutral-500 sm:text-xs">
+                    <p className="mt-1 font-sans text-[11px] text-neutral-600 dark:text-neutral-500 sm:text-xs">
                       An AI guide grounded in Jacky&apos;s public portfolio evidence.
                     </p>
                   </div>
@@ -99,7 +99,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setIsTraceOpen(false)}
-                  className="flex h-9 w-9 items-center justify-center border border-white/15 font-mono text-lg text-neutral-400 transition-colors hover:border-indigo-400 hover:text-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                  className="flex h-9 w-9 items-center justify-center border border-black/15 font-mono text-lg text-neutral-600 transition-colors hover:border-indigo-600 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/15 dark:text-neutral-400 dark:hover:border-indigo-400 dark:hover:text-indigo-400 dark:focus-visible:ring-indigo-400"
                   aria-label="Close Trace"
                 >
                   ×

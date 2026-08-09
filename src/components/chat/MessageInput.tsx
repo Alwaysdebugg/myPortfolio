@@ -39,7 +39,7 @@ export default function MessageInput({
   return (
     <form
       onSubmit={handleSubmit}
-      className="border-t border-white/10 bg-[#080808] px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-8 sm:py-5"
+      className="border-t border-black/10 bg-[#f4f1eb] px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] transition-colors duration-300 dark:border-white/10 dark:bg-[#080808] sm:px-8 sm:py-5"
     >
       <label htmlFor="trace-message" className="sr-only">
         Ask Trace a question
@@ -53,7 +53,7 @@ export default function MessageInput({
           placeholder="Ask for evidence, not a sales pitch…"
           disabled={disabled}
           rows={1}
-          className="min-h-12 flex-1 resize-none border border-white/15 bg-transparent px-4 py-3 font-sans text-base text-[#f5f2ea] placeholder:text-neutral-600 focus:border-indigo-400 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50"
+          className="min-h-12 flex-1 resize-none border border-black/15 bg-transparent px-4 py-3 font-sans text-base text-neutral-950 placeholder:text-neutral-500 focus:border-indigo-600 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/15 dark:text-[#f5f2ea] dark:placeholder:text-neutral-600 dark:focus:border-indigo-400"
           onInput={(event) => {
             const target = event.currentTarget;
             target.style.height = "auto";
@@ -64,7 +64,7 @@ export default function MessageInput({
           <button
             type="button"
             onClick={onStop}
-            className="flex h-12 min-w-12 items-center justify-center border border-white/20 bg-transparent px-4 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-300 transition-colors hover:border-indigo-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 sm:min-w-28"
+            className="flex h-12 min-w-12 items-center justify-center border border-black/20 bg-transparent px-4 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-700 transition-colors hover:border-indigo-600 hover:text-neutral-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/20 dark:text-neutral-300 dark:hover:border-indigo-400 dark:hover:text-white dark:focus-visible:ring-indigo-400 sm:min-w-28"
             aria-label="Stop response"
           >
             <span className="hidden sm:inline">Stop </span>■
@@ -73,14 +73,14 @@ export default function MessageInput({
           <button
             type="submit"
             disabled={disabled || !input.trim()}
-            className="flex h-12 min-w-12 items-center justify-center bg-[#f5f2ea] px-4 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-950 transition-colors hover:bg-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-30 sm:min-w-28"
+            className="flex h-12 min-w-12 items-center justify-center bg-neutral-950 px-4 font-mono text-[10px] uppercase tracking-[0.18em] text-white transition-colors hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4f1eb] disabled:cursor-not-allowed disabled:opacity-30 dark:bg-[#f5f2ea] dark:text-neutral-950 dark:hover:bg-indigo-400 dark:focus-visible:ring-indigo-400 dark:focus-visible:ring-offset-black sm:min-w-28"
             aria-label="Send message"
           >
             <span className="hidden sm:inline">Send </span>→
           </button>
         )}
       </div>
-      <p className="mx-auto mt-2 hidden max-w-3xl font-mono text-[9px] uppercase tracking-[0.14em] text-neutral-700 sm:block">
+      <p className="mx-auto mt-2 hidden max-w-3xl font-mono text-[9px] uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-700 sm:block">
         Enter to send · Shift + Enter for a new line
       </p>
     </form>
